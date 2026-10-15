@@ -1,0 +1,32 @@
+---
+import { ueberMich } from '../../content/texte';
+import TodoBox from '../TodoBox.astro';
+import Txt from '../Txt.astro';
+
+/**
+ * Foto einbinden: Bild nach src/assets/ legen, oben importieren
+ *   import foto from '../../assets/foto.jpg';
+ * und die TodoBox ersetzen durch
+ *   <Image src={foto} alt="Porträt von …" width={480} height={480} class="rounded-2xl" />
+ * (Image kommt aus 'astro:assets' und optimiert das Bild automatisch.)
+ */
+---
+
+<section id="ueber-mich" aria-labelledby="ueber-mich-titel" class="section bg-surface border-border border-y">
+  <div class="container-page grid grid-cols-1 items-start gap-10 md:grid-cols-[minmax(0,1fr)_minmax(0,2fr)] md:gap-14">
+    <TodoBox text={ueberMich.fotoPlatzhalter} icon="user" class="aspect-square w-full max-w-xs" />
+    <div>
+      <p class="eyebrow">{ueberMich.eyebrow}</p>
+      <h2 id="ueber-mich-titel" class="h2"><Txt text={ueberMich.titel} /></h2>
+      <div class="mt-6 max-w-2xl space-y-4 text-lg">
+        {
+          ueberMich.absaetze.map((absatz) => (
+            <p>
+              <Txt text={absatz} />
+            </p>
+          ))
+        }
+      </div>
+    </div>
+  </div>
+</section>

@@ -1,0 +1,66 @@
+---
+import { hero } from '../../content/texte';
+import Icon from '../Icon.astro';
+import Txt from '../Txt.astro';
+
+const beispiel = [
+  { icon: 'mail', text: 'Neue Anfrage per E-Mail' },
+  { icon: 'bot', text: 'Assistent beantwortet die Standardfragen' },
+  { icon: 'calendarCheck', text: 'Termin steht im Kalender' },
+] as const;
+---
+
+<section aria-labelledby="hero-titel" class="relative overflow-hidden">
+  <div
+    aria-hidden="true"
+    class="pointer-events-none absolute -top-40 -right-40 size-[36rem] rounded-full bg-[radial-gradient(closest-side,var(--accent-soft),transparent)] opacity-70 blur-3xl"
+  >
+  </div>
+
+  <div class="container-page relative grid grid-cols-1 items-center gap-14 pt-14 pb-16 sm:pt-20 sm:pb-24 lg:grid-cols-[minmax(0,1.35fr)_minmax(0,1fr)]">
+    <div>
+      <p class="eyebrow"><Txt text={hero.eyebrow} /></p>
+      <h1 id="hero-titel" class="mt-4 text-[2.15rem] font-bold sm:text-5xl lg:text-[3.4rem]">
+        <Txt text={hero.titel} />
+      </h1>
+      <p class="text-muted mt-6 max-w-2xl text-lg sm:text-xl"><Txt text={hero.text} /></p>
+
+      <div class="mt-9 flex flex-col gap-3 sm:flex-row sm:items-center">
+        <a href="#kontakt" class="btn btn-primary text-[1.05rem]">
+          {hero.cta}
+          <Icon name="arrowRight" size={20} />
+        </a>
+        <a href="#ablauf" class="btn btn-secondary">{hero.sekundaer}</a>
+      </div>
+      <p class="text-muted mt-4 text-[0.95rem]"><Txt text={hero.ctaHinweis} /></p>
+
+      <div class="border-border mt-10 border-t pt-6">
+        <p class="text-muted text-sm font-medium" id="branchen-titel">{hero.branchenTitel}</p>
+        <ul class="mt-3 flex flex-wrap gap-2" aria-labelledby="branchen-titel">
+          {
+            hero.branchen.map((branche) => (
+              <li class="border-border bg-surface rounded-full border px-3.5 py-1.5 text-[0.95rem]">{branche}</li>
+            ))
+          }
+        </ul>
+      </div>
+    </div>
+
+    <figure class="hidden lg:block">
+      <ol class="border-border bg-surface relative space-y-3 rounded-3xl border p-6 shadow-[0_24px_60px_-30px_rgb(15_110_106/0.35)]">
+        {
+          beispiel.map((schritt, i) => (
+            <li class="bg-bg border-border flex items-center gap-4 rounded-2xl border p-4">
+              <span class="bg-accent-soft text-accent inline-flex size-11 shrink-0 items-center justify-center rounded-xl">
+                <Icon name={schritt.icon} size={22} />
+              </span>
+              <span class="font-medium">{schritt.text}</span>
+              {i === beispiel.length - 1 && <Icon name="check" size={20} class="text-accent ml-auto" />}
+            </li>
+          ))
+        }
+      </ol>
+      <figcaption class="text-muted mt-3 text-center text-sm">Beispiel: So kann ein automatischer Ablauf aussehen.</figcaption>
+    </figure>
+  </div>
+</section>

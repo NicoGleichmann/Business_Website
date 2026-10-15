@@ -1,0 +1,31 @@
+---
+import { problem } from '../../content/texte';
+import Icon, { type IconName } from '../Icon.astro';
+import Txt from '../Txt.astro';
+---
+
+<section id="problem" aria-labelledby="problem-titel" class="section bg-surface border-border border-y">
+  <div class="container-page">
+    <p class="eyebrow">{problem.eyebrow}</p>
+    <h2 id="problem-titel" class="h2"><Txt text={problem.titel} /></h2>
+    <p class="lead"><Txt text={problem.text} /></p>
+
+    <ul class="mt-12 grid grid-cols-1 gap-5 sm:grid-cols-2">
+      {
+        problem.punkte.map((punkt) => (
+          <li class="bg-bg border-border rounded-2xl border p-6 sm:p-7">
+            <span class="bg-accent-soft text-accent inline-flex size-12 items-center justify-center rounded-xl">
+              <Icon name={punkt.icon as IconName} />
+            </span>
+            <h3 class="mt-5 text-xl">
+              <Txt text={punkt.titel} />
+            </h3>
+            <p class="text-muted mt-2">
+              <Txt text={punkt.text} />
+            </p>
+          </li>
+        ))
+      }
+    </ul>
+  </div>
+</section>

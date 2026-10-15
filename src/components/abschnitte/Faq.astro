@@ -1,0 +1,38 @@
+---
+import { faq } from '../../content/texte';
+import Icon from '../Icon.astro';
+import Txt from '../Txt.astro';
+---
+
+<section id="faq" aria-labelledby="faq-titel" class="section">
+  <div class="container-page">
+    <p class="eyebrow">{faq.eyebrow}</p>
+    <h2 id="faq-titel" class="h2"><Txt text={faq.titel} /></h2>
+
+    <div class="border-border mt-10 max-w-3xl divide-y divide-[var(--border)] border-y">
+      {
+        faq.fragen.map((eintrag) => (
+          <details class="group">
+            <summary class="flex min-h-12 cursor-pointer list-none items-center justify-between gap-4 py-5 text-lg font-semibold [&::-webkit-details-marker]:hidden">
+              <span>
+                <Txt text={eintrag.frage} />
+              </span>
+              <Icon
+                name="chevronDown"
+                size={22}
+                class="text-accent shrink-0 transition-transform duration-200 group-open:rotate-180"
+              />
+            </summary>
+            <div class="text-muted space-y-3 pb-6">
+              {eintrag.antwort.map((absatz) => (
+                <p>
+                  <Txt text={absatz} />
+                </p>
+              ))}
+            </div>
+          </details>
+        ))
+      }
+    </div>
+  </div>
+</section>

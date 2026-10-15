@@ -1,0 +1,39 @@
+---
+import { ablauf } from '../../content/texte';
+import Txt from '../Txt.astro';
+---
+
+<section id="ablauf" aria-labelledby="ablauf-titel" class="section bg-surface border-border border-y">
+  <div class="container-page">
+    <p class="eyebrow">{ablauf.eyebrow}</p>
+    <h2 id="ablauf-titel" class="h2"><Txt text={ablauf.titel} /></h2>
+    <p class="lead"><Txt text={ablauf.text} /></p>
+
+    <ol class="mt-12 grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-4 lg:gap-6">
+      {
+        ablauf.schritte.map((schritt, i) => (
+          <li class="relative">
+            <div class="flex items-center gap-4 lg:flex-col lg:items-start">
+              <span
+                class="border-accent text-accent bg-surface relative z-10 inline-flex size-12 shrink-0 items-center justify-center rounded-full border-2 text-lg font-bold"
+                aria-hidden="true"
+              >
+                {i + 1}
+              </span>
+              <h3 class="text-xl">
+                <span class="sr-only">Schritt {i + 1}: </span>
+                <Txt text={schritt.titel} />
+              </h3>
+            </div>
+            {i < ablauf.schritte.length - 1 && (
+              <span aria-hidden="true" class="bg-border absolute top-6 left-14 hidden h-0.5 w-[calc(100%-2rem)] lg:block" />
+            )}
+            <p class="text-muted mt-3 md:pl-0">
+              <Txt text={schritt.text} />
+            </p>
+          </li>
+        ))
+      }
+    </ol>
+  </div>
+</section>

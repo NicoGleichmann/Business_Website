@@ -1,0 +1,58 @@
+---
+import { leistungen } from '../../content/texte';
+import Icon, { type IconName } from '../Icon.astro';
+import Txt from '../Txt.astro';
+---
+
+<section id="leistungen" aria-labelledby="leistungen-titel" class="section">
+  <div class="container-page">
+    <p class="eyebrow">{leistungen.eyebrow}</p>
+    <h2 id="leistungen-titel" class="h2"><Txt text={leistungen.titel} /></h2>
+    <p class="lead"><Txt text={leistungen.text} /></p>
+
+    <div class="mt-12 grid grid-cols-1 gap-6 md:grid-cols-2">
+      {
+        leistungen.spalten.map((spalte) => (
+          <article class="card flex flex-col">
+            <div class="flex items-center gap-4">
+              <span class="bg-accent text-on-accent inline-flex size-12 shrink-0 items-center justify-center rounded-xl">
+                <Icon name={spalte.icon as IconName} />
+              </span>
+              <h3 class="text-2xl">
+                <Txt text={spalte.titel} />
+              </h3>
+            </div>
+            <p class="mt-5 text-lg font-medium">
+              <Txt text={spalte.untertitel} />
+            </p>
+            <p class="text-muted mt-2">
+              <Txt text={spalte.text} />
+            </p>
+
+            <p class="text-muted mt-7 text-sm font-semibold tracking-wide uppercase">Beispiele</p>
+            <ul class="mt-3 space-y-4">
+              {spalte.beispiele.map((beispiel) => (
+                <li class="flex gap-3">
+                  <Icon name="check" size={22} class="text-accent mt-0.5 shrink-0" />
+                  <p>
+                    <strong class="font-semibold">
+                      <Txt text={beispiel.titel} />:
+                    </strong>{' '}
+                    <span class="text-muted">
+                      <Txt text={beispiel.text} />
+                    </span>
+                  </p>
+                </li>
+              ))}
+            </ul>
+          </article>
+        ))
+      }
+    </div>
+
+    <div class="bg-accent-soft mt-6 rounded-2xl p-6 sm:p-7">
+      <p class="font-semibold"><Txt text={leistungen.unterschiedTitel} /></p>
+      <p class="mt-1"><Txt text={leistungen.unterschied} /></p>
+    </div>
+  </div>
+</section>
