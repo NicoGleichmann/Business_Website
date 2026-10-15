@@ -1,0 +1,22 @@
+---
+/** Großer, gut sichtbarer Platzhalter für fehlende Inhalte (Video, Foto, Rechtstexte …). */
+import Icon, { type IconName } from './Icon.astro';
+
+interface Props {
+  text: string;
+  icon?: IconName;
+  class?: string;
+}
+const { text, icon, class: klasse = '' } = Astro.props;
+---
+
+<div
+  class:list={[
+    'border-todo-border bg-todo-bg text-todo-fg flex flex-col items-center justify-center gap-3 rounded-2xl border-2 border-dashed p-6 text-center font-medium',
+    klasse,
+  ]}
+>
+  {icon && <Icon name={icon} size={32} />}
+  <p>{text}</p>
+  <slot />
+</div>
