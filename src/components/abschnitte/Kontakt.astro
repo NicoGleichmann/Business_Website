@@ -1,0 +1,90 @@
+---
+import { istGesetzt, istTodo, site } from '../../config/site';
+import { kontakt } from '../../content/texte';
+import ContactForm from '../ContactForm.astro';
+import Icon from '../Icon.astro';
+import Txt from '../Txt.astro';
+
+const { email, telefon, calUrl } = site.kontakt;
+const telefonLink = istGesetzt(telefon) ? `tel:${telefon.replace(/[^\d+]/g, '')}` : '';
+---
+
+<section id="kontakt" aria-labelledby="kontakt-titel" class="section bg-soft border-border border-t">
+  <div class="container-page">
+    <p class="eyebrow">{kontakt.eyebrow}</p>
+    <h2 id="kontakt-titel" class="h2"><Txt text={kontakt.titel} /></h2>
+    <p class="lead"><Txt text={kontakt.text} /></p>
+    <p class="mt-4 lg:hidden">
+      <a href="#termin" class="inline-flex min-h-11 items-center gap-2 font-medium">
+        {kontakt.kalenderSprung}
+        <Icon name="arrowDown" size={18} />
+      </a>
+    </p>
+
+    <div class="mt-10 grid grid-cols-1 items-start gap-6 lg:grid-cols-[minmax(0,3fr)_minmax(0,2fr)]">
+      <ContactForm />
+
+      <div class="space-y-6">
+        <div id="termin" class="card">
+          <span class="bg-accent-soft text-accent inline-flex size-12 items-center justify-center rounded-xl">
+            <Icon name="calendarCheck" />
+          </span>
+          <h3 class="mt-5 text-xl"><Txt text={kontakt.kalender.titel} /></h3>
+          <p class="text-muted mt-2"><Txt text={kontakt.kalender.text} /></p>
+          {
+            istGesetzt(calUrl) ? (
+              <a href={calUrl} class="btn btn-primary mt-6 w-full">
+                {kontakt.kalender.button}
+                <Icon name="external" size={18} />
+                <span class="sr-only">(externe Seite)</span>
+              </a>
+            ) : (
+              <p class="mt-6">
+                <Txt text={calUrl} />
+              </p>
+            )
+          }
+          <p class="text-muted mt-3 text-sm"><Txt text={kontakt.kalender.hinweis} /></p>
+        </div>
+
+        <div class="card">
+          <p class="font-semibold">{kontakt.direkt}</p>
+          <ul class="mt-3 space-y-2">
+            {
+              (istGesetzt(email) || istTodo(email)) && (
+                <li class="flex items-center gap-3">
+                  <Icon name="mail" size={20} class="text-accent shrink-0" />
+                  {istGesetzt(email) ? (
+                    <a href={`mailto:${email}`} class="inline-block py-1.5 break-all">
+                      {email}
+                    </a>
+                  ) : (
+                    <span>
+                      <Txt text={email} />
+                    </span>
+                  )}
+                </li>
+              )
+            }
+            {
+              (istGesetzt(telefon) || istTodo(telefon)) && (
+                <li class="flex items-center gap-3">
+                  <Icon name="phone" size={20} class="text-accent shrink-0" />
+                  {telefonLink ? (
+                    <a href={telefonLink} class="inline-block py-1.5">
+                      {telefon}
+                    </a>
+                  ) : (
+                    <span>
+                      <Txt text={telefon} />
+                    </span>
+                  )}
+                </li>
+              )
+            }
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
