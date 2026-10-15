@@ -1,0 +1,237 @@
+@import 'tailwindcss';
+
+/*
+ * DESIGN-TOKENS
+ * =============
+ * Alle Farben stehen hier – Hell- und Dunkelmodus. Die Akzentfarbe ist
+ * --accent (+ --accent-hover, --accent-soft). Wer sie ändert, sollte den
+ * Kontrast prüfen (mind. 4,5 : 1 zu Hintergrund und Button-Text).
+ */
+
+/* Selbst gehostete Schrift (Inter, SIL Open Font License, siehe /fonts/Inter-LICENSE.txt) */
+@font-face {
+  font-family: 'Inter Variable';
+  font-style: normal;
+  font-display: swap;
+  font-weight: 100 900;
+  src: url('/fonts/inter-latin-wght.woff2') format('woff2-variations');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304,
+    U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+
+/* Hellmodus (Standard) */
+:root {
+  color-scheme: light;
+  --bg: #fafaf7;
+  --surface: #ffffff;
+  --soft: #eef5f4;
+  --fg: #14211f;
+  --muted: #4b5b58;
+  --border: #dde3e1;
+  --field-border: #7a8986;
+  --accent: #0f6e6a;
+  --accent-hover: #0b5754;
+  --accent-soft: #e2f0ee;
+  --on-accent: #ffffff;
+  --todo-bg: #fff4c2;
+  --todo-fg: #4a3800;
+  --todo-border: #b88a00;
+  --danger: #b42318;
+}
+
+/* Dunkelmodus – per Umschalter gewählt … */
+:root[data-theme='dark'] {
+  color-scheme: dark;
+  --bg: #0c1514;
+  --surface: #13201e;
+  --soft: #102522;
+  --fg: #e7efed;
+  --muted: #a2b3af;
+  --border: #26362f;
+  --field-border: #6b7f7a;
+  --accent: #5cc8bd;
+  --accent-hover: #7dd8cf;
+  --accent-soft: #14302c;
+  --on-accent: #062220;
+  --todo-bg: #3d3000;
+  --todo-fg: #ffe9a3;
+  --todo-border: #c9a227;
+  --danger: #ff8f85;
+}
+
+/* … oder automatisch, wenn das Gerät auf dunkel steht und nichts gewählt wurde. */
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme='light']) {
+    color-scheme: dark;
+    --bg: #0c1514;
+    --surface: #13201e;
+    --soft: #102522;
+    --fg: #e7efed;
+    --muted: #a2b3af;
+    --border: #26362f;
+    --field-border: #6b7f7a;
+    --accent: #5cc8bd;
+    --accent-hover: #7dd8cf;
+    --accent-soft: #14302c;
+    --on-accent: #062220;
+    --todo-bg: #3d3000;
+    --todo-fg: #ffe9a3;
+    --todo-border: #c9a227;
+    --danger: #ff8f85;
+  }
+}
+
+/* Tokens als Tailwind-Klassen verfügbar machen: bg-bg, text-fg, text-muted, bg-accent … */
+@theme inline {
+  --font-sans: 'Inter Variable', ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto,
+    'Helvetica Neue', Arial, sans-serif;
+  --color-bg: var(--bg);
+  --color-surface: var(--surface);
+  --color-soft: var(--soft);
+  --color-fg: var(--fg);
+  --color-muted: var(--muted);
+  --color-border: var(--border);
+  --color-field-border: var(--field-border);
+  --color-accent: var(--accent);
+  --color-accent-hover: var(--accent-hover);
+  --color-accent-soft: var(--accent-soft);
+  --color-on-accent: var(--on-accent);
+  --color-todo-bg: var(--todo-bg);
+  --color-todo-fg: var(--todo-fg);
+  --color-todo-border: var(--todo-border);
+  --color-danger: var(--danger);
+}
+
+@layer base {
+  html {
+    -webkit-text-size-adjust: 100%;
+    text-size-adjust: 100%;
+    scroll-behavior: smooth;
+    /* Platz für den fixierten Header beim Springen zu Ankern */
+    scroll-padding-top: 5rem;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    html {
+      scroll-behavior: auto;
+    }
+    *,
+    *::before,
+    *::after {
+      transition-duration: 0.01ms !important;
+      animation-duration: 0.01ms !important;
+    }
+  }
+
+  body {
+    @apply bg-bg text-fg font-sans antialiased;
+    font-size: 1.0625rem;
+    line-height: 1.65;
+    font-feature-settings: 'cv11', 'ss01';
+  }
+
+  h1,
+  h2,
+  h3 {
+    @apply text-fg font-semibold;
+    letter-spacing: -0.02em;
+    line-height: 1.15;
+    text-wrap: balance;
+  }
+
+  p {
+    text-wrap: pretty;
+  }
+
+  a {
+    @apply text-accent underline decoration-1 underline-offset-[0.2em];
+  }
+  a:hover {
+    @apply text-accent-hover decoration-2;
+  }
+
+  :focus-visible {
+    outline: 3px solid var(--accent);
+    outline-offset: 3px;
+    border-radius: 4px;
+  }
+
+  ::selection {
+    background: var(--accent);
+    color: var(--on-accent);
+  }
+}
+
+@layer components {
+  .container-page {
+    @apply mx-auto w-full max-w-6xl px-5 sm:px-8;
+  }
+
+  .section {
+    @apply py-16 sm:py-24;
+  }
+
+  .eyebrow {
+    @apply text-accent text-sm font-semibold tracking-wide uppercase;
+  }
+
+  .h2 {
+    @apply mt-3 text-3xl sm:text-4xl;
+  }
+
+  .lead {
+    @apply text-muted mt-4 max-w-2xl text-lg;
+  }
+
+  .card {
+    @apply bg-surface border-border rounded-2xl border p-6 sm:p-7;
+  }
+
+  /* Buttons: mind. 48 px hoch (Touch-Ziel), deutlicher Fokus */
+  .btn {
+    @apply inline-flex min-h-12 items-center justify-center gap-2 rounded-full px-6 py-3 text-base font-semibold no-underline transition-colors;
+  }
+  .btn-primary {
+    @apply bg-accent text-on-accent hover:bg-accent-hover hover:text-on-accent;
+  }
+  /* Formularfelder: Rahmen mit mind. 3 : 1 Kontrast, 16 px Schrift (kein Zoom auf iPhones) */
+  .feld {
+    @apply border-field-border bg-surface text-fg mt-2 block w-full rounded-xl border px-4 py-3 text-base;
+  }
+  .feld:focus-visible {
+    @apply border-accent;
+    outline-offset: 1px;
+  }
+  .feld[aria-invalid='true'] {
+    @apply border-danger border-2;
+  }
+  .feld-hinweis {
+    @apply text-muted mt-1.5 text-[0.95rem];
+  }
+  .feld-fehler {
+    @apply text-danger mt-1.5 text-[0.95rem] font-medium;
+  }
+
+  .btn-secondary {
+    @apply border-field-border text-fg hover:border-accent hover:text-accent border bg-transparent;
+  }
+}
+
+/* Platzhalter [[TODO: …]] – absichtlich auffällig, damit nichts übersehen wird */
+.todo {
+  background: var(--todo-bg);
+  color: var(--todo-fg);
+  outline: 2px dashed var(--todo-border);
+  outline-offset: 1px;
+  border-radius: 4px;
+  padding: 0 0.3em;
+  font-weight: 500;
+  overflow-wrap: anywhere;
+  box-decoration-break: clone;
+  -webkit-box-decoration-break: clone;
+}
+
+/* Theme-Umschalter nur zeigen, wenn JavaScript läuft (sonst gilt die Systemeinstellung) */
+html:not(.js) [data-theme-toggle] {
+  display: none;
+}

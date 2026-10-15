@@ -1,0 +1,15 @@
+# Build-Ausgabe
+dist/
+.astro/
+
+# Abhängigkeiten
+node_modules/
+
+# Lokale Umgebungsvariablen (nicht ins Repo!)
+.env
+.env.*
+!.env.example
+
+# System
+.DS_Store
+*.log
