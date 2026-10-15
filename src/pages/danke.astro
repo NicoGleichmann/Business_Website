@@ -1,0 +1,17 @@
+---
+/** Bestätigungsseite – n8n kann nach dem Absenden ohne JavaScript hierher weiterleiten. */
+import Base from '../layouts/Base.astro';
+import Icon from '../components/Icon.astro';
+import { kontakt } from '../content/texte';
+---
+
+<Base titel="Danke für Ihre Nachricht" noindex>
+  <section class="container-page max-w-2xl py-20 text-center sm:py-28">
+    <span class="bg-accent-soft text-accent inline-flex size-16 items-center justify-center rounded-full">
+      <Icon name="check" size={32} />
+    </span>
+    <h1 class="mt-6 text-4xl font-bold">Danke für Ihre Nachricht!</h1>
+    <p class="text-muted mt-4 text-lg">{kontakt.formular.erfolg}</p>
+    <a href="/" class="btn btn-primary mt-8">Zurück zur Startseite</a>
+  </section>
+</Base>

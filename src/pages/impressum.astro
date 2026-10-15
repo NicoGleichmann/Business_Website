@@ -1,0 +1,43 @@
+---
+/**
+ * IMPRESSUM
+ * Den Text aus einem Impressum-Generator unten im markierten Bereich einfügen
+ * (normaler HTML-Text: Überschriften als <h2>, Absätze als <p>).
+ * Die Kontaktdaten im ersten Block kommen automatisch aus src/config/site.ts.
+ * Enthält der Generator-Text dieselben Angaben, den ersten Block einfach löschen.
+ */
+import Rechtliches from '../layouts/Rechtliches.astro';
+import TodoBox from '../components/TodoBox.astro';
+import Txt from '../components/Txt.astro';
+import { istGesetzt, site } from '../config/site';
+
+const { inhaber, adresse, kontakt } = site;
+---
+
+<Rechtliches titel="Impressum" beschreibung={`Impressum von ${site.name}, ${site.region.stadt}.`}>
+  <p>
+    <Txt text={site.name} /><br />
+    <Txt text={inhaber.name} /><br />
+    <Txt text={adresse.strasse} /><br />
+    <Txt text={adresse.plz} />
+    <Txt text={adresse.ort} />
+  </p>
+  <p>
+    E-Mail: {istGesetzt(kontakt.email) ? <a href={`mailto:${kontakt.email}`}>{kontakt.email}</a> : <Txt text={kontakt.email} />}
+    {
+      kontakt.telefon && (
+        <>
+          <br />
+          Telefon: <Txt text={kontakt.telefon} />
+        </>
+      )
+    }
+  </p>
+
+  <!-- ===== Ab hier: Text aus dem Impressum-Generator einfügen ===== -->
+  <TodoBox
+    class="mt-8"
+    text="[[TODO: Impressum-Text aus einem Generator einfügen (Angaben nach § 5 DDG) und von IHK oder Steuerberater prüfen lassen.]]"
+  />
+  <!-- ===== Ende Generator-Text ===== -->
+</Rechtliches>
