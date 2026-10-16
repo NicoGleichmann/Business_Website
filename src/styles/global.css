@@ -19,12 +19,27 @@
     U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
 }
 
+/*
+ * Farben nach ROLLE (nicht nach Helligkeit), damit beide Modi einheitlich bleiben:
+ *   --bg          Seitenhintergrund
+ *   --band        abwechselnde Abschnitte (im Dunkelmodus = --bg, also durchgehend eine Fläche)
+ *   --band-accent Kontaktbereich (hell leicht getönt, dunkel = --bg)
+ *   --card        Karten und Formular-Box
+ *   --card-muted  Karten auf weißen Bändern (hell gedämpft, dunkel = --card)
+ *   --field       Eingabefelder
+ *   --hover       Hover-Fläche für runde Icon-Buttons
+ */
+
 /* Hellmodus (Standard) */
 :root {
   color-scheme: light;
   --bg: #fafaf7;
-  --surface: #ffffff;
-  --soft: #eef5f4;
+  --band: #ffffff;
+  --band-accent: #eef5f4;
+  --card: #ffffff;
+  --card-muted: #fafaf7;
+  --field: #ffffff;
+  --hover: #eef5f4;
   --fg: #14211f;
   --muted: #4b5b58;
   --border: #dde3e1;
@@ -39,12 +54,20 @@
   --danger: #b42318;
 }
 
-/* Dunkelmodus – per Umschalter gewählt … */
-:root[data-theme='dark'] {
+/*
+ * Dunkelmodus – per Umschalter gewählt (data-farbschema="dunkel") …
+ * Eigenes Attribut statt "data-theme", damit eingebettete Vorschauen (z. B. Claude)
+ * nicht mit dem Umschalter um dasselbe Attribut konkurrieren.
+ */
+:root[data-farbschema='dunkel'] {
   color-scheme: dark;
   --bg: #0c1514;
-  --surface: #13201e;
-  --soft: #102522;
+  --band: #0c1514;
+  --band-accent: #0c1514;
+  --card: #13201e;
+  --card-muted: #13201e;
+  --field: #0c1514;
+  --hover: #1b2b28;
   --fg: #e7efed;
   --muted: #a2b3af;
   --border: #26362f;
@@ -61,11 +84,15 @@
 
 /* … oder automatisch, wenn das Gerät auf dunkel steht und nichts gewählt wurde. */
 @media (prefers-color-scheme: dark) {
-  :root:not([data-theme='light']) {
+  :root:not([data-farbschema='hell']) {
     color-scheme: dark;
     --bg: #0c1514;
-    --surface: #13201e;
-    --soft: #102522;
+    --band: #0c1514;
+    --band-accent: #0c1514;
+    --card: #13201e;
+    --card-muted: #13201e;
+    --field: #0c1514;
+    --hover: #1b2b28;
     --fg: #e7efed;
     --muted: #a2b3af;
     --border: #26362f;
@@ -86,8 +113,12 @@
   --font-sans: 'Inter Variable', ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto,
     'Helvetica Neue', Arial, sans-serif;
   --color-bg: var(--bg);
-  --color-surface: var(--surface);
-  --color-soft: var(--soft);
+  --color-band: var(--band);
+  --color-band-accent: var(--band-accent);
+  --color-card: var(--card);
+  --color-card-muted: var(--card-muted);
+  --color-field: var(--field);
+  --color-hover: var(--hover);
   --color-fg: var(--fg);
   --color-muted: var(--muted);
   --color-border: var(--border);
@@ -184,7 +215,7 @@
   }
 
   .card {
-    @apply bg-surface border-border rounded-2xl border p-6 sm:p-7;
+    @apply bg-card border-border rounded-2xl border p-6 sm:p-7;
   }
 
   /* Buttons: mind. 48 px hoch (Touch-Ziel), deutlicher Fokus */
@@ -196,7 +227,7 @@
   }
   /* Formularfelder: Rahmen mit mind. 3 : 1 Kontrast, 16 px Schrift (kein Zoom auf iPhones) */
   .feld {
-    @apply border-field-border bg-surface text-fg mt-2 block w-full rounded-xl border px-4 py-3 text-base;
+    @apply border-field-border bg-field text-fg mt-2 block w-full rounded-xl border px-4 py-3 text-base;
   }
   .feld:focus-visible {
     @apply border-accent;
@@ -229,6 +260,13 @@
   overflow-wrap: anywhere;
   box-decoration-break: clone;
   -webkit-box-decoration-break: clone;
+}
+
+/* Beim Umschalten Hell/Dunkel keine Farb-Übergänge (sonst kurz uneinheitliche Zwischenstufen) */
+.farbwechsel *,
+.farbwechsel *::before,
+.farbwechsel *::after {
+  transition: none !important;
 }
 
 /* Theme-Umschalter nur zeigen, wenn JavaScript läuft (sonst gilt die Systemeinstellung) */

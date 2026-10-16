@@ -32,14 +32,14 @@ const robots = !site.indexierung ? 'noindex, nofollow' : noindex ? 'noindex, fol
     <meta name="robots" content={robots} />
     {!noindex && <link rel="canonical" href={canonical} />}
 
-    <!-- Theme vor dem ersten Zeichnen setzen (kein Aufflackern). Gespeichert wird nur die Wahl "hell"/"dunkel". -->
+    <!-- Theme vor dem ersten Zeichnen setzen (kein Aufflackern). Gespeichert wird nur die Wahl "hell"/"dunkel" (localStorage "farbschema"). -->
     <script is:inline>
       (function () {
         var d = document.documentElement;
         d.classList.add('js');
         try {
-          var t = localStorage.getItem('theme');
-          if (t === 'light' || t === 'dark') d.setAttribute('data-theme', t);
+          var t = localStorage.getItem('farbschema');
+          if (t === 'hell' || t === 'dunkel') d.setAttribute('data-farbschema', t);
         } catch (e) {}
       })();
     </script>

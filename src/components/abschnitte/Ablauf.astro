@@ -3,7 +3,7 @@ import { ablauf } from '../../content/texte';
 import Txt from '../Txt.astro';
 ---
 
-<section id="ablauf" aria-labelledby="ablauf-titel" class="section bg-surface border-border border-y">
+<section id="ablauf" aria-labelledby="ablauf-titel" class="section bg-band border-border border-y">
   <div class="container-page">
     <p class="eyebrow">{ablauf.eyebrow}</p>
     <h2 id="ablauf-titel" class="h2"><Txt text={ablauf.titel} /></h2>
@@ -15,7 +15,7 @@ import Txt from '../Txt.astro';
           <li class="relative">
             <div class="flex items-center gap-4 lg:flex-col lg:items-start">
               <span
-                class="border-accent text-accent bg-surface relative z-10 inline-flex size-12 shrink-0 items-center justify-center rounded-full border-2 text-lg font-bold"
+                class="border-accent text-accent bg-band relative z-10 inline-flex size-12 shrink-0 items-center justify-center rounded-full border-2 text-lg font-bold"
                 aria-hidden="true"
               >
                 {i + 1}

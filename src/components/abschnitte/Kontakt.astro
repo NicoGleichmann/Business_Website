@@ -9,7 +9,7 @@ const { email, telefon, calUrl } = site.kontakt;
 const telefonLink = istGesetzt(telefon) ? `tel:${telefon.replace(/[^\d+]/g, '')}` : '';
 ---
 
-<section id="kontakt" aria-labelledby="kontakt-titel" class="section bg-soft border-border border-t">
+<section id="kontakt" aria-labelledby="kontakt-titel" class="section bg-band-accent border-border border-t">
   <div class="container-page">
     <p class="eyebrow">{kontakt.eyebrow}</p>
     <h2 id="kontakt-titel" class="h2"><Txt text={kontakt.titel} /></h2>

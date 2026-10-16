@@ -64,8 +64,9 @@ Reihenfolge der Seite. Nur den Text zwischen den Anführungszeichen ändern. Ein
 
 ### Farben → `src/styles/global.css`
 
-Ganz oben stehen die Farb-Tokens für Hell- und Dunkelmodus. Die Akzentfarbe ist `--accent` (dazu `--accent-hover`,
-`--accent-soft`). Bei Änderungen den Kontrast prüfen (z. B. mit dem [WebAIM Contrast Checker](https://webaim.org/resources/contrastchecker/)):
+Ganz oben stehen die Farb-Tokens für Hell- und Dunkelmodus, benannt nach ihrer Rolle (Seite, Band, Karte, Feld …).
+Die Akzentfarbe ist `--accent` (dazu `--accent-hover`, `--accent-soft`). Die Dunkel-Werte stehen zweimal
+(Umschalter + Systemeinstellung) und müssen gleich bleiben. Bei Änderungen den Kontrast prüfen (z. B. mit dem [WebAIM Contrast Checker](https://webaim.org/resources/contrastchecker/)):
 mindestens 4,5 : 1 zum Hintergrund und zur Button-Schrift. Die Farben für Icons/Vorschaubild stehen zusätzlich in
 `public/favicon.svg` und `scripts/og-image.mjs`.
 
@@ -146,7 +147,7 @@ Diese **technischen Fakten** der Website braucht der Generator (rechtliche Bewer
 - **Ohne Webhook (Übergang):** Kontakt per E-Mail über das E-Mail-Programm des Besuchers (mailto).
 - **Terminbuchung:** **Cal.com** – nur als Link, nicht eingebunden. Daten fließen erst, wenn der Besucher auf Cal.com bucht; für Ihre Cal.com-Nutzung ggf. Auftragsverarbeitungsvertrag (DPA) abschließen.
 - **Cookies:** keine.
-- **Lokaler Speicher:** Nur wenn der Besucher den Hell/Dunkel-Umschalter benutzt, wird im Browser (`localStorage`) der Wert `theme = light` oder `dark` gespeichert. Keine Übertragung an einen Server.
+- **Lokaler Speicher:** Nur wenn der Besucher den Hell/Dunkel-Umschalter benutzt, wird im Browser (`localStorage`) der Wert `farbschema = hell` oder `dunkel` gespeichert. Keine Übertragung an einen Server.
 - **Schriftarten:** Inter, **lokal** vom eigenen Server ausgeliefert (keine Google Fonts).
 - **Kein** Tracking, keine Analyse-Tools, keine Social-Media-Plugins, keine eingebetteten Videos/Karten/Dienste Dritter.
 - **E-Mail-/Telefonkontakt:** direkte Kontaktaufnahme möglich.

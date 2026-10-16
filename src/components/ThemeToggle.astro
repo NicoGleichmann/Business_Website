@@ -8,7 +8,7 @@ import Icon from './Icon.astro';
   aria-pressed="false"
   aria-label="Dunkelmodus"
   title="Hell/Dunkel umschalten"
-  class="text-muted hover:bg-soft hover:text-fg inline-flex size-11 shrink-0 cursor-pointer items-center justify-center rounded-full transition-colors"
+  class="text-muted hover:bg-hover hover:text-fg inline-flex size-11 shrink-0 cursor-pointer items-center justify-center rounded-full transition-colors"
 >
   <Icon name="moon" size={20} class="icon-moon" />
   <Icon name="sun" size={20} class="icon-sun" />
@@ -18,17 +18,17 @@ import Icon from './Icon.astro';
   .icon-sun {
     display: none;
   }
-  :root[data-theme='dark'] .icon-sun {
+  :root[data-farbschema='dunkel'] .icon-sun {
     display: block;
   }
-  :root[data-theme='dark'] .icon-moon {
+  :root[data-farbschema='dunkel'] .icon-moon {
     display: none;
   }
   @media (prefers-color-scheme: dark) {
-    :root:not([data-theme='light']) .icon-sun {
+    :root:not([data-farbschema='hell']) .icon-sun {
       display: block;
     }
-    :root:not([data-theme='light']) .icon-moon {
+    :root:not([data-farbschema='hell']) .icon-moon {
       display: none;
     }
   }
@@ -37,17 +37,20 @@ import Icon from './Icon.astro';
 <script>
   const root = document.documentElement;
   const systemDunkel = window.matchMedia('(prefers-color-scheme: dark)');
-  const aktuell = () => root.getAttribute('data-theme') ?? (systemDunkel.matches ? 'dark' : 'light');
+  const aktuell = () => root.getAttribute('data-farbschema') ?? (systemDunkel.matches ? 'dunkel' : 'hell');
 
   document.querySelectorAll<HTMLButtonElement>('[data-theme-toggle]').forEach((knopf) => {
-    const sync = () => knopf.setAttribute('aria-pressed', String(aktuell() === 'dark'));
+    const sync = () => knopf.setAttribute('aria-pressed', String(aktuell() === 'dunkel'));
     sync();
     systemDunkel.addEventListener('change', sync);
     knopf.addEventListener('click', () => {
-      const neu = aktuell() === 'dark' ? 'light' : 'dark';
-      root.setAttribute('data-theme', neu);
+      const neu = aktuell() === 'dunkel' ? 'hell' : 'dunkel';
+      // Übergänge kurz aussetzen, damit alles im selben Moment umspringt.
+      root.classList.add('farbwechsel');
+      root.setAttribute('data-farbschema', neu);
+      requestAnimationFrame(() => requestAnimationFrame(() => root.classList.remove('farbwechsel')));
       try {
-        localStorage.setItem('theme', neu);
+        localStorage.setItem('farbschema', neu);
       } catch {
         // Speichern nicht möglich (z. B. privater Modus) – Umschalten klappt trotzdem.
       }
