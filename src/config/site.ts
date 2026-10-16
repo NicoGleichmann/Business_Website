@@ -33,23 +33,23 @@ export const site = {
 
   /** Inhaber (für Impressum, "Über mich" und strukturierte Daten). */
   inhaber: {
-    name: '[[TODO: Vor- und Nachname]]',
+    name: 'Nico Gleichmann',
     rolle: 'Inhaber',
   },
 
   kontakt: {
-    email: '[[TODO: E-Mail-Adresse]]',
+    email: 'nicogleichmann1@gmail.com',
     /** Optional. '' = wird nirgends angezeigt. Format: '+49 3695 123456'. */
-    telefon: '[[TODO: Telefonnummer oder leer lassen]]',
+    telefon: '+49 176 44444856',
     /** Link zur Cal.com-Buchungsseite für das Erstgespräch. */
-    calUrl: '[[TODO: Cal.com-Link, z. B. https://cal.com/name/erstgespraech]]',
+    calUrl: 'https://cal.com/nico-gleichmann-g2td4r/15min',
   },
 
   /** Ladungsfähige Anschrift (Pflicht im Impressum). */
   adresse: {
-    strasse: '[[TODO: Straße und Hausnummer]]',
-    plz: '[[TODO: PLZ]]',
-    ort: '[[TODO: Ort]]',
+    strasse: 'Hofstadtstraße [[TODO: Hausnummer]]',
+    plz: '36466',
+    ort: 'Dermbach',
   },
 
   /** Region – für Texte, Suchmaschinen und strukturierte Daten. */
@@ -58,7 +58,7 @@ export const site = {
     landkreis: 'Wartburgkreis',
     bundesland: 'Thüringen',
     /** Einzugsgebiet für Google (areaServed). Weitere Orte einfach ergänzen. */
-    einzugsgebiet: ['Bad Salzungen', 'Wartburgkreis', 'Thüringen'],
+    einzugsgebiet: ['Bad Salzungen', 'Dermbach', 'Wartburgkreis', 'Thüringen'],
   },
 
   /** Standard-Texte für Suchmaschinen und Link-Vorschauen (WhatsApp, LinkedIn …). */

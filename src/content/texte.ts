@@ -16,7 +16,7 @@ export const hero = {
   titel: 'Ihr Betrieb bleibt erreichbar – auch wenn Sie gerade keine Hand frei haben.',
   text: `Ich richte Automatisierungen und KI-Assistenten ein, die Anfragen beantworten, an Termine erinnern und Belege sortieren. Persönlich, verständlich und aus der Region ${site.region.stadt}.`,
   cta: 'Kostenloses Erstgespräch',
-  ctaHinweis: 'Kostenlos und unverbindlich: Wir schauen gemeinsam, wo Ihr Betrieb Zeit verliert.',
+  ctaHinweis: 'Kostenloses 15-Minuten-Gespräch: Wir schauen gemeinsam, wo Ihr Betrieb Zeit verliert.',
   sekundaer: 'So läuft es ab',
   branchenTitel: 'Für',
   branchen: ['Handwerk', 'Friseure', 'Makler', 'Studios', 'Coaches', 'Online-Shops'],
@@ -79,7 +79,7 @@ export const leistungen = {
       icon: 'bot',
       titel: 'KI-Agents',
       untertitel: 'Digitale Assistenten, die eigenständig mitdenken.',
-      text: 'Ein Agent versteht Anfragen in normaler Sprache, sucht sich die nötigen Informationen zusammen und erledigt die nächsten Schritte. Bei wichtigen Entscheidungen fragt er Sie vorher.',
+      text: 'Ein Agent versteht Anfragen in normaler Sprache, sucht sich die nötigen Informationen zusammen und erledigt die nächsten Schritte. Was er selbst erledigen darf, legen wir vorher gemeinsam fest.',
       beispiele: [
         {
           titel: 'E-Mails vorsortieren',
@@ -104,25 +104,87 @@ export const leistungen = {
 export const ablauf = {
   eyebrow: 'Ablauf',
   titel: 'So arbeiten wir zusammen',
-  text: 'Vier klare Schritte. Nach jedem entscheiden Sie, ob es weitergeht.',
+  text: 'Vier klare Schritte. Sie wissen vorher, was es kostet und was dabei herauskommt.',
   schritte: [
     {
       titel: 'Prozess-Analyse',
-      text: 'Im kostenlosen Erstgespräch schauen wir auf Ihren Arbeitsalltag: Wo verlieren Sie Zeit? Was nervt am meisten? Sie bekommen eine ehrliche Einschätzung, was sich lohnt – und was nicht.',
+      text: 'Im kostenlosen 15-Minuten-Gespräch schauen wir auf Ihren Arbeitsalltag: Wo verlieren Sie Zeit? Was nervt am meisten? Lohnt es sich bei Ihnen nicht, sage ich es Ihnen.',
     },
     {
       titel: 'Demo',
-      text: 'Ich zeige Ihnen an einem Beispiel aus Ihrem Betrieb, wie die Lösung aussehen würde. So wissen Sie vorher, was Sie bekommen.',
+      text: 'Ich zeige Ihnen in einem kurzen Video, wie die Lösung bei Ihnen aussehen würde. Danach bekommen Sie ein schriftliches Angebot zum Festpreis.',
     },
     {
       titel: 'Umsetzung',
-      text: 'Ich richte alles ein, verbinde es mit Ihren bestehenden Programmen und teste es gründlich. Sie und Ihr Team bekommen eine kurze, verständliche Einweisung.',
+      text: 'Ich richte alles ein und verbinde es mit Ihren bestehenden Programmen. Bevor etwas live geht, testen wir gemeinsam, und Sie geben es frei.',
     },
     {
       titel: 'Wartung',
-      text: 'Ich behalte die Abläufe im Blick, kümmere mich um Updates und passe sie an, wenn sich in Ihrem Betrieb etwas ändert.',
+      text: 'Ich überwache die Abläufe, behebe Fehler und bin per E-Mail für Sie da. Alles ist dokumentiert, die Zugänge laufen auf Ihren Namen.',
     },
   ],
+};
+
+export const preise = {
+  /** false = Abschnitt „Preise“ wird ausgeblendet (auch im Menü). */
+  anzeigen: true,
+  eyebrow: 'Preise',
+  titel: 'Feste Preise, keine Überraschungen',
+  text: 'Sie zahlen einen Festpreis für die Einrichtung und danach eine kleine monatliche Pauschale für die Betreuung. Den genauen Festpreis bekommen Sie nach dem Erstgespräch schriftlich.',
+  einmaligLabel: 'Einrichtung',
+  monatlichLabel: 'Wartung pro Monat',
+  pakete: [
+    {
+      titel: 'Starter-Automatik',
+      text: 'Jede neue Anfrage bekommt sofort eine Antwort, und Sie werden direkt benachrichtigt.',
+      einmalig: '190 €',
+      einmaligHinweis: 'Pilotpreis, danach ca. 290 €',
+      monatlich: '39–49 €',
+    },
+    {
+      titel: 'Termin-Paket',
+      text: 'Online-Terminbuchung mit automatischen Erinnerungen an Ihre Kunden.',
+      einmalig: '290 €',
+      einmaligHinweis: 'Pilotpreis, danach ca. 390 €',
+      monatlich: '49 €',
+    },
+    {
+      titel: 'Angebots-Paket',
+      text: 'Für Handwerksbetriebe: Anfrage erfassen und daraus ein Angebot nach Ihrer Vorlage erstellen.',
+      einmalig: 'ab 490 €',
+      einmaligHinweis: '',
+      monatlich: '59 €',
+    },
+    {
+      titel: 'Individuelle Lösung',
+      text: 'Für alles, was in kein Paket passt, zum Beispiel ein KI-Agent für Ihre Anfragen.',
+      einmalig: 'ab ca. 800 €',
+      einmaligHinweis: 'Festpreis nach Gespräch',
+      monatlich: 'nach Absprache',
+    },
+  ],
+  variantenTitel: 'Mit oder ohne Wartung',
+  varianten: [
+    {
+      titel: 'Mit Wartung',
+      preis: 'Standardpreis',
+      punkte: [
+        'Überwachung, Fehlerbehebung und Support per E-Mail enthalten',
+        'Mindestlaufzeit 3 Monate, danach monatlich kündbar',
+      ],
+    },
+    {
+      titel: 'Ohne Wartung',
+      preis: 'ca. 30–50 % Aufschlag auf die Einrichtung',
+      punkte: [
+        'Übergabe mit vollständiger Dokumentation',
+        'Hilfe danach nach Aufwand zum festen Stundensatz',
+      ],
+    },
+  ],
+  variantenHinweis: 'Eine Variante dazwischen gibt es nicht. So wissen Sie immer genau, woran Sie sind.',
+  fussnote:
+    '[[TODO: Steuer-Hinweis, z. B. „Alle Preise zzgl. USt.“ oder „Gemäß § 19 UStG wird keine Umsatzsteuer berechnet.“]] [[TODO: Pilotpreis erklären – für wie viele Kunden oder bis wann?]]',
 };
 
 export const demo = {
@@ -144,9 +206,16 @@ export const ueberMich = {
   eyebrow: 'Über mich',
   titel: 'Ihr Ansprechpartner aus der Region',
   absaetze: [
-    `Ich bin ${site.inhaber.name} und arbeite von ${site.region.stadt} aus für Betriebe im ${site.region.landkreis} und in ganz ${site.region.bundesland}.`,
-    '[[TODO: 2–3 Sätze zu Ihrem Werdegang: Was haben Sie vorher gemacht? Warum machen Sie das heute? Persönlich, ohne Fachbegriffe.]]',
-    'Mir ist wichtig, dass Sie verstehen, was ich baue – und dass es Ihnen wirklich Arbeit abnimmt, statt neue zu machen.',
+    `Ich bin ${site.inhaber.name}, 18 Jahre alt, und lebe in Dermbach im ${site.region.landkreis}. 2027 mache ich mein Abitur, Informatik ist eines meiner Prüfungsfächer. Neben der Schule habe ich mir Automatisierung und KI-Agents selbst beigebracht, mit Werkzeugen wie n8n und Make, und baue damit Demo-Systeme für kleine Betriebe.`,
+    'Viele kleine Betriebe verlieren Aufträge, weil Anfragen liegen bleiben oder Termine ausfallen. Für eine passende Lösung fehlt ihnen die Zeit, und große Agenturen sprechen sie kaum an. Das möchte ich ändern: hier in der Region, einfach und zu festen Preisen.',
+  ],
+  werteTitel: 'Darauf können Sie sich verlassen',
+  werte: [
+    'Sie bekommen Ergebnisse statt Fachbegriffe: weniger liegengebliebene Anfragen.',
+    'Sie wissen vorher, was es kostet und was dabei herauskommt.',
+    'Alles ist dokumentiert, die Zugänge laufen auf Ihren Namen. Sie hängen nie allein von mir ab.',
+    'Ihre Daten liegen auf Servern in der EU, und wir schließen einen Auftragsverarbeitungsvertrag.',
+    'Lohnt es sich bei Ihnen nicht, sage ich es Ihnen.',
   ],
   fotoPlatzhalter: '[[TODO: Foto von Ihnen, quadratisch, mind. 800 × 800 px]]',
 };
@@ -158,21 +227,49 @@ export const faq = {
     {
       frage: 'Was kostet das?',
       antwort: [
-        'Das Erstgespräch ist kostenlos und unverbindlich. Was eine Lösung danach kostet, hängt von ihrem Umfang ab. Sie bekommen vorher ein schriftliches Angebot und entscheiden erst dann.',
-        '[[TODO: Preismodell kurz erklären, z. B. einmalige Einrichtung plus monatliche Wartung]]',
+        'Sie zahlen einen Festpreis für die Einrichtung und danach eine kleine monatliche Pauschale für die Betreuung. Die Starter-Automatik beginnt bei 190–290 € einmalig plus 39–49 € pro Monat. Größere Lösungen starten ab ca. 800 €, den Festpreis nenne ich nach einem kurzen Gespräch.',
+        'Sie bekommen vorher ein schriftliches Angebot.',
       ],
     },
     {
-      frage: 'Was passiert mit meinen Daten und den Daten meiner Kunden?',
+      frage: 'Was ist in der monatlichen Pauschale enthalten?',
       antwort: [
-        'Datenschutz plane ich von Anfang an mit ein. Wir klären gemeinsam, welche Daten verarbeitet werden, wo sie gespeichert sind und wer Zugriff hat. Wo es möglich ist, nutze ich Dienste mit Servern in der EU.',
-        '[[TODO: prüfen und ergänzen, z. B. Hosting-Standort von n8n, Auftragsverarbeitungsvertrag (AVV)]]',
+        'Überwachung, Fehlerbehebung und Support per E-Mail. Änderungswünsche außerhalb des vereinbarten Umfangs bespreche ich vorher mit Ihnen und nenne Ihnen einen Preis.',
       ],
     },
     {
-      frage: 'Wie viel Aufwand habe ich damit?',
+      frage: 'Geht es auch ohne monatliche Pauschale?',
       antwort: [
-        'Wenig. Für die Analyse brauche ich vor allem Ihre Erfahrung: wie die Abläufe heute laufen und wo es hakt. Die Einrichtung übernehme ich. Von Ihnen brauche ich die Zugänge zu den Programmen, die angebunden werden sollen, und kurze Rückmeldungen beim Testen.',
+        'Ja. Dann berechne ich die Einrichtung einmalig mit einem Aufschlag, Sie erhalten eine vollständige Dokumentation, und Hilfe gibt es später zum festen Stundensatz.',
+        'Die Pauschale lohnt sich, wenn der Ablauf zuverlässig laufen soll, weil sich Schnittstellen und Tools regelmäßig ändern.',
+      ],
+    },
+    {
+      frage: 'Wie lange bin ich gebunden?',
+      antwort: ['Die monatliche Pauschale läuft mindestens 3 Monate. Danach können Sie jederzeit zum Monatsende kündigen.'],
+    },
+    {
+      frage: 'Wie läuft der Einstieg ab?',
+      antwort: [
+        'Sie buchen ein kostenloses 15-Minuten-Gespräch. Danach zeige ich Ihnen in einem kurzen Video, wie die Lösung bei Ihnen aussehen würde, ohne dass Sie etwas freigeben müssen.',
+      ],
+    },
+    {
+      frage: 'Muss ich meine bestehende Arbeitsweise ändern?',
+      antwort: [
+        'Nein. Die Automatik läuft zusätzlich, zum Beispiel an Ihrem Kontaktformular oder Ihrer E-Mail-Adresse. Bestehende Systeme werden nicht umgebaut.',
+      ],
+    },
+    {
+      frage: 'Welchen Zugriff brauchen Sie?',
+      antwort: [
+        'Nur auf das, was für den jeweiligen Ablauf nötig ist. Alle Konten laufen auf Ihren Namen, und Sie können Zugänge jederzeit entziehen.',
+      ],
+    },
+    {
+      frage: 'Wie sieht es mit dem Datenschutz aus?',
+      antwort: [
+        'Die Lösungen laufen auf einem Server in der EU. Mit jedem Kunden schließe ich einen Auftragsverarbeitungsvertrag (AVV). Gesundheitsdaten verarbeite ich nicht.',
       ],
     },
     {
@@ -182,9 +279,9 @@ export const faq = {
       ],
     },
     {
-      frage: 'Was passiert, wenn die KI einen Fehler macht?',
+      frage: 'Was passiert, wenn etwas nicht funktioniert?',
       antwort: [
-        'Sie bestimmen, wie viel ein Assistent selbst erledigen darf. Zum Start macht er nur Vorschläge, und Sie geben frei. Erst wenn Sie den Ergebnissen vertrauen, bekommt er mehr Freiraum. Bei allem, was nach außen geht oder Geld kostet, bleibt die letzte Entscheidung bei Ihnen.',
+        'Bevor etwas live geht, testen wir gemeinsam, und Sie geben es frei. Im laufenden Betrieb überwache ich die Abläufe und behebe Fehler. Das ist in der monatlichen Pauschale enthalten.',
       ],
     },
   ],
@@ -222,7 +319,7 @@ export const kontakt = {
   },
   kalender: {
     titel: 'Lieber direkt einen Termin wählen?',
-    text: 'Suchen Sie sich in meinem Kalender einen passenden Termin für das Erstgespräch aus.',
+    text: 'Buchen Sie direkt einen Termin für das kostenlose 15-Minuten-Gespräch.',
     button: 'Termin bei Cal.com wählen',
     hinweis: 'Sie werden zur Buchungsseite von Cal.com weitergeleitet.',
   },

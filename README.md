@@ -152,6 +152,14 @@ Diese **technischen Fakten** der Website braucht der Generator (rechtliche Bewer
 - **Kein** Tracking, keine Analyse-Tools, keine Social-Media-Plugins, keine eingebetteten Videos/Karten/Dienste Dritter.
 - **E-Mail-/Telefonkontakt:** direkte Kontaktaufnahme möglich.
 
+**Aktueller Stand der Angaben** (offene Punkte in eckigen Klammern):
+
+- **E-Mail-Postfach:** Anfragen gehen an ein **Gmail-Postfach (Google)** → im Generator angeben. Alternative: später ein Postfach unter der eigenen Domain.
+- **n8n:** eigener Server in der EU, Standort [Deutschland? bestätigen], Anbieter [?], nur für dich und deine Kunden.
+- **Formular-Anfragen:** per E-Mail an dich, gespeichert in [Tabelle / Notion / CRM?], Löschung nach [2 Monaten?] ohne Auftrag.
+- **Terminbuchung:** Cal.com.
+- **Kunden-Projekte:** AVV mit jedem Kunden vor Projektstart, keine Gesundheitsdaten.
+
 ---
 
 ## 6. Veröffentlichen

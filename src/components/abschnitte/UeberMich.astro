@@ -1,5 +1,6 @@
 ---
 import { ueberMich } from '../../content/texte';
+import Icon from '../Icon.astro';
 import TodoBox from '../TodoBox.astro';
 import Txt from '../Txt.astro';
 
@@ -12,7 +13,7 @@ import Txt from '../Txt.astro';
  */
 ---
 
-<section id="ueber-mich" aria-labelledby="ueber-mich-titel" class="section bg-band border-border border-y">
+<section id="ueber-mich" aria-labelledby="ueber-mich-titel" class="section">
   <div class="container-page grid grid-cols-1 items-start gap-10 md:grid-cols-[minmax(0,1fr)_minmax(0,2fr)] md:gap-14">
     <TodoBox text={ueberMich.fotoPlatzhalter} icon="user" class="aspect-square w-full max-w-xs" />
     <div>
@@ -27,6 +28,19 @@ import Txt from '../Txt.astro';
           ))
         }
       </div>
+      <h3 class="mt-10 text-xl"><Txt text={ueberMich.werteTitel} /></h3>
+      <ul class="mt-4 max-w-2xl space-y-3">
+        {
+          ueberMich.werte.map((wert) => (
+            <li class="flex gap-3">
+              <Icon name="check" size={22} class="text-accent mt-0.5 shrink-0" />
+              <span>
+                <Txt text={wert} />
+              </span>
+            </li>
+          ))
+        }
+      </ul>
     </div>
   </div>
 </section>

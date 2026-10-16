@@ -1,0 +1,75 @@
+---
+import { preise } from '../../content/texte';
+import Icon from '../Icon.astro';
+import Txt from '../Txt.astro';
+---
+
+<section id="preise" aria-labelledby="preise-titel" class="section">
+  <div class="container-page">
+    <p class="eyebrow">{preise.eyebrow}</p>
+    <h2 id="preise-titel" class="h2"><Txt text={preise.titel} /></h2>
+    <p class="lead"><Txt text={preise.text} /></p>
+
+    <ul class="mt-12 grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-4">
+      {
+        preise.pakete.map((paket) => (
+          <li class="card flex flex-col">
+            <h3 class="text-xl">
+              <Txt text={paket.titel} />
+            </h3>
+            <p class="text-muted mt-2 flex-1">
+              <Txt text={paket.text} />
+            </p>
+            <dl class="border-border mt-6 space-y-4 border-t pt-5 tabular-nums">
+              <div>
+                <dt class="text-muted text-sm">{preise.einmaligLabel}</dt>
+                <dd class="mt-0.5 text-2xl font-semibold">
+                  <Txt text={paket.einmalig} />
+                </dd>
+                {paket.einmaligHinweis && (
+                  <dd class="text-muted text-sm">
+                    <Txt text={paket.einmaligHinweis} />
+                  </dd>
+                )}
+              </div>
+              <div>
+                <dt class="text-muted text-sm">{preise.monatlichLabel}</dt>
+                <dd class="mt-0.5 text-lg font-semibold">
+                  <Txt text={paket.monatlich} />
+                </dd>
+              </div>
+            </dl>
+          </li>
+        ))
+      }
+    </ul>
+
+    <h3 class="mt-14 text-2xl"><Txt text={preise.variantenTitel} /></h3>
+    <div class="mt-6 grid grid-cols-1 gap-5 md:grid-cols-2">
+      {
+        preise.varianten.map((variante) => (
+          <div class="card">
+            <p class="text-lg font-semibold">
+              <Txt text={variante.titel} />
+            </p>
+            <p class="text-accent mt-1 font-medium">
+              <Txt text={variante.preis} />
+            </p>
+            <ul class="mt-4 space-y-2.5">
+              {variante.punkte.map((punkt) => (
+                <li class="flex gap-3">
+                  <Icon name="check" size={22} class="text-accent mt-0.5 shrink-0" />
+                  <span>
+                    <Txt text={punkt} />
+                  </span>
+                </li>
+              ))}
+            </ul>
+          </div>
+        ))
+      }
+    </div>
+    <p class="mt-5 font-medium"><Txt text={preise.variantenHinweis} /></p>
+    <p class="text-muted mt-3 text-sm"><Txt text={preise.fussnote} /></p>
+  </div>
+</section>

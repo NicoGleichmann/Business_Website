@@ -2,10 +2,12 @@
 import { site } from '../config/site';
 import Logo from './Logo.astro';
 import ThemeToggle from './ThemeToggle.astro';
+import { preise } from '../content/texte';
 
 const navigation = [
   { href: '/#leistungen', text: 'Leistungen' },
   { href: '/#ablauf', text: 'Ablauf' },
+  ...(preise.anzeigen ? [{ href: '/#preise', text: 'Preise' }] : []),
   { href: '/#ueber-mich', text: 'Über mich' },
   { href: '/#faq', text: 'Fragen' },
 ];
