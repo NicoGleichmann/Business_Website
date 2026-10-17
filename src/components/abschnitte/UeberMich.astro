@@ -1,21 +1,26 @@
 ---
+import { Image } from 'astro:assets';
+import { site } from '../../config/site';
 import { ueberMich } from '../../content/texte';
+import foto from '../../assets/nico-gleichmann.jpg';
 import Icon from '../Icon.astro';
-import TodoBox from '../TodoBox.astro';
 import Txt from '../Txt.astro';
 
 /**
- * Foto einbinden: Bild nach src/assets/ legen, oben importieren
- *   import foto from '../../assets/foto.jpg';
- * und die TodoBox ersetzen durch
- *   <Image src={foto} alt="Porträt von …" width={480} height={480} class="rounded-2xl" />
- * (Image kommt aus 'astro:assets' und optimiert das Bild automatisch.)
+ * Foto austauschen: neue Datei unter demselben Namen nach src/assets/nico-gleichmann.jpg legen
+ * (quadratisch, am besten mind. 800 × 800 px). Astro verkleinert und komprimiert sie beim Build.
  */
 ---
 
 <section id="ueber-mich" aria-labelledby="ueber-mich-titel" class="section">
   <div class="container-page grid grid-cols-1 items-start gap-10 md:grid-cols-[minmax(0,1fr)_minmax(0,2fr)] md:gap-14">
-    <TodoBox text={ueberMich.fotoPlatzhalter} icon="user" class="aspect-square w-full max-w-xs" />
+    <Image
+      src={foto}
+      alt={`Porträt von ${site.inhaber.name}`}
+      width={300}
+      height={300}
+      class="border-border aspect-square w-full max-w-[300px] rounded-2xl border object-cover"
+    />
     <div>
       <p class="eyebrow">{ueberMich.eyebrow}</p>
       <h2 id="ueber-mich-titel" class="h2"><Txt text={ueberMich.titel} /></h2>

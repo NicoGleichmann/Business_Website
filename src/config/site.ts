@@ -47,7 +47,7 @@ export const site = {
 
   /** Ladungsfähige Anschrift (Pflicht im Impressum). */
   adresse: {
-    strasse: 'Hofstadtstraße [[TODO: Hausnummer]]',
+    strasse: 'Hofstadtstraße 5',
     plz: '36466',
     ort: 'Dermbach',
   },

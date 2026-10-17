@@ -10,7 +10,7 @@ import Txt from '../Txt.astro';
     <h2 id="preise-titel" class="h2"><Txt text={preise.titel} /></h2>
     <p class="lead"><Txt text={preise.text} /></p>
 
-    <ul class="mt-12 grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-4">
+    <ul class="mt-12 grid grid-cols-1 gap-5 md:grid-cols-3">
       {
         preise.pakete.map((paket) => (
           <li class="card flex flex-col">

@@ -72,7 +72,7 @@ mindestens 4,5 : 1 zum Hintergrund und zur Button-Schrift. Die Farben für Icons
 
 ### Foto „Über mich“
 
-Anleitung als Kommentar in `src/components/abschnitte/UeberMich.astro` (Bild nach `src/assets/` legen, Astro optimiert es automatisch).
+Neues Foto unter demselben Namen nach `src/assets/nico-gleichmann.jpg` legen (quadratisch, am besten mind. 800 × 800 px). Astro verkleinert und komprimiert es beim Build automatisch.
 
 ---
 

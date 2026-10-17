@@ -137,28 +137,21 @@ export const preise = {
     {
       titel: 'Starter-Automatik',
       text: 'Jede neue Anfrage bekommt sofort eine Antwort, und Sie werden direkt benachrichtigt.',
-      einmalig: '190 €',
-      einmaligHinweis: 'Pilotpreis, danach ca. 290 €',
-      monatlich: '39–49 €',
+      einmalig: '99 €',
+      einmaligHinweis: 'Pilotpreis, danach 199 €',
+      monatlich: '9–19 €',
     },
     {
       titel: 'Termin-Paket',
       text: 'Online-Terminbuchung mit automatischen Erinnerungen an Ihre Kunden.',
-      einmalig: '290 €',
-      einmaligHinweis: 'Pilotpreis, danach ca. 390 €',
-      monatlich: '49 €',
-    },
-    {
-      titel: 'Angebots-Paket',
-      text: 'Für Handwerksbetriebe: Anfrage erfassen und daraus ein Angebot nach Ihrer Vorlage erstellen.',
-      einmalig: 'ab 490 €',
-      einmaligHinweis: '',
-      monatlich: '59 €',
+      einmalig: '159 €',
+      einmaligHinweis: 'Pilotpreis, danach 299 €',
+      monatlich: '29 €',
     },
     {
       titel: 'Individuelle Lösung',
-      text: 'Für alles, was in kein Paket passt, zum Beispiel ein KI-Agent für Ihre Anfragen.',
-      einmalig: 'ab ca. 800 €',
+      text: 'Für alles, was in kein Paket passt, zum Beispiel Angebote aus Ihrer Vorlage oder ein KI-Agent für Ihre Anfragen.',
+      einmalig: 'ab ca. 499 €',
       einmaligHinweis: 'Festpreis nach Gespräch',
       monatlich: 'nach Absprache',
     },
@@ -183,9 +176,13 @@ export const preise = {
     },
   ],
   variantenHinweis: 'Eine Variante dazwischen gibt es nicht. So wissen Sie immer genau, woran Sie sind.',
+  /** Steuer-Hinweis: Als Kleinunternehmer stattdessen „Gemäß § 19 UStG wird keine Umsatzsteuer berechnet.“ */
   fussnote:
-    '[[TODO: Steuer-Hinweis, z. B. „Alle Preise zzgl. USt.“ oder „Gemäß § 19 UStG wird keine Umsatzsteuer berechnet.“]] [[TODO: Pilotpreis erklären – für wie viele Kunden oder bis wann?]]',
+    'Alle Preise zzgl. gesetzlicher Umsatzsteuer. [[TODO: Pilotpreis erklären – für wie viele Kunden oder bis wann?]]',
 };
+
+const starter = preise.pakete[0];
+const individuell = preise.pakete[preise.pakete.length - 1];
 
 export const demo = {
   eyebrow: 'Demo',
@@ -217,7 +214,6 @@ export const ueberMich = {
     'Ihre Daten liegen auf Servern in der EU, und wir schließen einen Auftragsverarbeitungsvertrag.',
     'Lohnt es sich bei Ihnen nicht, sage ich es Ihnen.',
   ],
-  fotoPlatzhalter: '[[TODO: Foto von Ihnen, quadratisch, mind. 800 × 800 px]]',
 };
 
 export const faq = {
@@ -227,8 +223,8 @@ export const faq = {
     {
       frage: 'Was kostet das?',
       antwort: [
-        'Sie zahlen einen Festpreis für die Einrichtung und danach eine kleine monatliche Pauschale für die Betreuung. Die Starter-Automatik beginnt bei 190–290 € einmalig plus 39–49 € pro Monat. Größere Lösungen starten ab ca. 800 €, den Festpreis nenne ich nach einem kurzen Gespräch.',
-        'Sie bekommen vorher ein schriftliches Angebot.',
+        `Sie zahlen einen Festpreis für die Einrichtung und danach eine kleine monatliche Pauschale für die Betreuung. Die Starter-Automatik kostet ${starter.einmalig} (${starter.einmaligHinweis}) plus ${starter.monatlich} pro Monat. Größere Lösungen starten ${individuell.einmalig}, den Festpreis nenne ich nach einem kurzen Gespräch.`,
+        'Sie bekommen vorher ein schriftliches Angebot. Alle Preise zzgl. gesetzlicher Umsatzsteuer.',
       ],
     },
     {
