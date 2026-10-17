@@ -1,43 +1,33 @@
 ---
 /**
  * IMPRESSUM
- * Den Text aus einem Impressum-Generator unten im markierten Bereich einfügen
- * (normaler HTML-Text: Überschriften als <h2>, Absätze als <p>).
- * Die Kontaktdaten im ersten Block kommen automatisch aus src/config/site.ts.
- * Enthält der Generator-Text dieselben Angaben, den ersten Block einfach löschen.
+ * Inhalt aus dem eRecht24-Impressum-Generator (erstellt für automatisierung.nicogleichmann.de).
+ * Name, Anschrift und Kontaktdaten kommen aus src/config/site.ts – Änderungen bitte dort.
+ * Bei geänderten Angaben (z. B. Kleinunternehmer, USt-IdNr.) das Impressum neu generieren
+ * und die Textblöcke unten abgleichen.
  */
 import Rechtliches from '../layouts/Rechtliches.astro';
-import TodoBox from '../components/TodoBox.astro';
-import Txt from '../components/Txt.astro';
-import { istGesetzt, site } from '../config/site';
+import { site } from '../config/site';
 
 const { inhaber, adresse, kontakt } = site;
+const telefonLink = `tel:${kontakt.telefon.replace(/[^\d+]/g, '')}`;
 ---
 
-<Rechtliches titel="Impressum" beschreibung={`Impressum von ${site.name}, ${site.region.stadt}.`}>
+<Rechtliches titel="Impressum" beschreibung={`Impressum von ${inhaber.name}, ${adresse.ort}.`}>
   <p>
-    <Txt text={site.name} /><br />
-    <Txt text={inhaber.name} /><br />
-    <Txt text={adresse.strasse} /><br />
-    <Txt text={adresse.plz} />
-    <Txt text={adresse.ort} />
-  </p>
-  <p>
-    E-Mail: {istGesetzt(kontakt.email) ? <a href={`mailto:${kontakt.email}`}>{kontakt.email}</a> : <Txt text={kontakt.email} />}
-    {
-      kontakt.telefon && (
-        <>
-          <br />
-          Telefon: <Txt text={kontakt.telefon} />
-        </>
-      )
-    }
+    {inhaber.name}<br />
+    {adresse.strasse}<br />
+    {`${adresse.plz} ${adresse.ort}`}
   </p>
 
-  <!-- ===== Ab hier: Text aus dem Impressum-Generator einfügen ===== -->
-  <TodoBox
-    class="mt-8"
-    text="[[TODO: Impressum-Text aus einem Generator einfügen (Angaben nach § 5 DDG) und von IHK oder Steuerberater prüfen lassen.]]"
-  />
-  <!-- ===== Ende Generator-Text ===== -->
+  <h2>Kontakt</h2>
+  <p>
+    Telefon: <a href={telefonLink}>{kontakt.telefon}</a><br />
+    E-Mail: <a href={`mailto:${kontakt.email}`}>{kontakt.email}</a>
+  </p>
+
+  <h2>Verbraucher&shy;streit&shy;beilegung/Universal&shy;schlichtungs&shy;stelle</h2>
+  <p>Wir sind nicht bereit oder verpflichtet, an Streitbeilegungsverfahren vor einer Verbraucherschlichtungsstelle teilzunehmen.</p>
+
+  <p>Quelle: <a href="https://www.e-recht24.de">eRecht24</a></p>
 </Rechtliches>

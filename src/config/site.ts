@@ -20,9 +20,9 @@ export const site = {
   /**
    * Öffentliche Adresse der Website, OHNE Schrägstrich am Ende.
    * Wird für Canonical-Links, sitemap.xml und Vorschaubilder gebraucht.
-   * TODO: durch die echte Domain ersetzen, sobald sie registriert ist.
+   * Muss mit der Adresse übereinstimmen, für die Impressum und Datenschutz erstellt wurden.
    */
-  url: 'https://lumio.example',
+  url: 'https://automatisierung.nicogleichmann.de',
 
   /**
    * Suchmaschinen erlauben? Solange Platzhalter auf der Seite stehen: false.
