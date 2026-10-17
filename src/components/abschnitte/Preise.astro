@@ -10,10 +10,10 @@ import Txt from '../Txt.astro';
     <h2 id="preise-titel" class="h2"><Txt text={preise.titel} /></h2>
     <p class="lead"><Txt text={preise.text} /></p>
 
-    <ul class="mt-12 grid grid-cols-1 gap-5 md:grid-cols-3">
+    <ul class="mt-12 grid grid-cols-1 gap-5 lg:grid-cols-3">
       {
         preise.pakete.map((paket) => (
-          <li class="card flex flex-col">
+          <li class="card flex flex-col lg:row-span-5 lg:grid lg:grid-rows-subgrid lg:gap-y-0">
             <h3 class="text-xl">
               <Txt text={paket.titel} />
             </h3>
@@ -50,6 +50,11 @@ import Txt from '../Txt.astro';
                 <dd class="mt-0.5 text-lg font-semibold">
                   <Txt text={paket.monatlich} />
                 </dd>
+                {paket.monatlichHinweis.map((hinweis) => (
+                  <dd class="text-muted text-sm">
+                    <Txt text={hinweis} />
+                  </dd>
+                ))}
               </div>
             </dl>
           </li>
@@ -60,7 +65,7 @@ import Txt from '../Txt.astro';
     <div class="bg-accent-soft mt-6 rounded-2xl p-6 sm:p-7">
       <h3 class="text-xl"><Txt text={preise.wartung.titel} /></h3>
       <p class="mt-2 max-w-3xl"><Txt text={preise.wartung.text} /></p>
-      <ul class="mt-4 grid grid-cols-1 gap-2.5 sm:grid-cols-3">
+      <ul class="mt-4 grid grid-cols-1 gap-2.5 sm:grid-cols-2">
         {
           preise.wartung.punkte.map((punkt) => (
             <li class="flex gap-2.5">

@@ -145,21 +145,23 @@ export const preise = {
         'Einrichtung, Test und kurze Einweisung',
       ],
       einmalig: '99 €',
-      einmaligHinweis: 'Pilotpreis, danach 199 €',
+      einmaligHinweis: 'Einführungspreis, danach 199 €',
       monatlich: '9–12 €',
+      monatlichHinweis: ['9 €: Betrieb und Überwachung', '12 €: inkl. kleiner Änderungen, z. B. Urlaubshinweis'],
     },
     {
       titel: 'Termin-Paket',
       text: 'Online-Terminbuchung, die Ausfälle verhindert und für Bewertungen sorgt.',
       enthalten: [
         'Buchungsseite mit Ihren Leistungen und freien Zeiten',
-        'Bestätigung und Erinnerung vor jedem Termin, per E-Mail oder auf Wunsch per SMS',
+        'Bestätigung und Erinnerung an Ihre Kunden vor jedem Termin, per E-Mail oder auf Wunsch per SMS',
         'Link zum Absagen oder Verschieben',
         'Nach dem Termin: Bitte um eine Google-Bewertung',
       ],
       einmalig: '159 €',
-      einmaligHinweis: 'Pilotpreis, danach 299 €',
+      einmaligHinweis: 'Einführungspreis, danach 299 €',
       monatlich: '19–29 €',
+      monatlichHinweis: ['19 €: Erinnerungen per E-Mail', '29 €: zusätzlich per SMS'],
     },
     {
       titel: 'Individuelle Lösung',
@@ -173,12 +175,14 @@ export const preise = {
       einmalig: 'ab ca. 499 €',
       einmaligHinweis: 'Festpreis nach Gespräch',
       monatlich: 'nach Absprache',
+      monatlichHinweis: [],
     },
   ],
   wartung: {
     titel: 'Wartung ist immer dabei',
-    text: 'Programme und Schnittstellen ändern sich regelmäßig. Damit Ihre Abläufe zuverlässig bleiben, gehört die Wartung zu jedem Paket.',
+    text: 'Ihre Automatik muss rund um die Uhr online sein, damit sie funktioniert. Und weil sich Programme und Schnittstellen regelmäßig ändern, gehört die Wartung zu jedem Paket.',
     punkte: [
+      'Betrieb rund um die Uhr auf einem Server in der EU',
       'Überwachung und Fehlerbehebung',
       'Support per E-Mail',
       'Mindestlaufzeit 3 Monate, danach monatlich kündbar',
@@ -186,7 +190,7 @@ export const preise = {
   },
   /** Steuer-Hinweis: Als Kleinunternehmer stattdessen „Gemäß § 19 UStG wird keine Umsatzsteuer berechnet.“ */
   fussnote:
-    'Pilotpreise gelten für die ersten 5 Kunden, im Gegenzug für ehrliches Feedback und die Erlaubnis, das Projekt als Referenz zu zeigen. Fremdkosten wie SMS-Gebühren werden ohne Aufschlag weiterberechnet. Alle Preise zzgl. gesetzlicher Umsatzsteuer.',
+    'Einführungspreise gelten für die ersten 5 Kunden, im Gegenzug für ehrliches Feedback und die Erlaubnis, das Projekt als Referenz zu zeigen. Fremdkosten wie SMS-Gebühren werden ohne Aufschlag weiterberechnet. Alle Preise zzgl. gesetzlicher Umsatzsteuer.',
 };
 
 const starter = preise.pakete[0];
