@@ -131,54 +131,62 @@ export const preise = {
   eyebrow: 'Preise',
   titel: 'Feste Preise, keine Überraschungen',
   text: 'Sie zahlen einen Festpreis für die Einrichtung und danach eine kleine monatliche Pauschale für die Betreuung. Den genauen Festpreis bekommen Sie nach dem Erstgespräch schriftlich.',
+  enthaltenLabel: 'Enthalten',
   einmaligLabel: 'Einrichtung',
   monatlichLabel: 'Wartung pro Monat',
   pakete: [
     {
       titel: 'Starter-Automatik',
-      text: 'Jede neue Anfrage bekommt sofort eine Antwort, und Sie werden direkt benachrichtigt.',
+      text: 'Eine Automatik nach Wahl: für Ihre Anfragen oder für Ihre Belege.',
+      enthalten: [
+        'Anfragen: sofortige Eingangsbestätigung an Ihren Kunden und Benachrichtigung aufs Handy',
+        'Oder Belege: Rechnungen aus Ihrem Postfach landen automatisch benannt im Ordner für den Steuerberater',
+        'Alles landet in einer übersichtlichen Liste',
+        'Einrichtung, Test und kurze Einweisung',
+      ],
       einmalig: '99 €',
       einmaligHinweis: 'Pilotpreis, danach 199 €',
-      monatlich: '9–19 €',
+      monatlich: '9–12 €',
     },
     {
       titel: 'Termin-Paket',
-      text: 'Online-Terminbuchung mit automatischen Erinnerungen an Ihre Kunden.',
+      text: 'Online-Terminbuchung, die Ausfälle verhindert und für Bewertungen sorgt.',
+      enthalten: [
+        'Buchungsseite mit Ihren Leistungen und freien Zeiten',
+        'Bestätigung und Erinnerung vor jedem Termin, per E-Mail oder auf Wunsch per SMS',
+        'Link zum Absagen oder Verschieben',
+        'Nach dem Termin: Bitte um eine Google-Bewertung',
+      ],
       einmalig: '159 €',
       einmaligHinweis: 'Pilotpreis, danach 299 €',
-      monatlich: '29 €',
+      monatlich: '19–29 €',
     },
     {
       titel: 'Individuelle Lösung',
-      text: 'Für alles, was in kein Paket passt, zum Beispiel Angebote aus Ihrer Vorlage oder ein KI-Agent für Ihre Anfragen.',
+      text: 'Für alles, was in kein Paket passt.',
+      enthalten: [
+        'Belege direkt an Ihre Buchhaltungssoftware übergeben',
+        'Angebote aus Ihrer Vorlage erstellen',
+        'KI-Agent, der E-Mails vorsortiert und Antworten vorbereitet',
+        'Festpreis nach schriftlicher Leistungsbeschreibung',
+      ],
       einmalig: 'ab ca. 499 €',
       einmaligHinweis: 'Festpreis nach Gespräch',
       monatlich: 'nach Absprache',
     },
   ],
-  variantenTitel: 'Mit oder ohne Wartung',
-  varianten: [
-    {
-      titel: 'Mit Wartung',
-      preis: 'Standardpreis',
-      punkte: [
-        'Überwachung, Fehlerbehebung und Support per E-Mail enthalten',
-        'Mindestlaufzeit 3 Monate, danach monatlich kündbar',
-      ],
-    },
-    {
-      titel: 'Ohne Wartung',
-      preis: 'ca. 30–50 % Aufschlag auf die Einrichtung',
-      punkte: [
-        'Übergabe mit vollständiger Dokumentation',
-        'Hilfe danach nach Aufwand zum festen Stundensatz',
-      ],
-    },
-  ],
-  variantenHinweis: 'Eine Variante dazwischen gibt es nicht. So wissen Sie immer genau, woran Sie sind.',
+  wartung: {
+    titel: 'Wartung ist immer dabei',
+    text: 'Programme und Schnittstellen ändern sich regelmäßig. Damit Ihre Abläufe zuverlässig bleiben, gehört die Wartung zu jedem Paket.',
+    punkte: [
+      'Überwachung und Fehlerbehebung',
+      'Support per E-Mail',
+      'Mindestlaufzeit 3 Monate, danach monatlich kündbar',
+    ],
+  },
   /** Steuer-Hinweis: Als Kleinunternehmer stattdessen „Gemäß § 19 UStG wird keine Umsatzsteuer berechnet.“ */
   fussnote:
-    'Alle Preise zzgl. gesetzlicher Umsatzsteuer. [[TODO: Pilotpreis erklären – für wie viele Kunden oder bis wann?]]',
+    'Pilotpreise gelten für die ersten 5 Kunden, im Gegenzug für ehrliches Feedback und die Erlaubnis, das Projekt als Referenz zu zeigen. Fremdkosten wie SMS-Gebühren werden ohne Aufschlag weiterberechnet. Alle Preise zzgl. gesetzlicher Umsatzsteuer.',
 };
 
 const starter = preise.pakete[0];
@@ -236,8 +244,7 @@ export const faq = {
     {
       frage: 'Geht es auch ohne monatliche Pauschale?',
       antwort: [
-        'Ja. Dann berechne ich die Einrichtung einmalig mit einem Aufschlag, Sie erhalten eine vollständige Dokumentation, und Hilfe gibt es später zum festen Stundensatz.',
-        'Die Pauschale lohnt sich, wenn der Ablauf zuverlässig laufen soll, weil sich Schnittstellen und Tools regelmäßig ändern.',
+        'Nein. Programme und Schnittstellen ändern sich regelmäßig, deshalb läuft jede Lösung mit Wartung. Nur so bleibt Ihr Ablauf zuverlässig.',
       ],
     },
     {
