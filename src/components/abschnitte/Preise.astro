@@ -4,6 +4,7 @@ import Icon from '../Icon.astro';
 import Txt from '../Txt.astro';
 
 const e = preise.einfuehrung;
+const o = preise.ohneWebsite;
 ---
 
 <section id="preise" aria-labelledby="preise-titel" class="section">
@@ -85,6 +86,43 @@ const e = preise.einfuehrung;
         ))
       }
     </ul>
+
+    <div class="card mt-6 grid grid-cols-1 gap-6 lg:grid-cols-[minmax(0,1fr)_minmax(0,2fr)] lg:gap-10">
+      <div>
+        <h3 class="text-xl"><Txt text={o.titel} /></h3>
+        <p class="text-muted mt-2"><Txt text={o.text} /></p>
+      </div>
+      <ul class="grid grid-cols-1 gap-4 sm:grid-cols-2">
+        {
+          o.pakete.map((paket) => (
+            <li class="bg-card-muted border-border rounded-xl border p-4 sm:p-5">
+              <p class="font-semibold">
+                <Txt text={paket.titel} />
+              </p>
+              <dl class="mt-3 space-y-2 text-[0.95rem] tabular-nums">
+                <div class="flex flex-wrap items-baseline justify-between gap-x-3">
+                  <dt class="text-muted">{preise.einmaligLabel}</dt>
+                  <dd class="text-lg font-semibold">
+                    <Txt text={paket.einmalig} />
+                  </dd>
+                  {paket.einmaligHinweis && (
+                    <dd class="text-muted w-full text-sm">
+                      <Txt text={paket.einmaligHinweis} />
+                    </dd>
+                  )}
+                </div>
+                <div class="flex flex-wrap items-baseline justify-between gap-x-3">
+                  <dt class="text-muted">{preise.monatlichLabel}</dt>
+                  <dd class="font-semibold">
+                    <Txt text={paket.monatlich} />
+                  </dd>
+                </div>
+              </dl>
+            </li>
+          ))
+        }
+      </ul>
+    </div>
 
     <div class="bg-accent-soft mt-6 rounded-2xl p-6 sm:p-7">
       <h3 class="text-xl"><Txt text={preise.wartung.titel} /></h3>

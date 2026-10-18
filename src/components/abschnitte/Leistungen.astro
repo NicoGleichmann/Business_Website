@@ -2,6 +2,8 @@
 import { leistungen } from '../../content/texte';
 import Icon, { type IconName } from '../Icon.astro';
 import Txt from '../Txt.astro';
+
+const w = leistungen.website;
 ---
 
 <section id="leistungen" aria-labelledby="leistungen-titel" class="section">
@@ -54,5 +56,33 @@ import Txt from '../Txt.astro';
       <p class="font-semibold"><Txt text={leistungen.unterschiedTitel} /></p>
       <p class="mt-1"><Txt text={leistungen.unterschied} /></p>
     </div>
+
+    <article class="card mt-6 grid grid-cols-1 gap-6 lg:grid-cols-[minmax(0,1fr)_minmax(0,1fr)] lg:items-center lg:gap-10">
+      <div>
+        <div class="flex items-center gap-4">
+          <span class="bg-accent text-on-accent inline-flex size-12 shrink-0 items-center justify-center rounded-xl">
+            <Icon name="globe" />
+          </span>
+          <h3 class="text-2xl"><Txt text={w.titel} /></h3>
+        </div>
+        <p class="text-muted mt-4"><Txt text={w.text} /></p>
+        <a href="#preise" class="mt-4 inline-flex items-center gap-1.5 font-semibold">
+          {w.link}
+          <Icon name="arrowRight" size={18} />
+        </a>
+      </div>
+      <ul class="space-y-3">
+        {
+          w.punkte.map((punkt) => (
+            <li class="flex gap-3">
+              <Icon name="check" size={22} class="text-accent mt-0.5 shrink-0" />
+              <span>
+                <Txt text={punkt} />
+              </span>
+            </li>
+          ))
+        }
+      </ul>
+    </article>
   </div>
 </section>

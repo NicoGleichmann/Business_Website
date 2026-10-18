@@ -67,7 +67,7 @@ export const site = {
     titel: 'KI-Automatisierung für kleine Betriebe in Thüringen',
     /** Beschreibung für Google (ca. 140–160 Zeichen). */
     beschreibung:
-      'Automatisierungen und KI-Assistenten für Handwerk, Friseure, Makler & Co. im Wartburgkreis: weniger verpasste Anfragen, weniger Terminausfälle, weniger Büroarbeit.',
+      'Website plus Automatisierung für Handwerk, Friseure, Makler & Co. im Wartburgkreis: weniger verpasste Anfragen, weniger Terminausfälle, weniger Büroarbeit.',
     /** Vorschaubild (1200 × 630 px) in /public. Neu erzeugen mit `npm run og`. */
     bild: '/og-image.png',
   },

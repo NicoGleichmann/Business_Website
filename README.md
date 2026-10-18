@@ -66,7 +66,8 @@ Reihenfolge der Seite. Nur den Text zwischen den Anführungszeichen ändern. Ein
 
 Nach jedem neuen Kunden `freiePlaetze` um 1 verringern – die Zahl steht als „Noch X von 5 Plätzen frei“ auf der Seite
 und muss stimmen. Bei `0` verschwinden der Hinweis im Hero und der Kasten über den Preisen automatisch; dann auch die
-Einführungspreise in den Paketen entfernen.
+Einführungspreise in den Paketen (`preise.pakete`) und im Kasten „Sie haben schon eine Website?“ (`preise.ohneWebsite`)
+entfernen. Die FAQ-Antwort „Was kostet das?“ übernimmt die Preise automatisch aus den Paketen.
 
 ### Farben → `src/styles/global.css`
 
