@@ -129,6 +129,7 @@ Kein YouTube/Vimeo (würde Daten an Dritte senden und ein Einwilligungs-Banner n
    Optional: Vorschaubild `poster: '/video/demo.jpg'` und Untertitel `untertitel: '/video/demo.vtt'` (für Barrierefreiheit empfohlen).
 
 Das Video lädt erst, wenn jemand auf „Abspielen“ tippt (`preload="none"`) – die Seite bleibt schnell.
+Solange `video` leer ist, wird der Abschnitt „Demo“ komplett ausgeblendet.
 
 ---
 
@@ -169,14 +170,15 @@ wird beim Build erzeugt und von beiden Anbietern gelesen.
 
 ### Cloudflare Pages
 
-1. Im Cloudflare-Dashboard: **Workers & Pages → Erstellen → Pages → Mit Git verbinden** → dieses Repository wählen.
+1. Im Cloudflare-Dashboard: **Workers & Pages → Erstellen**. Cloudflare schlägt dort zuerst „App erstellen“ (Workers) vor –
+   stattdessen oben auf **„Weiter zu Pages“** klicken → **Mit Git verbinden** → dieses Repository wählen, Produktions-Branch `main`.
 2. Build-Einstellungen:
    - Framework-Voreinstellung: **Astro**
    - Build-Befehl: `npm run build`
    - Ausgabeverzeichnis: `dist`
 3. **Umgebungsvariablen** (Production *und* Preview):
    - `PUBLIC_FORM_WEBHOOK_URL` = Production-URL des n8n-Webhooks (leer lassen = mailto-Fallback)
-   - `NODE_VERSION` = `22.22.0` (falls die `.nvmrc` nicht erkannt wird)
+   - `NODE_VERSION` = `22.22.0` (Astro braucht mindestens diese Version)
 4. Speichern & deployen. Danach unter **Benutzerdefinierte Domains** die eigene Domain verbinden.
 
 ### Netlify

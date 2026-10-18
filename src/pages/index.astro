@@ -10,7 +10,7 @@ import Demo from '../components/abschnitte/Demo.astro';
 import UeberMich from '../components/abschnitte/UeberMich.astro';
 import Faq from '../components/abschnitte/Faq.astro';
 import Kontakt from '../components/abschnitte/Kontakt.astro';
-import { preise } from '../content/texte';
+import { demo, preise } from '../content/texte';
 ---
 
 <Base strukturierteDaten={unternehmensDaten()}>
@@ -19,8 +19,9 @@ import { preise } from '../content/texte';
   <Leistungen />
   <Ablauf />
   {preise.anzeigen && <Preise />}
-  <Demo />
-  <UeberMich />
+  {/* Demo erscheint automatisch, sobald in texte.ts ein Video eingetragen ist. */}
+  {demo.video && <Demo />}
+  <UeberMich trennlinie={!demo.video} />
   <Faq />
   <Kontakt />
 </Base>

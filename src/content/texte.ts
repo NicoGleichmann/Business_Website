@@ -203,7 +203,7 @@ export const demo = {
   /**
    * Video einbinden: MP4-Datei nach public/video/ legen und hier den Pfad eintragen,
    * z. B. '/video/demo.mp4'. Optional ein Vorschaubild (poster) und Untertitel (.vtt).
-   * Leer lassen = Platzhalter wird angezeigt.
+   * Leer lassen = Abschnitt „Demo“ wird komplett ausgeblendet.
    */
   video: '',
   poster: '',
