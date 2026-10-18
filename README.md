@@ -159,6 +159,10 @@ Diese **technischen Fakten** der Website braucht der Generator (rechtliche Bewer
 - **Kein** Tracking, keine Analyse-Tools, keine Social-Media-Plugins, keine eingebetteten Videos/Karten/Dienste Dritter.
 - **E-Mail-/Telefonkontakt:** direkte Kontaktaufnahme möglich.
 
+**Wichtig:** Die Abschnitte 3–4 der Datenschutzerklärung (Hosting, Server-Logs, Kontakt, Cal.com, lokaler Speicher)
+sind selbst ergänzt und beschreiben genau den heutigen Aufbau. Kommt etwas hinzu oder ändert sich (n8n-Webhook fürs
+Formular, Demo-Video, anderer E-Mail-Anbieter, Analyse-Tools, Cloudflare Web Analytics …), müssen sie angepasst werden.
+
 **Aktueller Stand der Angaben** (offene Punkte in eckigen Klammern):
 
 - **E-Mail-Postfach:** Anfragen gehen an ein **Gmail-Postfach (Google)** → im Generator angeben. Alternative: später ein Postfach unter der eigenen Domain.
