@@ -28,7 +28,7 @@ export function unternehmensDaten() {
     },
     areaServed: region.einzugsgebiet.map((name) => ({ '@type': 'AdministrativeArea', name })),
     founder: { '@type': 'Person', name: inhaber.name },
-    knowsAbout: ['Prozessautomatisierung', 'KI-Agenten', 'Workflow-Automatisierung', 'n8n', 'Make'],
+    knowsAbout: ['Prozessautomatisierung', 'KI-Agenten', 'Workflow-Automatisierung', 'Website-Erstellung', 'n8n', 'Make'],
     inLanguage: 'de-DE',
   };
 }

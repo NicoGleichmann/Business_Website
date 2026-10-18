@@ -14,7 +14,7 @@ import { site } from '../config/site';
 export const hero = {
   eyebrow: `KI-Automatisierung für kleine Betriebe in ${site.region.bundesland}`,
   titel: 'Ihr Betrieb bleibt erreichbar – auch wenn Sie gerade keine Hand frei haben.',
-  text: `Ich richte Automatisierungen und KI-Assistenten ein, die Anfragen beantworten, an Termine erinnern und Belege sortieren. Persönlich, verständlich und aus der Region ${site.region.stadt}.`,
+  text: `Ich richte Automatisierungen und KI-Assistenten ein, die Anfragen beantworten, an Termine erinnern und Belege sortieren. Eine Website für Ihren Betrieb ist inklusive. Persönlich, verständlich und aus der Region ${site.region.stadt}.`,
   cta: 'Kostenloses Erstgespräch',
   ctaHinweis: 'Kostenloses 15-Minuten-Gespräch: Wir schauen gemeinsam, wo Ihr Betrieb Zeit verliert.',
   sekundaer: 'So läuft es ab',
@@ -99,6 +99,16 @@ export const leistungen = {
   unterschiedTitel: 'Der Unterschied in einem Satz',
   unterschied:
     'Eine Automatisierung folgt einem festen Plan. Ein Agent entscheidet im Rahmen Ihrer Vorgaben selbst, was als Nächstes zu tun ist.',
+  website: {
+    titel: 'Website inklusive',
+    text: 'Noch nicht online? In jedem Paket steckt eine Website für Ihren Betrieb, damit Kunden Sie finden und direkt anfragen können. Haben Sie schon eine, wird es günstiger.',
+    punkte: [
+      'Leistungen, Öffnungszeiten, Kontakt und Anfahrt',
+      'Optimiert fürs Handy, mit eigener Domain',
+      'Google-Unternehmensprofil eingerichtet',
+    ],
+    link: 'Zu den Preisen',
+  },
 };
 
 export const ablauf = {
@@ -116,11 +126,11 @@ export const ablauf = {
     },
     {
       titel: 'Umsetzung',
-      text: 'Ich richte alles ein und verbinde es mit Ihren bestehenden Programmen. Bevor etwas live geht, testen wir gemeinsam, und Sie geben es frei.',
+      text: 'Ich baue Ihre Website, richte die Automatik ein und verbinde alles mit Ihren bestehenden Programmen. Bevor etwas live geht, testen wir gemeinsam, und Sie geben es frei.',
     },
     {
       titel: 'Wartung',
-      text: 'Ich überwache die Abläufe, behebe Fehler und bin per E-Mail für Sie da. Alles ist dokumentiert, die Zugänge laufen auf Ihren Namen.',
+      text: 'Ich halte Website und Abläufe am Laufen, behebe Fehler und bin per E-Mail für Sie da. Alles ist dokumentiert, die Zugänge laufen auf Ihren Namen.',
     },
   ],
 };
@@ -130,12 +140,12 @@ export const preise = {
   anzeigen: true,
   eyebrow: 'Preise',
   titel: 'Feste Preise, keine Überraschungen',
-  text: 'Sie zahlen einen Festpreis für die Einrichtung und danach eine kleine monatliche Pauschale für die Betreuung. Den genauen Festpreis bekommen Sie nach dem Erstgespräch schriftlich.',
+  text: 'Sie zahlen einen Festpreis für die Einrichtung und danach eine kleine monatliche Pauschale für die Betreuung. Die Website für Ihren Betrieb ist in den Paketen schon enthalten. Den genauen Festpreis bekommen Sie nach dem Erstgespräch schriftlich.',
   /**
    * EINFÜHRUNGSANGEBOT
    * Nach jedem neuen Kunden „freiePlaetze“ um 1 verringern (ehrlich bleiben – die Zahl steht auf der Seite).
    * Bei 0 verschwinden der Hinweis im Hero und der Kasten über den Preisen automatisch;
-   * dann auch die Einführungspreise in den Paketen unten entfernen.
+   * dann auch die Einführungspreise in den Paketen und in „ohneWebsite“ unten entfernen.
    * Die Zahl 5 steht zusätzlich in den Texten – bei Änderung dort mit anpassen.
    */
   einfuehrung: {
@@ -144,7 +154,7 @@ export const preise = {
     label: 'Einführungsangebot',
     heroText: 'Die ersten 5 Kunden zahlen weniger',
     frei: 'Noch {frei} von {plaetze} Plätzen frei',
-    text: 'Die ersten 5 Kunden bekommen ihre Automatik zum Einführungspreis. Danach gelten die regulären Preise.',
+    text: 'Die ersten 5 Kunden bekommen Website und Automatik zum Einführungspreis. Danach gelten die regulären Preise.',
     cta: 'Platz sichern',
   },
   enthaltenLabel: 'Enthalten',
@@ -152,32 +162,37 @@ export const preise = {
   monatlichLabel: 'Wartung pro Monat',
   pakete: [
     {
-      titel: 'Starter-Automatik',
-      text: 'Eine Automatik nach Wahl: für Ihre Anfragen oder für Ihre Belege.',
+      titel: 'Online-Start',
+      text: 'Ihr Betrieb online: Website, Google-Profil und eine Automatik nach Wahl.',
       enthalten: [
-        'Anfragen: sofortige Eingangsbestätigung an Ihren Kunden und Benachrichtigung aufs Handy',
-        'Oder Belege: Rechnungen aus Ihrem Postfach landen automatisch benannt im Ordner für den Steuerberater',
-        'Alles landet in einer übersichtlichen Liste',
-        'Einrichtung, Test und kurze Einweisung',
+        'Website mit Leistungen, Öffnungszeiten, Kontakt und Anfahrt, optimiert fürs Handy',
+        'Eigene Domain, Hosting und Einrichtung Ihres Google-Unternehmensprofils',
+        'Anfragen-Automatik: sofortige Eingangsbestätigung an Ihren Kunden und Benachrichtigung aufs Handy',
+        'Oder Beleg-Automatik: Rechnungen aus Ihrem Postfach landen automatisch benannt im Ordner für den Steuerberater',
+        '2 Korrekturrunden, Test und kurze Einweisung',
       ],
-      einmalig: '99 €',
-      einmaligHinweis: 'Einführungspreis für die ersten 5 Kunden, danach 199 €',
-      monatlich: '9–12 €',
-      monatlichHinweis: ['9 €: Betrieb und Überwachung', '12 €: inkl. kleiner Änderungen, z. B. Urlaubshinweis'],
+      einmalig: '199 €',
+      einmaligHinweis: 'Einführungspreis für die ersten 5 Kunden, danach 349 €',
+      monatlich: '15–19 €',
+      monatlichHinweis: [
+        '15 €: Betrieb, Hosting und Überwachung',
+        '19 €: inkl. kleiner Änderungen, z. B. Öffnungszeiten oder Urlaubshinweis',
+      ],
     },
     {
       titel: 'Termin-Paket',
-      text: 'Online-Terminbuchung, die Ausfälle verhindert und für Bewertungen sorgt.',
+      text: 'Alles aus dem Online-Start, dazu eine Terminbuchung, die Ausfälle verhindert und für Bewertungen sorgt.',
       enthalten: [
-        'Buchungsseite mit Ihren Leistungen und freien Zeiten',
+        'Alles aus dem Online-Start, inklusive Website und Automatik nach Wahl',
+        'Buchungsseite mit Ihren Leistungen und freien Zeiten, direkt von Ihrer Website erreichbar',
         'Bestätigung und Erinnerung an Ihre Kunden vor jedem Termin, per E-Mail oder auf Wunsch per SMS',
         'Link zum Absagen oder Verschieben',
         'Nach dem Termin: Bitte um eine Google-Bewertung',
       ],
-      einmalig: '159 €',
-      einmaligHinweis: 'Einführungspreis für die ersten 5 Kunden, danach 299 €',
-      monatlich: '19–29 €',
-      monatlichHinweis: ['19 €: Erinnerungen per E-Mail', '29 €: zusätzlich per SMS'],
+      einmalig: '259 €',
+      einmaligHinweis: 'Einführungspreis für die ersten 5 Kunden, danach 449 €',
+      monatlich: '25–35 €',
+      monatlichHinweis: ['25 €: Erinnerungen per E-Mail', '35 €: zusätzlich per SMS'],
     },
     {
       titel: 'Individuelle Lösung',
@@ -186,19 +201,40 @@ export const preise = {
         'Belege direkt an Ihre Buchhaltungssoftware übergeben',
         'Angebote aus Ihrer Vorlage erstellen',
         'KI-Agent, der E-Mails vorsortiert und Antworten vorbereitet',
+        'Website auf Wunsch inklusive',
         'Festpreis nach schriftlicher Leistungsbeschreibung',
       ],
-      einmalig: 'ab ca. 499 €',
+      einmalig: 'ab ca. 699 €',
       einmaligHinweis: 'Festpreis nach Gespräch',
       monatlich: 'nach Absprache',
       monatlichHinweis: [],
     },
   ],
+  /** Kasten unter den Paketen: Preise für Kunden, die schon eine Website haben. */
+  ohneWebsite: {
+    titel: 'Sie haben schon eine Website?',
+    text: 'Dann richte ich nur die Automatik ein und verbinde sie mit Ihrer bestehenden Seite. Einrichtung und Wartung werden günstiger, weil die Website samt Domain wegfällt.',
+    pakete: [
+      {
+        titel: 'Starter-Automatik',
+        einmalig: '99 €',
+        einmaligHinweis: 'Einführungspreis, danach 199 €',
+        monatlich: '9–12 €',
+      },
+      {
+        titel: 'Termin-Paket ohne Website',
+        einmalig: '159 €',
+        einmaligHinweis: 'Einführungspreis, danach 299 €',
+        monatlich: '19–29 €',
+      },
+    ],
+  },
   wartung: {
     titel: 'Wartung ist immer dabei',
-    text: 'Ihre Automatik muss rund um die Uhr online sein, damit sie funktioniert. Und weil sich Programme und Schnittstellen regelmäßig ändern, gehört die Wartung zu jedem Paket.',
+    text: 'Website und Automatik müssen rund um die Uhr online sein, damit sie funktionieren. Und weil sich Programme und Schnittstellen regelmäßig ändern, gehört die Wartung zu jedem Paket.',
     punkte: [
-      'Betrieb rund um die Uhr auf einem Server in der EU',
+      'Betrieb der Automatik rund um die Uhr auf einem Server in der EU',
+      'Hosting und eigene Domain (.de) für Ihre Website',
       'Überwachung und Fehlerbehebung',
       'Support per E-Mail',
       'Mindestlaufzeit 3 Monate, danach monatlich kündbar',
@@ -211,6 +247,7 @@ export const preise = {
 
 const starter = preise.pakete[0];
 const individuell = preise.pakete[preise.pakete.length - 1];
+const nurAutomatik = preise.ohneWebsite.pakete[0];
 
 export const demo = {
   eyebrow: 'Demo',
@@ -251,14 +288,27 @@ export const faq = {
     {
       frage: 'Was kostet das?',
       antwort: [
-        `Sie zahlen einen Festpreis für die Einrichtung und danach eine kleine monatliche Pauschale für die Betreuung. Die Starter-Automatik kostet ${starter.einmalig} (${starter.einmaligHinweis}) plus ${starter.monatlich} pro Monat. Größere Lösungen starten ${individuell.einmalig}, den Festpreis nenne ich nach einem kurzen Gespräch.`,
-        'Sie bekommen vorher ein schriftliches Angebot. Alle Preise zzgl. gesetzlicher Umsatzsteuer.',
+        `Sie zahlen einen Festpreis für die Einrichtung und danach eine kleine monatliche Pauschale für die Betreuung. Der ${starter.titel} mit Website kostet ${starter.einmalig} (${starter.einmaligHinweis}) plus ${starter.monatlich} pro Monat. Größere Lösungen starten ${individuell.einmalig}, den Festpreis nenne ich nach einem kurzen Gespräch.`,
+        `Haben Sie schon eine Website, wird es günstiger: Die ${nurAutomatik.titel} allein kostet ${nurAutomatik.einmalig} (${nurAutomatik.einmaligHinweis}) plus ${nurAutomatik.monatlich} pro Monat. Sie bekommen vorher ein schriftliches Angebot. Alle Preise zzgl. gesetzlicher Umsatzsteuer.`,
+      ],
+    },
+    {
+      frage: 'Was gehört zur Website?',
+      antwort: [
+        'Eine Seite mit Ihren Leistungen und Preisen, Öffnungszeiten, Kontakt und Anfahrt und einem kurzen Teil über Ihren Betrieb. Sie ist fürs Handy optimiert und läuft unter Ihrer eigenen Domain. Dazu richte ich Ihr Google-Unternehmensprofil ein. Zwei Korrekturrunden sind inklusive.',
+        'Impressum und Datenschutzerklärung erstellen Sie selbst mit einem Online-Generator, zum Beispiel von eRecht24, denn für diese Angaben sind Sie als Inhaber verantwortlich. Ich baue die Texte dann ein.',
+      ],
+    },
+    {
+      frage: 'Ich habe schon eine Website. Brauche ich eine neue?',
+      antwort: [
+        'Nein. Dann verbinde ich die Automatik mit Ihrer bestehenden Seite, zum Beispiel über Ihr Kontaktformular oder Ihre E-Mail-Adresse. Es gelten die günstigeren Preise ohne Website.',
       ],
     },
     {
       frage: 'Was ist in der monatlichen Pauschale enthalten?',
       antwort: [
-        'Überwachung, Fehlerbehebung und Support per E-Mail. Änderungswünsche außerhalb des vereinbarten Umfangs bespreche ich vorher mit Ihnen und nenne Ihnen einen Preis.',
+        'Überwachung, Fehlerbehebung und Support per E-Mail, bei Paketen mit Website auch Hosting und Domain. Was genau in Ihrem Tarif steckt, steht beim jeweiligen Paket. Änderungswünsche außerhalb des vereinbarten Umfangs bespreche ich vorher mit Ihnen und nenne Ihnen einen Preis.',
       ],
     },
     {
@@ -351,5 +401,5 @@ export const kontakt = {
 };
 
 export const footer = {
-  beschreibung: `Automatisierungen und KI-Agents für kleine Betriebe in ${site.region.stadt}, im ${site.region.landkreis} und in ${site.region.bundesland}.`,
+  beschreibung: `Websites, Automatisierungen und KI-Agents für kleine Betriebe in ${site.region.stadt}, im ${site.region.landkreis} und in ${site.region.bundesland}.`,
 };
