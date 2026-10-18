@@ -1,0 +1,9 @@
+# Netlify: Build-Einstellungen (werden automatisch erkannt)
+[build]
+  command = "npm run build"
+  publish = "dist"
+
+[build.environment]
+  NODE_VERSION = "22.22.0"
+  ASTRO_TELEMETRY_DISABLED = "1"
+  # PUBLIC_FORM_WEBHOOK_URL bitte im Netlify-Dashboard setzen, nicht hier.

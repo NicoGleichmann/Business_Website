@@ -1,0 +1,19 @@
+---
+/**
+ * DATENSCHUTZERKLÄRUNG
+ * Den Text aus einem Datenschutz-Generator im markierten Bereich einfügen.
+ * Welche Angaben der Generator braucht, steht im README unter
+ * „Datenschutz-Checkliste für den Generator“.
+ */
+import Rechtliches from '../layouts/Rechtliches.astro';
+import TodoBox from '../components/TodoBox.astro';
+import { site } from '../config/site';
+---
+
+<Rechtliches titel="Datenschutzerklärung" beschreibung={`Datenschutzerklärung von ${site.name}.`}>
+  <!-- ===== Ab hier: Text aus dem Datenschutz-Generator einfügen ===== -->
+  <TodoBox
+    text="[[TODO: Datenschutzerklärung aus einem Generator einfügen und prüfen lassen. Welche Angaben der Generator braucht: README, Abschnitt „Datenschutz-Checkliste für den Generator“.]]"
+  />
+  <!-- ===== Ende Generator-Text ===== -->
+</Rechtliches>

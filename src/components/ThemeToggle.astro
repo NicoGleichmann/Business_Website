@@ -1,0 +1,60 @@
+---
+import Icon from './Icon.astro';
+---
+
+<button
+  type="button"
+  data-theme-toggle
+  aria-pressed="false"
+  aria-label="Dunkelmodus"
+  title="Hell/Dunkel umschalten"
+  class="text-muted hover:bg-hover hover:text-fg inline-flex size-11 shrink-0 cursor-pointer items-center justify-center rounded-full transition-colors"
+>
+  <Icon name="moon" size={20} class="icon-moon" />
+  <Icon name="sun" size={20} class="icon-sun" />
+</button>
+
+<style is:global>
+  .icon-sun {
+    display: none;
+  }
+  :root[data-farbschema='dunkel'] .icon-sun {
+    display: block;
+  }
+  :root[data-farbschema='dunkel'] .icon-moon {
+    display: none;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-farbschema='hell']) .icon-sun {
+      display: block;
+    }
+    :root:not([data-farbschema='hell']) .icon-moon {
+      display: none;
+    }
+  }
+</style>
+
+<script>
+  const root = document.documentElement;
+  const systemDunkel = window.matchMedia('(prefers-color-scheme: dark)');
+  const aktuell = () => root.getAttribute('data-farbschema') ?? (systemDunkel.matches ? 'dunkel' : 'hell');
+
+  document.querySelectorAll<HTMLButtonElement>('[data-theme-toggle]').forEach((knopf) => {
+    const sync = () => knopf.setAttribute('aria-pressed', String(aktuell() === 'dunkel'));
+    sync();
+    systemDunkel.addEventListener('change', sync);
+    knopf.addEventListener('click', () => {
+      const neu = aktuell() === 'dunkel' ? 'hell' : 'dunkel';
+      // Übergänge kurz aussetzen, damit alles im selben Moment umspringt.
+      root.classList.add('farbwechsel');
+      root.setAttribute('data-farbschema', neu);
+      requestAnimationFrame(() => requestAnimationFrame(() => root.classList.remove('farbwechsel')));
+      try {
+        localStorage.setItem('farbschema', neu);
+      } catch {
+        // Speichern nicht möglich (z. B. privater Modus) – Umschalten klappt trotzdem.
+      }
+      sync();
+    });
+  });
+</script>

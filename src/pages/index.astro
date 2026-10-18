@@ -1,0 +1,26 @@
+---
+import Base from '../layouts/Base.astro';
+import { unternehmensDaten } from '../config/strukturierte-daten';
+import Hero from '../components/abschnitte/Hero.astro';
+import Problem from '../components/abschnitte/Problem.astro';
+import Leistungen from '../components/abschnitte/Leistungen.astro';
+import Ablauf from '../components/abschnitte/Ablauf.astro';
+import Preise from '../components/abschnitte/Preise.astro';
+import Demo from '../components/abschnitte/Demo.astro';
+import UeberMich from '../components/abschnitte/UeberMich.astro';
+import Faq from '../components/abschnitte/Faq.astro';
+import Kontakt from '../components/abschnitte/Kontakt.astro';
+import { preise } from '../content/texte';
+---
+
+<Base strukturierteDaten={unternehmensDaten()}>
+  <Hero />
+  <Problem />
+  <Leistungen />
+  <Ablauf />
+  {preise.anzeigen && <Preise />}
+  <Demo />
+  <UeberMich />
+  <Faq />
+  <Kontakt />
+</Base>

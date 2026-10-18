@@ -1,0 +1,89 @@
+---
+import '../styles/global.css';
+import { site } from '../config/site';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+
+interface Props {
+  /** Seitentitel ohne Markenname (Startseite: leer lassen). */
+  titel?: string;
+  beschreibung?: string;
+  /** Diese Seite nie indexieren (z. B. Danke-Seite, 404). */
+  noindex?: boolean;
+  /** Strukturierte Daten (JSON-LD) einfügen – nur auf der Startseite. */
+  strukturierteDaten?: Record<string, unknown>;
+}
+
+const { titel, beschreibung = site.seo.beschreibung, noindex = false, strukturierteDaten } = Astro.props;
+
+const seitenTitel = titel ? `${titel} – ${site.name}` : `${site.name} – ${site.seo.titel}`;
+const canonical = new URL(Astro.url.pathname, site.url).href;
+const ogBild = new URL(site.seo.bild, site.url).href;
+const robots = !site.indexierung ? 'noindex, nofollow' : noindex ? 'noindex, follow' : 'index, follow';
+---
+
+<!doctype html>
+<html lang="de">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{seitenTitel}</title>
+    <meta name="description" content={beschreibung} />
+    <meta name="robots" content={robots} />
+    {!noindex && <link rel="canonical" href={canonical} />}
+
+    <!-- Theme vor dem ersten Zeichnen setzen (kein Aufflackern). Gespeichert wird nur die Wahl "hell"/"dunkel" (localStorage "farbschema"). -->
+    <script is:inline>
+      (function () {
+        var d = document.documentElement;
+        d.classList.add('js');
+        try {
+          var t = localStorage.getItem('farbschema');
+          if (t === 'hell' || t === 'dunkel') d.setAttribute('data-farbschema', t);
+        } catch (e) {}
+      })();
+    </script>
+
+    <link rel="preload" href="/fonts/inter-latin-wght.woff2" as="font" type="font/woff2" crossorigin />
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    <link rel="icon" href="/favicon.ico" sizes="32x32" />
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+    <meta name="theme-color" content="#fafaf7" media="(prefers-color-scheme: light)" />
+    <meta name="theme-color" content="#0c1514" media="(prefers-color-scheme: dark)" />
+
+    <!-- Link-Vorschau (WhatsApp, LinkedIn, Facebook …) -->
+    <meta property="og:type" content="website" />
+    <meta property="og:locale" content="de_DE" />
+    <meta property="og:site_name" content={site.name} />
+    <meta property="og:title" content={seitenTitel} />
+    <meta property="og:description" content={beschreibung} />
+    <meta property="og:url" content={canonical} />
+    <meta property="og:image" content={ogBild} />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:image:alt" content={`${site.name} – ${site.slogan}`} />
+    <meta name="twitter:card" content="summary_large_image" />
+
+    <meta name="geo.region" content="DE-TH" />
+    <meta name="geo.placename" content={site.region.stadt} />
+
+    {
+      strukturierteDaten && (
+        <script type="application/ld+json" is:inline set:html={JSON.stringify(strukturierteDaten)} />
+      )
+    }
+  </head>
+  <body class="flex min-h-dvh flex-col">
+    <a
+      href="#inhalt"
+      class="bg-accent text-on-accent sr-only z-50 rounded-full px-5 py-3 font-semibold no-underline focus:not-sr-only focus:fixed focus:top-3 focus:left-3"
+    >
+      Zum Inhalt springen
+    </a>
+    <Header />
+    <main id="inhalt" class="flex-1" tabindex="-1">
+      <slot />
+    </main>
+    <Footer />
+  </body>
+</html>

@@ -1,0 +1,30 @@
+---
+import { site } from '../config/site';
+import { footer } from '../content/texte';
+import Logo from './Logo.astro';
+
+const jahr = new Date().getFullYear();
+---
+
+<footer class="border-border bg-band border-t">
+  <div class="container-page grid grid-cols-1 gap-10 py-12 sm:grid-cols-[minmax(0,2fr)_minmax(0,1fr)]">
+    <div>
+      <a href="/" class="text-fg hover:text-fg inline-flex items-center gap-2.5 no-underline">
+        <Logo size={28} />
+        <span class="text-lg font-semibold tracking-tight">{site.name}</span>
+      </a>
+      <p class="mt-3 font-medium">{site.slogan}</p>
+      <p class="text-muted mt-2 max-w-md text-[0.95rem]">{footer.beschreibung}</p>
+    </div>
+    <nav aria-label="Rechtliches und Kontakt" class="sm:justify-self-end">
+      <ul class="space-y-1 text-[0.95rem]">
+        <li><a href="/#kontakt" class="inline-block py-2">Kontakt</a></li>
+        <li><a href="/impressum/" class="inline-block py-2">Impressum</a></li>
+        <li><a href="/datenschutz/" class="inline-block py-2">Datenschutz</a></li>
+      </ul>
+    </nav>
+  </div>
+  <div class="border-border border-t">
+    <p class="container-page text-muted py-6 text-sm">© {jahr} {site.name}</p>
+  </div>
+</footer>

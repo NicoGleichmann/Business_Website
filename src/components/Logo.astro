@@ -1,0 +1,13 @@
+---
+/** Bildmarke: ein Lichtpunkt mit Schein – unabhängig vom endgültigen Namen. */
+interface Props {
+  size?: number;
+}
+const { size = 32 } = Astro.props;
+---
+
+<svg width={size} height={size} viewBox="0 0 32 32" aria-hidden="true" focusable="false">
+  <rect width="32" height="32" rx="9" fill="var(--accent)"></rect>
+  <circle cx="16" cy="16" r="10" fill="none" stroke="var(--on-accent)" stroke-opacity="0.45" stroke-width="2"></circle>
+  <circle cx="16" cy="16" r="5" fill="var(--on-accent)"></circle>
+</svg>

@@ -1,0 +1,13 @@
+---
+/**
+ * Gibt Text aus und hebt Platzhalter "[[TODO: …]]" gelb hervor.
+ * Funktioniert auch, wenn der Platzhalter mitten im Satz steht.
+ */
+interface Props {
+  text: string;
+}
+const { text } = Astro.props;
+const teile = text.split(/(\[\[TODO:[^\]]*\]\])/g).filter(Boolean);
+---
+
+{teile.map((teil) => (teil.startsWith('[[TODO') ? <mark class="todo">{teil}</mark> : teil))}
