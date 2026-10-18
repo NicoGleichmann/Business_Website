@@ -15,7 +15,7 @@ if (webhook) {
     throw new Error(`PUBLIC_FORM_WEBHOOK_URL ist keine gültige URL: "${webhook}"`);
   }
 }
-const formZiele = ["'self'", webhookOrigin, 'mailto:'].filter(Boolean).join(' ');
+const formZiele = ["'self'", webhookOrigin].filter(Boolean).join(' ');
 const verbindungsZiele = ["'self'", webhookOrigin].filter(Boolean).join(' ');
 
 /**

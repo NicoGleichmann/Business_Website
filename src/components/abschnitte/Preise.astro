@@ -2,6 +2,8 @@
 import { preise } from '../../content/texte';
 import Icon from '../Icon.astro';
 import Txt from '../Txt.astro';
+
+const e = preise.einfuehrung;
 ---
 
 <section id="preise" aria-labelledby="preise-titel" class="section">
@@ -10,7 +12,29 @@ import Txt from '../Txt.astro';
     <h2 id="preise-titel" class="h2"><Txt text={preise.titel} /></h2>
     <p class="lead"><Txt text={preise.text} /></p>
 
-    <ul class="mt-12 grid grid-cols-1 gap-5 lg:grid-cols-3">
+    {
+      e.freiePlaetze > 0 && (
+        <div class="border-accent bg-accent-soft mt-10 flex flex-col gap-4 rounded-2xl border p-5 sm:flex-row sm:items-center sm:justify-between sm:p-6">
+          <div>
+            <p class="flex flex-wrap items-center gap-x-3 gap-y-1 font-semibold">
+              <span class="bg-accent text-on-accent rounded-full px-2.5 py-0.5 text-xs tracking-wide uppercase">
+                {e.label}
+              </span>
+              {e.frei.replace('{frei}', String(e.freiePlaetze)).replace('{plaetze}', String(e.plaetze))}
+            </p>
+            <p class="mt-1.5">
+              <Txt text={e.text} />
+            </p>
+          </div>
+          <a href="#kontakt" class="btn btn-primary shrink-0">
+            {e.cta}
+            <Icon name="arrowRight" size={18} />
+          </a>
+        </div>
+      )
+    }
+
+    <ul class="mt-8 grid grid-cols-1 gap-5 lg:grid-cols-3">
       {
         preise.pakete.map((paket) => (
           <li class="card flex flex-col lg:row-span-5 lg:grid lg:grid-rows-subgrid lg:gap-y-0">

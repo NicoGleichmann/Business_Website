@@ -131,6 +131,22 @@ export const preise = {
   eyebrow: 'Preise',
   titel: 'Feste Preise, keine Überraschungen',
   text: 'Sie zahlen einen Festpreis für die Einrichtung und danach eine kleine monatliche Pauschale für die Betreuung. Den genauen Festpreis bekommen Sie nach dem Erstgespräch schriftlich.',
+  /**
+   * EINFÜHRUNGSANGEBOT
+   * Nach jedem neuen Kunden „freiePlaetze“ um 1 verringern (ehrlich bleiben – die Zahl steht auf der Seite).
+   * Bei 0 verschwinden der Hinweis im Hero und der Kasten über den Preisen automatisch;
+   * dann auch die Einführungspreise in den Paketen unten entfernen.
+   * Die Zahl 5 steht zusätzlich in den Texten – bei Änderung dort mit anpassen.
+   */
+  einfuehrung: {
+    plaetze: 5,
+    freiePlaetze: 5,
+    label: 'Einführungsangebot',
+    heroText: 'Die ersten 5 Kunden zahlen weniger',
+    frei: 'Noch {frei} von {plaetze} Plätzen frei',
+    text: 'Die ersten 5 Kunden bekommen ihre Automatik zum Einführungspreis. Danach gelten die regulären Preise.',
+    cta: 'Platz sichern',
+  },
   enthaltenLabel: 'Enthalten',
   einmaligLabel: 'Einrichtung',
   monatlichLabel: 'Wartung pro Monat',
@@ -145,7 +161,7 @@ export const preise = {
         'Einrichtung, Test und kurze Einweisung',
       ],
       einmalig: '99 €',
-      einmaligHinweis: 'Einführungspreis, danach 199 €',
+      einmaligHinweis: 'Einführungspreis für die ersten 5 Kunden, danach 199 €',
       monatlich: '9–12 €',
       monatlichHinweis: ['9 €: Betrieb und Überwachung', '12 €: inkl. kleiner Änderungen, z. B. Urlaubshinweis'],
     },
@@ -159,7 +175,7 @@ export const preise = {
         'Nach dem Termin: Bitte um eine Google-Bewertung',
       ],
       einmalig: '159 €',
-      einmaligHinweis: 'Einführungspreis, danach 299 €',
+      einmaligHinweis: 'Einführungspreis für die ersten 5 Kunden, danach 299 €',
       monatlich: '19–29 €',
       monatlichHinweis: ['19 €: Erinnerungen per E-Mail', '29 €: zusätzlich per SMS'],
     },
@@ -317,6 +333,7 @@ export const kontakt = {
     fehler: 'Das hat leider nicht geklappt. Bitte versuchen Sie es noch einmal oder schreiben Sie mir direkt eine E-Mail.',
     mailto: 'Ihr E-Mail-Programm öffnet sich mit einer vorbereiteten Nachricht. Bitte dort noch auf „Senden“ tippen.',
     mailtoBetreff: 'Anfrage Erstgespräch',
+    ohneJs: 'Das Formular braucht JavaScript. Schreiben Sie mir gern direkt an',
     emailFehlt: 'Die E-Mail-Adresse ist noch nicht hinterlegt. Bitte nutzen Sie vorerst den Kalender-Link.',
     fehlerName: 'Bitte geben Sie Ihren Namen an.',
     fehlerEmailLeer: 'Bitte geben Sie Ihre E-Mail-Adresse an, damit ich antworten kann.',

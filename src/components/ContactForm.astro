@@ -2,7 +2,10 @@
 /**
  * Kontaktformular.
  * - Mit PUBLIC_FORM_WEBHOOK_URL: sendet per POST an den n8n-Webhook.
- * - Ohne: öffnet das E-Mail-Programm mit vorbereiteter Nachricht (mailto-Fallback).
+ * - Ohne: öffnet das E-Mail-Programm mit vorbereiteter Nachricht (mailto-Fallback, nur per JavaScript –
+ *   ein Formularziel „mailto:“ würde der Browser auf HTTPS-Seiten als unsicher markieren).
+ * - Die Empfängeradresse steht zweigeteilt im HTML, damit Schutzfilter (z. B. Cloudflares
+ *   E-Mail-Verschleierung) sie nicht umschreiben und das Empfängerfeld leer bleibt.
  * - Honeypot-Feld "website": Menschen sehen es nicht, Spam-Bots füllen es aus.
  */
 import { istGesetzt, site, webhookUrl } from '../config/site';
@@ -11,23 +14,18 @@ import { kontakt } from '../content/texte';
 const f = kontakt.formular;
 const email = istGesetzt(site.kontakt.email) ? site.kontakt.email : '';
 const modus = webhookUrl ? 'webhook' : 'mailto';
-const action =
-  modus === 'webhook'
-    ? webhookUrl
-    : email
-      ? `mailto:${email}?subject=${encodeURIComponent(f.mailtoBetreff)}`
-      : undefined;
+const [emailName = '', emailDomain = ''] = email.split('@');
 ---
 
 <form
   method="post"
-  action={action}
-  enctype={modus === 'mailto' ? 'text/plain' : undefined}
+  action={modus === 'webhook' ? webhookUrl : undefined}
   aria-labelledby="formular-titel"
   class="card"
   data-kontaktformular
   data-modus={modus}
-  data-email={email}
+  data-email-name={emailName}
+  data-email-domain={emailDomain}
   data-betreff={f.mailtoBetreff}
   data-sendet={f.sendet}
   data-erfolg={f.erfolg}
@@ -133,7 +131,18 @@ const action =
   >
   </div>
 
-  <button type="submit" class="btn btn-primary mt-6 w-full cursor-pointer sm:w-auto">{f.senden}</button>
+  <button type="submit" data-nur-mit-js={modus === 'mailto' ? '' : undefined} class="btn btn-primary mt-6 w-full cursor-pointer sm:w-auto">
+    {f.senden}
+  </button>
+  {
+    modus === 'mailto' && email && (
+      <noscript>
+        <p class="mt-6">
+          {f.ohneJs} <a href={`mailto:${email}`}>{email}</a>
+        </p>
+      </noscript>
+    )
+  }
 </form>
 
 <script>
@@ -218,7 +227,8 @@ const action =
       }
 
       // mailto-Fallback: E-Mail-Programm mit vorbereiteter Nachricht öffnen.
-      if (!d.email) {
+      const empfaenger = d.emailName && d.emailDomain ? `${d.emailName}@${d.emailDomain}` : '';
+      if (!empfaenger) {
         zeige(d.emailFehlt ?? '', 'fehler');
         return;
       }
@@ -230,7 +240,7 @@ const action =
         'Was kostet mich am meisten Zeit?',
         String(daten.get('zeit') || '–'),
       ].join('\r\n');
-      window.location.href = `mailto:${d.email}?subject=${encodeURIComponent(d.betreff ?? '')}&body=${encodeURIComponent(text)}`;
+      window.location.href = `mailto:${empfaenger}?subject=${encodeURIComponent(d.betreff ?? '')}&body=${encodeURIComponent(text)}`;
       zeige(d.mailto ?? '', 'info');
     });
   });

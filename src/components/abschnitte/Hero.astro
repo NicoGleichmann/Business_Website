@@ -1,5 +1,5 @@
 ---
-import { hero } from '../../content/texte';
+import { hero, preise } from '../../content/texte';
 import Icon from '../Icon.astro';
 import Txt from '../Txt.astro';
 
@@ -19,6 +19,21 @@ const beispiel = [
 
   <div class="container-page relative grid grid-cols-1 items-center gap-14 pt-14 pb-16 sm:pt-20 sm:pb-24 lg:grid-cols-[minmax(0,1.35fr)_minmax(0,1fr)]">
     <div>
+      {
+        preise.anzeigen && preise.einfuehrung.freiePlaetze > 0 && (
+          <a
+            href="#preise"
+            class="border-accent bg-accent-soft text-fg hover:text-fg mb-7 inline-flex min-h-11 max-w-full items-center gap-2.5 rounded-full border py-1.5 pr-4 pl-4 text-[0.95rem] font-medium no-underline sm:pl-1.5"
+          >
+            <span class="bg-accent size-2 shrink-0 rounded-full sm:hidden" aria-hidden="true"></span>
+            <span class="bg-accent text-on-accent hidden shrink-0 rounded-full px-2.5 py-1 text-xs font-semibold tracking-wide uppercase sm:inline-block">
+              {preise.einfuehrung.label}
+            </span>
+            <span>{preise.einfuehrung.heroText}</span>
+            <Icon name="arrowRight" size={16} class="text-accent shrink-0" />
+          </a>
+        )
+      }
       <p class="eyebrow"><Txt text={hero.eyebrow} /></p>
       <h1 id="hero-titel" class="mt-4 text-[2.15rem] font-bold sm:text-5xl lg:text-[3.4rem]">
         <Txt text={hero.titel} />
