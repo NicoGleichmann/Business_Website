@@ -269,7 +269,8 @@
   transition: none !important;
 }
 
-/* Theme-Umschalter nur zeigen, wenn JavaScript läuft (sonst gilt die Systemeinstellung) */
-html:not(.js) [data-theme-toggle] {
+/* Nur mit JavaScript sinnvoll: Theme-Umschalter (sonst gilt die Systemeinstellung) und Senden-Knopf im mailto-Modus */
+html:not(.js) [data-theme-toggle],
+html:not(.js) [data-nur-mit-js] {
   display: none;
 }

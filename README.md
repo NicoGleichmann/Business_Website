@@ -62,6 +62,12 @@ lesen von dort.
 Alle sichtbaren Texte der Startseite (Hero, Probleme, Leistungen, Ablauf, Demo, Über mich, FAQ, Kontakt) in der
 Reihenfolge der Seite. Nur den Text zwischen den Anführungszeichen ändern. Ein Apostroph im Text braucht einen Backslash: `'So läuft\'s ab'`.
 
+### Einführungsangebot → `src/content/texte.ts` (`preise.einfuehrung`)
+
+Nach jedem neuen Kunden `freiePlaetze` um 1 verringern – die Zahl steht als „Noch X von 5 Plätzen frei“ auf der Seite
+und muss stimmen. Bei `0` verschwinden der Hinweis im Hero und der Kasten über den Preisen automatisch; dann auch die
+Einführungspreise in den Paketen entfernen.
+
 ### Farben → `src/styles/global.css`
 
 Ganz oben stehen die Farb-Tokens für Hell- und Dunkelmodus, benannt nach ihrer Rolle (Seite, Band, Karte, Feld …).
@@ -189,6 +195,9 @@ wird beim Build erzeugt und von beiden Anbietern gelesen.
 3. Deploy auslösen, danach unter **Domain management** die eigene Domain verbinden.
 
 > Nach jeder Änderung an Umgebungsvariablen: **neu deployen**, damit sie in die Seite übernommen werden.
+
+> **Cloudflare-E-Mail-Verschleierung:** Cloudflare schreibt E-Mail-Adressen im HTML standardmäßig um. Die Seite ist
+> dagegen mit `<!--email_off-->` geschützt (in `src/layouts/Base.astro`) – diese Markierungen bitte nicht entfernen.
 
 ---
 
