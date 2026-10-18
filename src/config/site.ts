@@ -29,7 +29,7 @@ export const site = {
    * false = <meta name="robots" content="noindex"> + robots.txt sperrt alles.
    * Beim Go-live auf true setzen.
    */
-  indexierung: false,
+  indexierung: true,
 
   /** Inhaber (für Impressum, "Über mich" und strukturierte Daten). */
   inhaber: {
