@@ -14,7 +14,7 @@ import { site } from '../config/site';
 export const hero = {
   eyebrow: `KI-Automatisierung für kleine Betriebe in ${site.region.bundesland}`,
   titel: 'Ihr Betrieb bleibt erreichbar – auch wenn Sie gerade keine Hand frei haben.',
-  text: `Ich richte Automatisierungen und KI-Assistenten ein, die Anfragen beantworten, an Termine erinnern und Belege sortieren. Eine Website für Ihren Betrieb ist inklusive. Persönlich, verständlich und aus der Region ${site.region.stadt}.`,
+  text: `Ich richte Automatisierungen ein, die Anfragen sofort beantworten, an Termine erinnern und Belege sortieren. Eine Website für Ihren Betrieb ist inklusive. Persönlich, verständlich und aus der Region ${site.region.stadt}.`,
   cta: 'Kostenloses Erstgespräch',
   ctaHinweis: 'Kostenloses 15-Minuten-Gespräch: Wir schauen gemeinsam, wo Ihr Betrieb Zeit verliert.',
   sekundaer: 'So läuft es ab',
@@ -52,14 +52,36 @@ export const problem = {
 
 export const leistungen = {
   eyebrow: 'Leistungen',
-  titel: 'Zwei Werkzeuge, ein Ziel: weniger Routinearbeit',
-  text: 'Je nach Aufgabe setze ich auf feste Abläufe oder auf KI-Assistenten, die mitdenken – oft auf beides zusammen. Welches Werkzeug passt, klären wir gemeinsam.',
+  titel: 'Zwei Bausteine, ein Ziel: weniger Routinearbeit',
+  text: 'Ihre Website sorgt dafür, dass Kunden Sie finden. Die Automatik sorgt dafür, dass danach keine Anfrage und kein Termin verloren geht. Beides kommt aus einer Hand und passt zusammen.',
   spalten: [
+    {
+      icon: 'globe',
+      titel: 'Website',
+      untertitel: 'Damit Kunden Sie finden und direkt anfragen können.',
+      text: 'Eine Seite mit allem, was Ihre Kunden wissen wollen: fürs Handy optimiert, unter Ihrer eigenen Adresse und verbunden mit Ihrem Google-Profil. Haben Sie schon eine Website, binde ich die Automatik dort an.',
+      beispieleTitel: 'Das gehört dazu',
+      beispiele: [
+        {
+          titel: 'Leistungen und Preise',
+          text: 'Ihre Kunden sehen auf einen Blick, was Sie anbieten und was es kostet.',
+        },
+        {
+          titel: 'Öffnungszeiten und Anfahrt',
+          text: 'Die häufigsten Fragen sind beantwortet, bevor das Telefon klingelt.',
+        },
+        {
+          titel: 'Google-Unternehmensprofil',
+          text: 'Wer Ihren Betrieb bei Google oder in Google Maps sucht, findet Sie – mit Öffnungszeiten und Link zur Website.',
+        },
+      ],
+    },
     {
       icon: 'workflow',
       titel: 'Automatisierungen',
       untertitel: 'Feste Abläufe, die zuverlässig im Hintergrund laufen.',
       text: 'Immer wenn A passiert, passiert automatisch B – ohne Vergessen, ohne Abtippen. Umgesetzt mit bewährten Werkzeugen wie n8n oder Make.',
+      beispieleTitel: 'Beispiele',
       beispiele: [
         {
           titel: 'Terminerinnerungen',
@@ -75,40 +97,7 @@ export const leistungen = {
         },
       ],
     },
-    {
-      icon: 'bot',
-      titel: 'KI-Agents',
-      untertitel: 'Digitale Assistenten, die eigenständig mitdenken.',
-      text: 'Ein Agent versteht Anfragen in normaler Sprache, sucht sich die nötigen Informationen zusammen und erledigt die nächsten Schritte. Was er selbst erledigen darf, legen wir vorher gemeinsam fest.',
-      beispiele: [
-        {
-          titel: 'E-Mails vorsortieren',
-          text: 'Der Agent liest eingehende Anfragen, erkennt, worum es geht, und legt Ihnen einen passenden Antwortentwurf zur Freigabe hin.',
-        },
-        {
-          titel: 'Kundenfragen beantworten',
-          text: 'Fragen zu Öffnungszeiten, Leistungen oder freien Terminen beantwortet der Agent per Chat oder E-Mail – auf Grundlage Ihrer eigenen Angaben.',
-        },
-        {
-          titel: 'Interessenten vorqualifizieren',
-          text: 'Bei einer Anfrage, etwa zu einer Immobilie, fragt der Agent die wichtigsten Eckdaten ab und schickt Ihnen eine kurze Zusammenfassung.',
-        },
-      ],
-    },
   ],
-  unterschiedTitel: 'Der Unterschied in einem Satz',
-  unterschied:
-    'Eine Automatisierung folgt einem festen Plan. Ein Agent entscheidet im Rahmen Ihrer Vorgaben selbst, was als Nächstes zu tun ist.',
-  website: {
-    titel: 'Website inklusive',
-    text: 'Noch nicht online? In jedem Paket steckt eine Website für Ihren Betrieb, damit Kunden Sie finden und direkt anfragen können. Haben Sie schon eine, wird es günstiger.',
-    punkte: [
-      'Leistungen, Öffnungszeiten, Kontakt und Anfahrt',
-      'Optimiert fürs Handy, mit eigener Domain',
-      'Google-Unternehmensprofil eingerichtet',
-    ],
-    link: 'Zu den Preisen',
-  },
 };
 
 export const ablauf = {
@@ -194,21 +183,6 @@ export const preise = {
       monatlich: '25–35 €',
       monatlichHinweis: ['25 €: Erinnerungen per E-Mail', '35 €: zusätzlich per SMS'],
     },
-    {
-      titel: 'Individuelle Lösung',
-      text: 'Für alles, was in kein Paket passt.',
-      enthalten: [
-        'Belege direkt an Ihre Buchhaltungssoftware übergeben',
-        'Angebote aus Ihrer Vorlage erstellen',
-        'KI-Agent, der E-Mails vorsortiert und Antworten vorbereitet',
-        'Website auf Wunsch inklusive',
-        'Festpreis nach schriftlicher Leistungsbeschreibung',
-      ],
-      einmalig: 'ab ca. 699 €',
-      einmaligHinweis: 'Festpreis nach Gespräch',
-      monatlich: 'nach Absprache',
-      monatlichHinweis: [],
-    },
   ],
   /** Kasten unter den Paketen: Preise für Kunden, die schon eine Website haben. */
   ohneWebsite: {
@@ -236,7 +210,7 @@ export const preise = {
       'Betrieb der Automatik rund um die Uhr auf einem Server in der EU',
       'Hosting und eigene Domain (.de) für Ihre Website',
       'Überwachung und Fehlerbehebung',
-      'Support per E-Mail',
+      'Support per E-Mail, Antwort innerhalb von 2 Werktagen',
       'Mindestlaufzeit 3 Monate, danach monatlich kündbar',
     ],
   },
@@ -246,7 +220,6 @@ export const preise = {
 };
 
 const starter = preise.pakete[0];
-const individuell = preise.pakete[preise.pakete.length - 1];
 const nurAutomatik = preise.ohneWebsite.pakete[0];
 
 export const demo = {
@@ -288,7 +261,7 @@ export const faq = {
     {
       frage: 'Was kostet das?',
       antwort: [
-        `Sie zahlen einen Festpreis für die Einrichtung und danach eine kleine monatliche Pauschale für die Betreuung. Der ${starter.titel} mit Website kostet ${starter.einmalig} (${starter.einmaligHinweis}) plus ${starter.monatlich} pro Monat. Größere Lösungen starten ${individuell.einmalig}, den Festpreis nenne ich nach einem kurzen Gespräch.`,
+        `Sie zahlen einen Festpreis für die Einrichtung und danach eine kleine monatliche Pauschale für die Betreuung. Der ${starter.titel} mit Website kostet ${starter.einmalig} (${starter.einmaligHinweis}) plus ${starter.monatlich} pro Monat.`,
         `Haben Sie schon eine Website, wird es günstiger: Die ${nurAutomatik.titel} allein kostet ${nurAutomatik.einmalig} (${nurAutomatik.einmaligHinweis}) plus ${nurAutomatik.monatlich} pro Monat. Sie bekommen vorher ein schriftliches Angebot. Alle Preise zzgl. gesetzlicher Umsatzsteuer.`,
       ],
     },
@@ -308,7 +281,7 @@ export const faq = {
     {
       frage: 'Was ist in der monatlichen Pauschale enthalten?',
       antwort: [
-        'Überwachung, Fehlerbehebung und Support per E-Mail, bei Paketen mit Website auch Hosting und Domain. Was genau in Ihrem Tarif steckt, steht beim jeweiligen Paket. Änderungswünsche außerhalb des vereinbarten Umfangs bespreche ich vorher mit Ihnen und nenne Ihnen einen Preis.',
+        'Überwachung, Fehlerbehebung und Support per E-Mail mit Antwort innerhalb von 2 Werktagen, bei Paketen mit Website auch Hosting und Domain. Was genau in Ihrem Tarif steckt, steht beim jeweiligen Paket. Änderungswünsche außerhalb des vereinbarten Umfangs bespreche ich vorher mit Ihnen und nenne Ihnen einen Preis.',
       ],
     },
     {
@@ -401,5 +374,5 @@ export const kontakt = {
 };
 
 export const footer = {
-  beschreibung: `Websites, Automatisierungen und KI-Agents für kleine Betriebe in ${site.region.stadt}, im ${site.region.landkreis} und in ${site.region.bundesland}.`,
+  beschreibung: `Websites und Automatisierungen für kleine Betriebe in ${site.region.stadt}, im ${site.region.landkreis} und in ${site.region.bundesland}.`,
 };

@@ -1,6 +1,6 @@
 # Lumio – Website
 
-Einseitige Website für KI-Automatisierungen und KI-Agents für kleine Betriebe (Region Bad Salzungen / Wartburgkreis).
+Einseitige Website für Websites und Automatisierungen für kleine Betriebe (Region Bad Salzungen / Wartburgkreis).
 Ziel der Seite: Inhaber buchen ein kostenloses Erstgespräch.
 
 - **Technik:** [Astro](https://astro.build) (statische Seite) + [Tailwind CSS](https://tailwindcss.com)
