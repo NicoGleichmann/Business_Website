@@ -4,6 +4,10 @@ import Logo from './Logo.astro';
 import ThemeToggle from './ThemeToggle.astro';
 import { preise } from '../content/texte';
 
+/** Auf dem Handy steht der Name zweizeilig, damit Kopfzeile und Button nebeneinander passen. */
+const [vorname, ...rest] = site.name.split(' ');
+const nachname = rest.join(' ');
+
 const navigation = [
   { href: '/#leistungen', text: 'Leistungen' },
   { href: '/#ablauf', text: 'Ablauf' },
@@ -17,7 +21,12 @@ const navigation = [
   <div class="container-page flex h-16 items-center justify-between gap-3">
     <a href="/" class="text-fg hover:text-fg flex items-center gap-2.5 no-underline">
       <Logo size={30} />
-      <span class="text-lg font-semibold tracking-tight">{site.name}</span>
+      <span class="flex flex-col leading-tight">
+        <span class="text-[0.95rem] font-semibold tracking-tight sm:text-lg">
+          <span class="block sm:inline">{vorname}</span>{' '}<span class="block sm:inline">{nachname}</span>
+        </span>
+        <span class="text-muted hidden text-xs sm:block lg:hidden xl:block">{site.taetigkeit}</span>
+      </span>
     </a>
 
     <nav aria-label="Hauptnavigation" class="hidden lg:block">

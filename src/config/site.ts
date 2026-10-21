@@ -11,8 +11,15 @@
  */
 
 export const site = {
-  /** Marken-/Firmenname (Arbeitstitel). Erscheint im Logo, im Seitentitel, im Footer. */
-  name: 'Lumio',
+  /**
+   * Name, unter dem das Angebot auftritt (Logo, Seitentitel, Footer, strukturierte Daten).
+   * Derzeit der eigene Name: Der frühere Arbeitstitel war in den Markenklassen 9, 35 und 42 bereits belegt.
+   * Vor einem Wechsel auf einen Fantasienamen im DPMA-Register und in TMview prüfen.
+   */
+  name: 'Nico Gleichmann',
+
+  /** Kurze Unterzeile neben dem Namen im Logo (Kopf- und Fußzeile). */
+  taetigkeit: 'KI-Automatisierung & Websites',
 
   /** Kurzer Slogan – im Footer, im Vorschaubild und in der Seitenbeschreibung. */
   slogan: 'Weniger Büro. Mehr Betrieb.',
