@@ -5,11 +5,14 @@
  *   Nur die „verantwortliche Stelle“ wird automatisch aus src/config/site.ts gefüllt.
  * Abschnitte 3–4: auf Wunsch selbst ergänzt (Hosting, Server-Logs, Kontakt, Cal.com, lokaler Speicher) –
  *   beschreiben den tatsächlichen Aufbau der Seite. Nicht anwaltlich geprüft.
- * WICHTIG: Bei Änderungen an der Website (Kontaktformular per n8n, Video, Analyse-Tools, neue Dienste,
- *   anderer E-Mail-Anbieter) müssen die Abschnitte 3–4 angepasst werden.
+ * Die Abschnitte zu Formular und Demo-Video passen sich automatisch an (Webhook gesetzt? Video eingetragen?).
+ * WICHTIG: Bei anderen Änderungen (Analyse-Tools, neue Dienste, anderer E-Mail-Anbieter) müssen die
+ *   Abschnitte 3–4 angepasst werden.
  */
 import Rechtliches from '../layouts/Rechtliches.astro';
-import { site } from '../config/site';
+import Txt from '../components/Txt.astro';
+import { site, webhookUrl } from '../config/site';
+import { demo } from '../content/texte';
 
 const { inhaber, adresse, kontakt } = site;
 const telefonLink = `tel:${kontakt.telefon.replace(/[^\d+]/g, '')}`;
@@ -278,13 +281,48 @@ const telefonLink = `tel:${kontakt.telefon.replace(/[^\d+]/g, '')}`;
     jederzeit über die Einstellungen Ihres Browsers („Websitedaten löschen“) entfernen.
   </p>
 
-  <h3>Kontaktformular</h3>
-  <p>
-    Das Kontaktformular auf dieser Website sendet keine Daten an einen Server. Wenn Sie auf „Anfrage senden“ klicken,
-    öffnet sich Ihr eigenes E-Mail-Programm mit einer vorbereiteten Nachricht, die Ihre Angaben enthält (Name,
-    E-Mail-Adresse und – falls ausgefüllt – Betrieb und Ihre Nachricht). Übermittelt werden die Daten erst, wenn Sie diese
-    E-Mail selbst absenden. Für die weitere Verarbeitung gilt der folgende Abschnitt.
-  </p>
+  {
+    demo.video && (
+      <>
+        <h3>Demo-Video</h3>
+        <p>
+          Das Demo-Video liegt auf unserem eigenen Webspace (siehe Abschnitt 3) und wird erst geladen, wenn Sie es
+          abspielen. Es wird kein Videodienst eines Dritten (z.&nbsp;B. YouTube) eingebunden.
+        </p>
+      </>
+    )
+  }
+
+  {
+    webhookUrl ? (
+      <>
+        <h3>Kontakt- und Rückrufformular</h3>
+        <p>
+          Wenn Sie eines der Formulare auf dieser Website absenden, werden Ihre Angaben (Name, E-Mail-Adresse und – falls
+          ausgefüllt – Telefonnummer, Betrieb und Ihre Nachricht) verschlüsselt an unseren Automatisierungsserver
+          übertragen. Dort wird Ihnen automatisch eine Eingangsbestätigung per E-Mail geschickt, und Ihre Anfrage wird an
+          uns weitergeleitet. Rechtsgrundlage ist Art. 6 Abs. 1 lit. b DSGVO, soweit Ihre Anfrage der Anbahnung eines
+          Vertrags dient; im Übrigen beruht die Verarbeitung auf unserem berechtigten Interesse an der Beantwortung von
+          Anfragen (Art. 6 Abs. 1 lit. f DSGVO).
+        </p>
+        <p>
+          Der Server steht in der EU und wird in unserem Auftrag betrieben von: <Txt text={site.formular.serverAnbieter} />.
+          Mit dem Anbieter besteht ein Vertrag über Auftragsverarbeitung. Auf dem Server werden Ihre Angaben nach
+          spätestens 14 Tagen automatisch gelöscht. Für die weitere Bearbeitung per E-Mail gilt der folgende Abschnitt.
+        </p>
+      </>
+    ) : (
+      <>
+        <h3>Kontaktformular</h3>
+        <p>
+          Das Kontaktformular auf dieser Website sendet keine Daten an einen Server. Wenn Sie auf „Anfrage senden“
+          klicken, öffnet sich Ihr eigenes E-Mail-Programm mit einer vorbereiteten Nachricht, die Ihre Angaben enthält
+          (Name, E-Mail-Adresse und – falls ausgefüllt – Betrieb und Ihre Nachricht). Übermittelt werden die Daten erst,
+          wenn Sie diese E-Mail selbst absenden. Für die weitere Verarbeitung gilt der folgende Abschnitt.
+        </p>
+      </>
+    )
+  }
 
   <h3>Anfrage per E-Mail oder Telefon</h3>
   <p>
@@ -295,7 +333,11 @@ const telefonLink = `tel:${kontakt.telefon.replace(/[^\d+]/g, '')}`;
     unserem berechtigten Interesse an der Beantwortung von Anfragen (Art. 6 Abs. 1 lit. f DSGVO).
   </p>
   <p>
-    Für den Empfang und die Speicherung von E-Mails nutzen wir den Dienst Gmail. Anbieter ist für Nutzer in der EU die
+    E-Mails an {kontakt.email} werden über den Dienst „Email Routing“ der Cloudflare, Inc. (siehe Abschnitt 3) an unser
+    E-Mail-Postfach weitergeleitet.
+  </p>
+  <p>
+    Für den Empfang, den Versand und die Speicherung von E-Mails nutzen wir den Dienst Gmail. Anbieter ist für Nutzer in der EU die
     Google Ireland Limited, Gordon House, Barrow Street, Dublin 4, Irland. Dabei kann eine Übermittlung von Daten an die
     Google LLC in den USA nicht ausgeschlossen werden; die Übermittlung stützt sich auf das EU-US Data Privacy Framework.
     Details: <a href="https://policies.google.com/privacy?hl=de">Datenschutzerklärung von Google</a>.

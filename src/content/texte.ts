@@ -18,6 +18,26 @@ export const hero = {
   cta: 'Kostenloses Erstgespräch',
   ctaHinweis: 'Kostenloses 15-Minuten-Gespräch: Wir schauen gemeinsam, wo Ihr Betrieb Zeit verliert.',
   sekundaer: 'So läuft es ab',
+  /** Nur auf dem Handy: Anruf-Knopf (erscheint, wenn in site.ts eine Telefonnummer steht). */
+  anrufen: 'Anrufen',
+  /**
+   * Kurzformular oben auf der Seite. Erscheint nur, wenn der n8n-Webhook eingerichtet ist
+   * (PUBLIC_FORM_WEBHOOK_URL), und ersetzt dann die Knöpfe. Der Workflow muss die Bestätigung
+   * sofort verschicken, sonst stimmt der Text nicht (README, Abschnitt „Kontaktformular & n8n“).
+   */
+  formular: {
+    titel: 'Testen Sie es selbst',
+    text: 'Tragen Sie sich ein: Gleich danach bekommen Sie automatisch eine Bestätigung per E-Mail – genau so funktioniert es später bei Ihren Kunden. Ich melde mich anschließend persönlich.',
+    name: 'Name',
+    email: 'E-Mail',
+    telefon: 'Telefon',
+    telefonHinweis: '(optional, für einen Rückruf)',
+    senden: 'Eintragen',
+    sendet: 'Wird gesendet …',
+    erfolg: 'Danke! Schauen Sie in Ihr Postfach: Die automatische Bestätigung ist unterwegs. Ich melde mich persönlich bei Ihnen.',
+    fehler: 'Das hat leider nicht geklappt. Bitte versuchen Sie es noch einmal oder nutzen Sie das Kontaktformular unten.',
+    termin: 'Lieber direkt einen Termin wählen',
+  },
   branchenTitel: 'Für',
   branchen: ['Handwerk', 'Friseure', 'Makler', 'Studios', 'Coaches', 'Online-Shops'],
 };
@@ -249,19 +269,39 @@ const starter = preise.pakete[0];
 const individuell = preise.pakete[preise.pakete.length - 1];
 const nurAutomatik = preise.ohneWebsite.pakete[0];
 
+/** „ab 15 €“ – wird aus der Wartung des ersten Pakets gelesen und passt sich bei Preisänderungen an. */
+const wartungAb = starter.monatlich.split('–')[0].replace('€', '').trim();
+
+export const rechner = {
+  eyebrow: 'Rechnet sich das?',
+  titel: 'Was liegen gebliebene Anfragen Sie kosten',
+  text: 'Tragen Sie Ihre eigenen Zahlen ein. Die Rechnung zeigt, wie viel Umsatz im Monat verloren geht, wenn Anfragen zu spät oder gar nicht beantwortet werden.',
+  /** Startwerte sind Beispielwerte zum Ausprobieren. */
+  felder: [
+    { id: 'anfragen', label: 'Anfragen pro Monat', hinweis: 'Anrufe, E-Mails und Nachrichten zusammen', wert: 20, min: 0, max: 5000, einheit: '' },
+    { id: 'liegen', label: 'Davon bleiben liegen oder werden zu spät beantwortet', hinweis: 'Eine Schätzung genügt', wert: 25, min: 0, max: 100, einheit: '%' },
+    { id: 'quote', label: 'Davon würden sonst zum Auftrag oder Termin', hinweis: 'Ihre übliche Abschlussquote', wert: 30, min: 0, max: 100, einheit: '%' },
+    { id: 'wert', label: 'Wert eines Auftrags oder Termins', hinweis: 'Im Durchschnitt', wert: 80, min: 0, max: 100000, einheit: '€' },
+  ],
+  ergebnis: 'Verlorener Umsatz pro Monat',
+  jahr: 'Im Jahr sind das',
+  beispiel: 'Beispiel',
+  vergleich: `Zum Vergleich: Die Wartung kostet ab ${wartungAb} € im Monat.`,
+  hinweis: 'Beispielwerte zum Ausprobieren, keine Garantie. Eine Automatik rettet nur die Anfragen, die heute an fehlender Zeit scheitern.',
+  cta: 'Zahlen im Erstgespräch durchgehen',
+};
+
 export const demo = {
-  eyebrow: 'Demo',
-  titel: 'Sehen Sie selbst, wie das aussieht',
-  text: 'Ein kurzes Beispiel zeigt, wie eine Automatisierung im Alltag arbeitet.',
   /**
-   * Video einbinden: MP4-Datei nach public/video/ legen und hier den Pfad eintragen,
-   * z. B. '/video/demo.mp4'. Optional ein Vorschaubild (poster) und Untertitel (.vtt).
-   * Leer lassen = Abschnitt „Demo“ wird komplett ausgeblendet.
+   * DEMO-VIDEO oben auf der Startseite (rechts neben der Überschrift, auf dem Handy darunter).
+   * MP4 nach public/video/ legen und den Pfad eintragen, z. B. '/video/demo.mp4'.
+   * Empfohlen: Vorschaubild (poster, z. B. '/video/demo.jpg') und Untertitel (untertitel, .vtt).
+   * Leer lassen = statt des Videos erscheint die Beispielgrafik.
    */
   video: '',
   poster: '',
   untertitel: '',
-  platzhalter: '[[TODO: Demo-Video einbinden – Anleitung im README, Abschnitt „Demo-Video“]]',
+  beschriftung: 'Demo: So arbeitet eine Anfrage-Automatik.',
 };
 
 export const ueberMich = {
@@ -343,6 +383,13 @@ export const faq = {
       frage: 'Wie sieht es mit dem Datenschutz aus?',
       antwort: [
         'Die Lösungen laufen auf einem Server in der EU. Mit jedem Kunden schließe ich einen Auftragsverarbeitungsvertrag (AVV). Gesundheitsdaten verarbeite ich nicht.',
+      ],
+    },
+    {
+      frage: 'Müssen meine Kunden erfahren, dass eine KI antwortet?',
+      antwort: [
+        'Ja, wenn ein Chatbot oder KI-Assistent direkt mit Ihren Kunden schreibt oder spricht. Nach der EU-KI-Verordnung muss dann erkennbar sein, dass es eine KI ist. Ich richte den Hinweis von Anfang an mit ein, zum Beispiel mit einem kurzen Satz zu Beginn des Chats.',
+        'Feste Abläufe ohne KI, etwa eine Eingangsbestätigung aus einer Vorlage oder eine Terminerinnerung, sind davon nicht betroffen.',
       ],
     },
     {

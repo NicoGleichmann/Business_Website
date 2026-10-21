@@ -45,11 +45,19 @@ export const site = {
   },
 
   kontakt: {
-    email: 'nicogleichmann1@gmail.com',
+    email: 'kontakt@nicogleichmann.de',
     /** Optional. '' = wird nirgends angezeigt. Format: '+49 3695 123456'. */
     telefon: '+49 176 44444856',
     /** Link zur Cal.com-Buchungsseite für das Erstgespräch. */
     calUrl: 'https://cal.com/nico-gleichmann-g2td4r/15min',
+  },
+
+  /**
+   * Nur nötig, sobald das Formular über n8n läuft (PUBLIC_FORM_WEBHOOK_URL gesetzt):
+   * Wer betreibt den Server? Erscheint in der Datenschutzerklärung.
+   */
+  formular: {
+    serverAnbieter: '[[TODO: Anbieter des n8n-Servers mit Anschrift, z. B. „Hetzner Online GmbH, Industriestr. 25, 91710 Gunzenhausen“]]',
   },
 
   /** Ladungsfähige Anschrift (Pflicht im Impressum). */

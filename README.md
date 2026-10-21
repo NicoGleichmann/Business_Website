@@ -63,6 +63,12 @@ lesen von dort.
 Alle sichtbaren Texte der Startseite (Hero, Probleme, Leistungen, Ablauf, Demo, Über mich, FAQ, Kontakt) in der
 Reihenfolge der Seite. Nur den Text zwischen den Anführungszeichen ändern. Ein Apostroph im Text braucht einen Backslash: `'So läuft\'s ab'`.
 
+### ROI-Rechner → `src/content/texte.ts` (`rechner`)
+
+Der Rechner vor den Preisen rechnet: Anfragen × liegen gebliebener Anteil × Abschlussquote × Auftragswert.
+Texte und Startwerte stehen bei `rechner`; die Startwerte sind Beispielwerte. Der Vergleich „Wartung ab … €“ wird
+automatisch aus dem ersten Paket gelesen.
+
 ### Einführungsangebot → `src/content/texte.ts` (`preise.einfuehrung`)
 
 Nach jedem neuen Kunden `freiePlaetze` um 1 verringern – die Zahl steht als „Noch X von 5 Plätzen frei“ auf der Seite
@@ -91,7 +97,7 @@ Das Formular schickt die Daten per `POST` an einen Webhook. Die URL kommt aus de
 
 | Zustand                     | Verhalten                                                                                      |
 | --------------------------- | ---------------------------------------------------------------------------------------------- |
-| Webhook-URL gesetzt         | Versand im Hintergrund, Bestätigung direkt im Formular                                         |
+| Webhook-URL gesetzt         | Versand im Hintergrund, Bestätigung direkt im Formular; **zusätzlich erscheint oben auf der Startseite das Rückruf-Formular** („Testen Sie es selbst“) statt der Knöpfe |
 | Webhook-URL gesetzt, kein JS | Normales Absenden; n8n leitet auf `/danke/` weiter (siehe unten)                               |
 | **Keine** Webhook-URL       | **mailto-Fallback:** E-Mail-Programm öffnet sich mit vorbereiteter Nachricht an `kontakt.email` |
 
@@ -106,7 +112,11 @@ Das Formular schickt die Daten per `POST` an einen Webhook. Die URL kommt aus de
 | `betrieb`     | Betrieb (optional)                                           |
 | `zeit`        | „Was kostet Sie am meisten Zeit?“ (optional)                 |
 | `datenschutz` | `gelesen` (Pflicht-Checkbox)                                 |
+| `telefon`     | Telefon für einen Rückruf (nur Rückruf-Formular, optional)   |
+| `quelle`      | `startseite` (Rückruf-Formular oben) oder `kontakt` (Formular unten) |
 | `website`     | **Honeypot** – bei Menschen immer leer. Gefüllt = Spam-Bot.  |
+
+Das Rückruf-Formular schickt `name`, `email`, `telefon`, `datenschutz`, `quelle` und `website`.
 
 ### n8n-Workflow einrichten
 
@@ -117,27 +127,41 @@ Das Formular schickt die Daten per `POST` an einen Webhook. Die URL kommt aus de
    - Die **Production URL** (nicht die Test-URL) als `PUBLIC_FORM_WEBHOOK_URL` eintragen und den Workflow aktivieren.
 2. **IF-Node „Spam?“** – Bedingung: `{{ $json.body.website }}` *is not empty* → Zweig endet (nur antworten, nichts speichern).
    Der Browser verwirft Honeypot-Einsendungen bereits, Bots schicken aber oft direkt an den Webhook – deshalb auch hier prüfen.
-3. **Verarbeitung** – z. B. E-Mail an Sie, Eintrag in Tabelle/CRM, automatische Eingangsbestätigung.
+3. **Verarbeitung** – z. B. E-Mail an Sie, Eintrag in Tabelle/CRM, Nachricht aufs Handy.
+   **Pflicht für das Rückruf-Formular:** sofort eine automatische Eingangsbestätigung an `{{ $json.body.email }}`
+   schicken (z. B. Gmail-Node). Der Text auf der Seite verspricht „Gleich danach bekommen Sie automatisch eine Bestätigung“ –
+   genau das ist die Live-Demo.
 4. **IF-Node „Antwortformat“** – Bedingung: `{{ $json.headers.accept }}` *contains* `application/json`
    - **true** → *Respond to Webhook*: Respond With `JSON`, Body `{ "ok": true }` (Formular zeigt die Bestätigung)
    - **false** → *Respond to Webhook*: Respond With `Redirect`, URL `https://www.ihre-domain.de/danke/` (Besucher ohne JavaScript)
 
 Antwortet n8n mit einem Fehlerstatus (4xx/5xx) oder ist nicht erreichbar, sieht der Besucher eine Fehlermeldung, und seine Eingaben bleiben erhalten.
 
+### Bevor die Webhook-URL eingetragen wird
+
+- In `src/config/site.ts` bei `formular.serverAnbieter` den Anbieter des n8n-Servers mit Anschrift eintragen
+  (erscheint in der Datenschutzerklärung; bis dahin gelb markiert). Die Datenschutzerklärung stellt sich beim Build
+  automatisch vom E-Mail-Programm auf den Formularversand um.
+- In n8n alte Ausführungen nach 14 Tagen löschen lassen (die Datenschutzerklärung sagt das zu): Umgebungsvariablen
+  `EXECUTIONS_DATA_PRUNE=true` und `EXECUTIONS_DATA_MAX_AGE=336` (Stunden).
+- Mit dem Server-Anbieter einen Auftragsverarbeitungsvertrag abschließen.
+
 ---
 
 ## 4. Demo-Video
 
-Kein YouTube/Vimeo (würde Daten an Dritte senden und ein Einwilligungs-Banner nötig machen). Stattdessen selbst hosten:
+Das Video erscheint **oben auf der Startseite**: auf dem Computer rechts neben der Überschrift, auf dem Handy darunter.
+Solange kein Video eingetragen ist, steht dort die Beispielgrafik. Kein YouTube/Vimeo (würde Daten an Dritte senden und ein Einwilligungs-Banner nötig machen). Stattdessen selbst hosten:
 
 1. Video als **MP4 (H.264)** exportieren, ca. 720p, möglichst **unter 20 MB** (Cloudflare Pages erlaubt max. 25 MB pro Datei).
    Komprimieren z. B. mit [HandBrake](https://handbrake.fr), Preset „Web“.
 2. Datei nach `public/video/demo.mp4` legen.
 3. In `src/content/texte.ts` bei `demo` eintragen: `video: '/video/demo.mp4'`.
-   Optional: Vorschaubild `poster: '/video/demo.jpg'` und Untertitel `untertitel: '/video/demo.vtt'` (für Barrierefreiheit empfohlen).
+   Empfohlen: Vorschaubild `poster: '/video/demo.jpg'` (sonst ist vor dem Abspielen nur eine schwarze Fläche zu sehen) und
+   Untertitel `untertitel: '/video/demo.vtt'` (Barrierefreiheit; viele schauen ohne Ton). Die Bildunterschrift steht bei `beschriftung`.
 
 Das Video lädt erst, wenn jemand auf „Abspielen“ tippt (`preload="none"`) – die Seite bleibt schnell.
-Solange `video` leer ist, wird der Abschnitt „Demo“ komplett ausgeblendet.
+Die Datenschutzerklärung ergänzt automatisch einen kurzen Absatz zum Video.
 
 ---
 
