@@ -16,7 +16,8 @@ interface Props {
 
 const { titel, beschreibung = site.seo.beschreibung, noindex = false, strukturierteDaten } = Astro.props;
 
-const seitenTitel = titel ? `${titel} – ${site.name}` : `${site.name} – ${site.seo.titel}`;
+// Startseite: Suchbegriffe zuerst, Name danach (Google kürzt lange Titel am Ende).
+const seitenTitel = titel ? `${titel} – ${site.name}` : `${site.seo.titel} – ${site.name}`;
 const canonical = new URL(Astro.url.pathname, site.url).href;
 const ogBild = new URL(site.seo.bild, site.url).href;
 const robots = !site.indexierung ? 'noindex, nofollow' : noindex ? 'noindex, follow' : 'index, follow';

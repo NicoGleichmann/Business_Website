@@ -1,4 +1,4 @@
-# Lumio – Website
+# Website: Nico Gleichmann – KI-Automatisierung & Websites
 
 Einseitige Website für KI-Automatisierungen und KI-Agents für kleine Betriebe (Region Bad Salzungen / Wartburgkreis).
 Ziel der Seite: Inhaber buchen ein kostenloses Erstgespräch.
@@ -56,6 +56,7 @@ lesen von dort.
 - Werte, die mit `[[TODO` beginnen, erscheinen auf der Seite **gelb markiert**.
 - Telefon nicht gewünscht? `telefon: ''` – dann wird es überall ausgeblendet.
 - **Nach einer Namens- oder Slogan-Änderung:** `npm run og` ausführen (erzeugt das Vorschaubild für WhatsApp, LinkedIn & Co. neu).
+- **Neuer Marken- oder Fantasiename?** Vorher im [DPMA-Register](https://register.dpma.de) und in [TMview](https://www.tmdn.org/tmview/) prüfen, ob er in den Klassen 9, 35 und 42 frei ist. Bis dahin tritt das Angebot unter dem eigenen Namen auf.
 
 ### Texte der Abschnitte → `src/content/texte.ts`
 
