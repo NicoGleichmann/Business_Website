@@ -1,0 +1,27 @@
+---
+/**
+ * Demo-Video, selbst gehostet (kein YouTube). Lädt erst, wenn jemand auf „Abspielen“ tippt.
+ * Pfade stehen in src/content/texte.ts bei `demo`.
+ */
+import { demo } from '../content/texte';
+
+interface Props {
+  class?: string;
+}
+const { class: klasse } = Astro.props;
+---
+
+<figure class={klasse}>
+  <video
+    class="border-border aspect-video w-full rounded-2xl border bg-black shadow-[0_24px_60px_-30px_rgb(15_110_106/0.35)]"
+    controls
+    preload="none"
+    playsinline
+    poster={demo.poster || undefined}
+  >
+    <source src={demo.video} type="video/mp4" />
+    {demo.untertitel && <track kind="captions" src={demo.untertitel} srclang="de" label="Deutsch" default />}
+    Ihr Browser kann dieses Video nicht abspielen. <a href={demo.video}>Video herunterladen</a>.
+  </video>
+  <figcaption class="text-muted mt-3 text-center text-sm">{demo.beschriftung}</figcaption>
+</figure>

@@ -1,6 +1,9 @@
 ---
-import { hero, preise } from '../../content/texte';
+import { istGesetzt, site, webhookUrl } from '../../config/site';
+import { demo, hero, preise } from '../../content/texte';
+import DemoVideo from '../DemoVideo.astro';
 import Icon from '../Icon.astro';
+import RueckrufFormular from '../RueckrufFormular.astro';
 import Txt from '../Txt.astro';
 
 const beispiel = [
@@ -8,6 +11,8 @@ const beispiel = [
   { icon: 'bot', text: 'Assistent beantwortet die Standardfragen' },
   { icon: 'calendarCheck', text: 'Termin steht im Kalender' },
 ] as const;
+
+const telefon = istGesetzt(site.kontakt.telefon) ? `tel:${site.kontakt.telefon.replace(/[^\d+]/g, '')}` : '';
 ---
 
 <section aria-labelledby="hero-titel" class="relative overflow-hidden">
@@ -40,14 +45,44 @@ const beispiel = [
       </h1>
       <p class="text-muted mt-6 max-w-2xl text-lg sm:text-xl"><Txt text={hero.text} /></p>
 
-      <div class="mt-9 flex flex-col gap-3 sm:flex-row sm:items-center">
-        <a href="#kontakt" class="btn btn-primary text-[1.05rem]">
-          {hero.cta}
-          <Icon name="arrowRight" size={20} />
-        </a>
-        <a href="#ablauf" class="btn btn-secondary">{hero.sekundaer}</a>
-      </div>
-      <p class="text-muted mt-4 text-[0.95rem]"><Txt text={hero.ctaHinweis} /></p>
+      {
+        webhookUrl ? (
+          <>
+            {/* Mit n8n-Webhook: Das Kurzformular ist die Live-Demo der Anfrage-Automatik. */}
+            <RueckrufFormular />
+            <p class="mt-4 flex flex-wrap gap-x-6 gap-y-2 text-[0.95rem]">
+              <a href="#termin">{hero.formular.termin}</a>
+              <a href="#ablauf">{hero.sekundaer}</a>
+            </p>
+          </>
+        ) : (
+          <>
+            <div class="mt-9 flex flex-col gap-3 sm:flex-row sm:items-center">
+              <a href="#kontakt" class="btn btn-primary text-[1.05rem]">
+                {hero.cta}
+                <Icon name="arrowRight" size={20} />
+              </a>
+              {/* Handy: „Anrufen“ und „So läuft es ab“ nebeneinander; ab Tablet nur „So läuft es ab“ */}
+              <div class="grid grid-cols-2 gap-3 sm:contents">
+                {telefon && (
+                  <a href={telefon} class="btn btn-secondary px-4 sm:hidden">
+                    <Icon name="phone" size={18} />
+                    {hero.anrufen}
+                  </a>
+                )}
+                <a href="#ablauf" class:list={['btn btn-secondary px-4 sm:px-6', !telefon && 'col-span-2']}>
+                  {hero.sekundaer}
+                </a>
+              </div>
+            </div>
+            <p class="text-muted mt-4 text-[0.95rem]">
+              <Txt text={hero.ctaHinweis} />
+            </p>
+          </>
+        )
+      }
+
+      {demo.video && <DemoVideo class="mt-10 lg:hidden" />}
 
       <div class="border-border mt-10 border-t pt-6">
         <p class="text-muted text-sm font-medium" id="branchen-titel">{hero.branchenTitel}</p>
@@ -61,6 +96,9 @@ const beispiel = [
       </div>
     </div>
 
+    {demo.video ? (
+      <DemoVideo class="hidden lg:block" />
+    ) : (
     <figure class="hidden lg:block">
       <ol class="border-border bg-card relative space-y-3 rounded-3xl border p-6 shadow-[0_24px_60px_-30px_rgb(15_110_106/0.35)]">
         {
@@ -77,5 +115,6 @@ const beispiel = [
       </ol>
       <figcaption class="text-muted mt-3 text-center text-sm">Beispiel: So kann ein automatischer Ablauf aussehen.</figcaption>
     </figure>
+    )}
   </div>
 </section>

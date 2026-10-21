@@ -271,6 +271,7 @@
 
 /* Nur mit JavaScript sinnvoll: Theme-Umschalter (sonst gilt die Systemeinstellung) und Senden-Knopf im mailto-Modus */
 html:not(.js) [data-theme-toggle],
-html:not(.js) [data-nur-mit-js] {
+html:not(.js) [data-nur-mit-js],
+html.js [data-ohne-js] {
   display: none;
 }

@@ -6,11 +6,11 @@ import Problem from '../components/abschnitte/Problem.astro';
 import Leistungen from '../components/abschnitte/Leistungen.astro';
 import Ablauf from '../components/abschnitte/Ablauf.astro';
 import Preise from '../components/abschnitte/Preise.astro';
-import Demo from '../components/abschnitte/Demo.astro';
+import Rechner from '../components/abschnitte/Rechner.astro';
 import UeberMich from '../components/abschnitte/UeberMich.astro';
 import Faq from '../components/abschnitte/Faq.astro';
 import Kontakt from '../components/abschnitte/Kontakt.astro';
-import { demo, preise } from '../content/texte';
+import { preise } from '../content/texte';
 ---
 
 <Base strukturierteDaten={unternehmensDaten()}>
@@ -18,10 +18,9 @@ import { demo, preise } from '../content/texte';
   <Problem />
   <Leistungen />
   <Ablauf />
+  <Rechner />
   {preise.anzeigen && <Preise />}
-  {/* Demo erscheint automatisch, sobald in texte.ts ein Video eingetragen ist. */}
-  {demo.video && <Demo />}
-  <UeberMich trennlinie={!demo.video} />
+  <UeberMich trennlinie />
   <Faq />
   <Kontakt />
 </Base>

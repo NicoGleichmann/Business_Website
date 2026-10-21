@@ -1,0 +1,114 @@
+---
+/**
+ * Kurzformular oben auf der Startseite („Testen Sie es selbst“).
+ * Erscheint nur, wenn der n8n-Webhook eingerichtet ist (PUBLIC_FORM_WEBHOOK_URL). Dann ist das Formular
+ * selbst die Demo: Der Besucher bekommt sofort die automatische Bestätigung, die später auch seine Kunden bekommen.
+ * Logik: src/scripts/formular.ts (gemeinsam mit dem Kontaktformular).
+ */
+import { webhookUrl } from '../config/site';
+import { hero, kontakt } from '../content/texte';
+
+const f = hero.formular;
+const k = kontakt.formular;
+---
+
+<form
+  method="post"
+  action={webhookUrl}
+  aria-labelledby="rf-titel"
+  class="card mt-8 p-5 sm:p-6"
+  data-kontaktformular
+  data-modus="webhook"
+  data-sendet={f.sendet}
+  data-erfolg={f.erfolg}
+  data-fehler={f.fehler}
+>
+  <p id="rf-titel" class="text-lg font-semibold">{f.titel}</p>
+  <p class="text-muted mt-1 text-[0.95rem]">{f.text}</p>
+
+  <div class="mt-5 grid grid-cols-1 gap-4 sm:grid-cols-2">
+    <div>
+      <label for="rf-name" class="block font-medium">{f.name}</label>
+      <input
+        id="rf-name"
+        name="name"
+        type="text"
+        autocomplete="name"
+        required
+        maxlength="120"
+        class="feld"
+        aria-describedby="rf-name-fehler"
+        data-fehler-leer={k.fehlerName}
+      />
+      <p id="rf-name-fehler" class="feld-fehler" hidden></p>
+    </div>
+
+    <div>
+      <label for="rf-email" class="block font-medium">{f.email}</label>
+      <input
+        id="rf-email"
+        name="email"
+        type="email"
+        inputmode="email"
+        autocomplete="email"
+        required
+        maxlength="200"
+        class="feld"
+        aria-describedby="rf-email-fehler"
+        data-fehler-leer={k.fehlerEmailLeer}
+        data-fehler-format={k.fehlerEmailFormat}
+      />
+      <p id="rf-email-fehler" class="feld-fehler" hidden></p>
+    </div>
+
+    <div class="sm:col-span-2">
+      <label for="rf-telefon" class="block font-medium">
+        {f.telefon} <span class="text-muted font-normal">{f.telefonHinweis}</span>
+      </label>
+      <input id="rf-telefon" name="telefon" type="tel" inputmode="tel" autocomplete="tel" maxlength="40" class="feld" />
+    </div>
+  </div>
+
+  <input type="hidden" name="quelle" value="startseite" />
+
+  <!-- Honeypot: für Menschen unsichtbar. Bitte NICHT entfernen. -->
+  <div class="absolute -left-[9999px] h-px w-px overflow-hidden" aria-hidden="true">
+    <label for="rf-website">Website (bitte leer lassen)</label>
+    <input id="rf-website" name="website" type="text" tabindex="-1" autocomplete="off" />
+  </div>
+
+  <div class="mt-4">
+    <div class="flex items-start gap-3">
+      <input
+        id="rf-datenschutz"
+        name="datenschutz"
+        type="checkbox"
+        value="gelesen"
+        required
+        class="mt-1 size-5 shrink-0 cursor-pointer accent-[var(--accent)]"
+        aria-describedby="rf-datenschutz-fehler"
+        data-fehler-leer={k.fehlerDatenschutz}
+      />
+      <label for="rf-datenschutz" class="cursor-pointer text-[0.95rem]">
+        {k.datenschutzVor} <a href="/datenschutz/">{k.datenschutzLink}</a>{' '}{k.datenschutzNach}
+      </label>
+    </div>
+    <p id="rf-datenschutz-fehler" class="feld-fehler" hidden></p>
+  </div>
+
+  <div
+    data-status
+    role="status"
+    aria-live="polite"
+    tabindex="-1"
+    hidden
+    class="data-[art=erfolg]:border-accent data-[art=erfolg]:bg-accent-soft data-[art=fehler]:border-danger mt-5 rounded-xl border-2 p-4 font-medium"
+  >
+  </div>
+
+  <button type="submit" class="btn btn-primary mt-5 w-full cursor-pointer sm:w-auto">{f.senden}</button>
+</form>
+
+<script>
+  import '../scripts/formular';
+</script>

@@ -1,0 +1,104 @@
+---
+/**
+ * ROI-Rechner: Anfragen × liegen gebliebener Anteil × Abschlussquote × Auftragswert.
+ * Ohne JavaScript erscheint das Beispiel als Satz, die Eingabefelder bleiben ausgeblendet.
+ * Texte und Startwerte: src/content/texte.ts bei `rechner`.
+ */
+import { rechner } from '../../content/texte';
+import Icon from '../Icon.astro';
+import Txt from '../Txt.astro';
+
+const start = Object.fromEntries(rechner.felder.map((feld) => [feld.id, feld.wert]));
+const monat = start.anfragen * (start.liegen / 100) * (start.quote / 100) * start.wert;
+const euro = (betrag: number) =>
+  new Intl.NumberFormat('de-DE', { style: 'currency', currency: 'EUR', maximumFractionDigits: 0 }).format(Math.round(betrag));
+const beispielSatz = `${rechner.beispiel}: ${rechner.felder.map((feld) => `${feld.label} ${feld.wert}${feld.einheit ? ` ${feld.einheit}` : ''}`).join(' · ')}`;
+---
+
+<section id="rechner" aria-labelledby="rechner-titel" class="section border-border border-b">
+  <div class="container-page">
+    <p class="eyebrow">{rechner.eyebrow}</p>
+    <h2 id="rechner-titel" class="h2"><Txt text={rechner.titel} /></h2>
+    <p class="lead"><Txt text={rechner.text} /></p>
+
+    <div class="mt-10 grid grid-cols-1 gap-6 lg:grid-cols-[minmax(0,3fr)_minmax(0,2fr)]" data-rechner>
+      {/* Jedes Feld belegt drei Zeilen (Beschriftung, Eingabe, Hinweis), damit die Eingaben auf einer Linie stehen. */}
+      <div class="card grid grid-cols-1 content-start gap-x-5 gap-y-6 sm:grid-cols-2" data-nur-mit-js>
+        {
+          rechner.felder.map((feld) => (
+            <div class="row-span-3 grid grid-rows-subgrid gap-y-0">
+              <label for={`rechner-${feld.id}`} class="block self-end font-medium">
+                {feld.label}
+              </label>
+              <div class="relative mt-2">
+                <input
+                  id={`rechner-${feld.id}`}
+                  name={feld.id}
+                  type="number"
+                  inputmode="numeric"
+                  min={feld.min}
+                  max={feld.max}
+                  step="1"
+                  value={feld.wert}
+                  class:list={['feld mt-0 tabular-nums', feld.einheit && 'pr-10']}
+                  aria-describedby={`rechner-${feld.id}-hinweis`}
+                />
+                {feld.einheit && (
+                  <span class="text-muted pointer-events-none absolute inset-y-0 right-4 flex items-center" aria-hidden="true">
+                    {feld.einheit}
+                  </span>
+                )}
+              </div>
+              <p id={`rechner-${feld.id}-hinweis`} class="feld-hinweis">
+                {feld.hinweis}
+              </p>
+            </div>
+          ))
+        }
+      </div>
+
+      <div class="bg-accent-soft flex flex-col rounded-2xl p-6 sm:p-7">
+        <p class="font-medium">{rechner.ergebnis}</p>
+        <p class="mt-1 text-4xl font-semibold tabular-nums sm:text-5xl">
+          <output data-monat aria-live="polite">{euro(monat)}</output>
+        </p>
+        <p class="mt-2">
+          {rechner.jahr} <strong class="font-semibold tabular-nums" data-jahr>{euro(monat * 12)}</strong>.
+        </p>
+        <p class="text-muted mt-3 text-sm" data-ohne-js>{beispielSatz}</p>
+        <p class="mt-4"><Txt text={rechner.vergleich} /></p>
+        <p class="text-muted mt-4 text-sm"><Txt text={rechner.hinweis} /></p>
+        <a href="#kontakt" class="btn btn-primary mt-6 self-start">
+          {rechner.cta}
+          <Icon name="arrowRight" size={18} />
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<script>
+  document.querySelectorAll<HTMLElement>('[data-rechner]').forEach((rechner) => {
+    const felder = Array.from(rechner.querySelectorAll<HTMLInputElement>('input[type="number"]'));
+    const monat = rechner.querySelector<HTMLElement>('[data-monat]')!;
+    const jahr = rechner.querySelector<HTMLElement>('[data-jahr]')!;
+    const euro = new Intl.NumberFormat('de-DE', { style: 'currency', currency: 'EUR', maximumFractionDigits: 0 });
+
+    // Leere oder ungültige Eingaben zählen als 0, Prozentwerte höchstens 100.
+    const wert = (name: string) => {
+      const feld = felder.find((f) => f.name === name);
+      const zahl = Number((feld?.value ?? '').replace(',', '.'));
+      if (!Number.isFinite(zahl) || zahl < 0) return 0;
+      return feld?.max ? Math.min(zahl, Number(feld.max)) : zahl;
+    };
+
+    const rechne = () => {
+      const betrag = wert('anfragen') * (wert('liegen') / 100) * (wert('quote') / 100) * wert('wert');
+      monat.textContent = euro.format(Math.round(betrag));
+      jahr.textContent = euro.format(Math.round(betrag * 12));
+    };
+
+    felder.forEach((feld) => feld.addEventListener('input', rechne));
+    rechne();
+  });
+</script>
