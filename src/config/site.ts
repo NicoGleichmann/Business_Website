@@ -57,7 +57,7 @@ export const site = {
    * Wer betreibt den Server? Erscheint in der Datenschutzerklärung.
    */
   formular: {
-    serverAnbieter: '[[TODO: Anbieter des n8n-Servers mit Anschrift, z. B. „Hetzner Online GmbH, Industriestr. 25, 91710 Gunzenhausen“]]',
+    serverAnbieter: 'Hetzner Online GmbH, Industriestr. 25, 91710 Gunzenhausen',
   },
 
   /** Ladungsfähige Anschrift (Pflicht im Impressum). */
