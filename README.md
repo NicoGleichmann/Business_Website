@@ -139,8 +139,8 @@ Antwortet n8n mit einem Fehlerstatus (4xx/5xx) oder ist nicht erreichbar, sieht 
 
 ### Bevor die Webhook-URL eingetragen wird
 
-- In `src/config/site.ts` bei `formular.serverAnbieter` den Anbieter des n8n-Servers mit Anschrift eintragen
-  (erscheint in der Datenschutzerklärung; bis dahin gelb markiert). Die Datenschutzerklärung stellt sich beim Build
+- `formular.serverAnbieter` in `src/config/site.ts` ist auf Hetzner gesetzt. Bei einem Anbieterwechsel dort und
+  in den Texten („Server in Deutschland“) anpassen. Die Datenschutzerklärung stellt sich beim Build
   automatisch vom E-Mail-Programm auf den Formularversand um.
 - In n8n alte Ausführungen nach 14 Tagen löschen lassen (die Datenschutzerklärung sagt das zu): Umgebungsvariablen
   `EXECUTIONS_DATA_PRUNE=true` und `EXECUTIONS_DATA_MAX_AGE=336` (Stunden).
@@ -192,7 +192,7 @@ Formular, Demo-Video, anderer E-Mail-Anbieter, Analyse-Tools, Cloudflare Web Ana
 **Aktueller Stand der Angaben** (offene Punkte in eckigen Klammern):
 
 - **E-Mail-Postfach:** Anfragen gehen an ein **Gmail-Postfach (Google)** → im Generator angeben. Alternative: später ein Postfach unter der eigenen Domain.
-- **n8n:** eigener Server in der EU, Standort [Deutschland? bestätigen], Anbieter [?], nur für dich und deine Kunden.
+- **n8n:** eigener Server bei Hetzner (Rechenzentrum Nürnberg), nur für dich und deine Kunden. AVV mit Hetzner im Hetzner-Konto (accounts.hetzner.com).
 - **Formular-Anfragen:** per E-Mail an dich, gespeichert in [Tabelle / Notion / CRM?], Löschung nach [2 Monaten?] ohne Auftrag.
 - **Terminbuchung:** Cal.com.
 - **Kunden-Projekte:** AVV mit jedem Kunden vor Projektstart, keine Gesundheitsdaten.

@@ -253,7 +253,7 @@ export const preise = {
     titel: 'Wartung ist immer dabei',
     text: 'Website und Automatik müssen rund um die Uhr online sein, damit sie funktionieren. Und weil sich Programme und Schnittstellen regelmäßig ändern, gehört die Wartung zu jedem Paket.',
     punkte: [
-      'Betrieb der Automatik rund um die Uhr auf einem Server in der EU',
+      'Betrieb der Automatik rund um die Uhr auf einem Server in Deutschland',
       'Hosting und eigene Domain (.de) für Ihre Website',
       'Überwachung und Fehlerbehebung',
       'Support per E-Mail',
@@ -382,7 +382,7 @@ export const faq = {
     {
       frage: 'Wie sieht es mit dem Datenschutz aus?',
       antwort: [
-        'Die Lösungen laufen auf einem Server in der EU. Mit jedem Kunden schließe ich einen Auftragsverarbeitungsvertrag (AVV). Gesundheitsdaten verarbeite ich nicht.',
+        'Die Lösungen laufen auf einem Server in Deutschland. Mit jedem Kunden schließe ich einen Auftragsverarbeitungsvertrag (AVV). Gesundheitsdaten verarbeite ich nicht.',
       ],
     },
     {
