@@ -191,8 +191,7 @@ Formular, Demo-Video, anderer E-Mail-Anbieter, Analyse-Tools, Cloudflare Web Ana
 
 **Aktueller Stand der Angaben** (offene Punkte in eckigen Klammern):
 
-- **E-Mail-Postfach:** Anfragen an kontakt@ gehen über Cloudflare Email Routing an ein **Gmail-Postfach (Google)**.
-- **E-Mail-Versand:** ausgehende Mails von kontakt@ (n8n und Antworten aus Gmail) laufen über **Brevo** (Sendinblue SAS, Paris), Domain per DKIM/DMARC bei Brevo authentifiziert. AVV ist Teil der Brevo-Nutzungsbedingungen (Anhang 3).
+- **E-Mail:** Anfragen an kontakt@ gehen über Cloudflare Email Routing an ein **Gmail-Postfach (Google)**. Automatische Bestätigungen (n8n) und Antworten gehen direkt vom Gmail-Konto raus (Gmail-SMTP, Absender @gmail.com). Brevo wurde getestet und verworfen: Es baut im Gratis-Tarif ein Zählpixel und eine Abmelde-Kennung in jede Mail ein.
 - **n8n:** eigener Server bei Hetzner (Rechenzentrum Nürnberg), nur für dich und deine Kunden. AVV mit Hetzner im Hetzner-Konto (accounts.hetzner.com).
 - **Formular-Anfragen:** per E-Mail an dich, gespeichert in [Tabelle / Notion / CRM?], Löschung nach [2 Monaten?] ohne Auftrag.
 - **Terminbuchung:** Cal.com.
