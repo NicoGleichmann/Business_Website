@@ -112,11 +112,10 @@ Das Formular schickt die Daten per `POST` an einen Webhook. Die URL kommt aus de
 | `betrieb`     | Betrieb (optional)                                           |
 | `zeit`        | „Was kostet Sie am meisten Zeit?“ (optional)                 |
 | `datenschutz` | `gelesen` (Pflicht-Checkbox)                                 |
-| `telefon`     | Telefon für einen Rückruf (nur Rückruf-Formular, optional)   |
 | `quelle`      | `startseite` (Rückruf-Formular oben) oder `kontakt` (Formular unten) |
 | `website`     | **Honeypot** – bei Menschen immer leer. Gefüllt = Spam-Bot.  |
 
-Das Rückruf-Formular schickt `name`, `email`, `telefon`, `datenschutz`, `quelle` und `website`.
+Das Rückruf-Formular oben schickt nur `email`, `datenschutz`, `quelle` und `website` (kein Name). Der n8n-Ablauf begrüßt dann ohne Namen („Guten Tag,“).
 
 ### n8n-Workflow einrichten
 

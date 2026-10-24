@@ -27,11 +27,8 @@ export const hero = {
    */
   formular: {
     titel: 'Testen Sie es selbst',
-    text: 'Tragen Sie sich ein: Gleich danach bekommen Sie automatisch eine Bestätigung per E-Mail – genau so funktioniert es später bei Ihren Kunden. Ich melde mich anschließend persönlich.',
-    name: 'Name',
-    email: 'E-Mail',
-    telefon: 'Telefon',
-    telefonHinweis: '(optional, für einen Rückruf)',
+    text: 'Tragen Sie Ihre E-Mail-Adresse ein: Sekunden später bekommen Sie automatisch eine Bestätigung – genau so funktioniert es später bei Ihren Kunden. Ich melde mich anschließend persönlich.',
+    email: 'Ihre E-Mail-Adresse',
     senden: 'Eintragen',
     sendet: 'Wird gesendet …',
     erfolg: 'Danke! Die automatische Bestätigung ist unterwegs. Falls sie nicht im Posteingang auftaucht, schauen Sie bitte kurz im Spam-Ordner nach. Ich melde mich persönlich bei Ihnen.',
