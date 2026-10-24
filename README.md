@@ -66,15 +66,26 @@ Reihenfolge der Seite. Nur den Text zwischen den Anführungszeichen ändern. Ein
 ### ROI-Rechner → `src/content/texte.ts` (`rechner`)
 
 Der Rechner vor den Preisen rechnet: Anfragen × liegen gebliebener Anteil × Abschlussquote × Auftragswert.
-Texte und Startwerte stehen bei `rechner`; die Startwerte sind Beispielwerte. Der Vergleich „Wartung ab … €“ wird
-automatisch aus dem ersten Paket gelesen.
+Texte und Startwerte stehen bei `rechner`; die Startwerte sind Beispielwerte. Der Vergleich „Die Betreuung kostet … €“
+wird automatisch aus `preise.betreuung.preis` gelesen.
 
-### Einführungsangebot → `src/content/texte.ts` (`preise.einfuehrung`)
+### Preise → `src/content/texte.ts` (`preise`)
+
+- `bereiche`: „Online-Präsenz“ (Online-Start) und „Automatisierung & KI-Assistenten“ (Anfragen- und Termin-Assistent),
+  je Paket Leistungen, Einrichtungspreis und Hinweis (Gründerpreis / regulärer Preis).
+- `ki.anzeigen`: blendet die Zeilen „Auf Wunsch mit KI …“ ein oder aus; ausgeschaltet heißt der Bereich „Automatisierung“.
+- `eigeneLoesung`: hervorgehobener Kasten mit Ablauf, Beispielen und „ab“-Preis.
+- `betreuung`: ein Preis pro Monat und Betrieb für alle Pakete.
+- `fussnoten`: Kleingedrucktes (Gründerpreis, Zahlung, Fremdkosten, Kleinunternehmer nach § 19 UStG).
+
+Die FAQ-Antwort „Was kostet das?“ übernimmt die Preise automatisch.
+
+### Gründerpreise → `src/content/texte.ts` (`preise.einfuehrung`)
 
 Nach jedem neuen Kunden `freiePlaetze` um 1 verringern – die Zahl steht als „Noch X von 5 Plätzen frei“ auf der Seite
-und muss stimmen. Bei `0` verschwinden der Hinweis im Hero und der Kasten über den Preisen automatisch; dann auch die
-Einführungspreise in den Paketen (`preise.pakete`) und im Kasten „Sie haben schon eine Website?“ (`preise.ohneWebsite`)
-entfernen. Die FAQ-Antwort „Was kostet das?“ übernimmt die Preise automatisch aus den Paketen.
+und muss stimmen. Bei `0` verschwinden der Hinweis im Hero und der Kasten über den Preisen automatisch; dann bei den
+Paketen `einmalig` auf den regulären Preis setzen und `einmaligHinweis` leeren. In der FAQ „Was kostet das?“ den
+Halbsatz „jeweils zum Gründerpreis …“ entfernen.
 
 ### Farben → `src/styles/global.css`
 
