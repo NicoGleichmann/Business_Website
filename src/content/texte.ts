@@ -274,14 +274,14 @@ export const preise = {
       'Betrieb von Website und Assistenten rund um die Uhr, Server in Deutschland',
       'Domain und Hosting',
       'Überwachung, Updates und Fehlerbehebung',
-      'Kleine Änderungen, z. B. Öffnungszeiten, Urlaubshinweis oder Texte',
+      'Kleine Änderungen bis 30 Minuten im Monat, z. B. Öffnungszeiten, Urlaubshinweis oder Texte',
       'Support per E-Mail',
       'Mindestlaufzeit 3 Monate, danach monatlich kündbar',
     ],
   },
   /** Kleingedrucktes unter den Preisen. */
   fussnoten: [
-    'Gründerpreise gelten für die ersten 5 Betriebe, im Gegenzug für ehrliches Feedback und die Erlaubnis, das Projekt als Referenz zu zeigen.',
+    'Gründerpreise gelten für die ersten 5 Betriebe, im Gegenzug für ein ehrliches Feedback nach ein paar Wochen. Ob Sie als Referenz genannt werden möchten, entscheiden Sie selbst.',
     'Die Einrichtung zahlen Sie nach der gemeinsamen Abnahme, bevor die Lösung live geht. Die Betreuung zahlen Sie monatlich im Voraus.',
     'Fremdkosten wie SMS-Gebühren werden ohne Aufschlag weitergegeben. Bei eigenen Lösungen wird die Betreuung im Angebot festgelegt.',
     'Alle Preise sind Endpreise. Gemäß § 19 UStG wird keine Umsatzsteuer berechnet.',
@@ -368,7 +368,7 @@ export const faq = {
     {
       frage: 'Was ist in der Betreuung enthalten?',
       antwort: [
-        'Der Betrieb Ihrer Lösungen auf einem Server in Deutschland, Domain und Hosting, Überwachung, Updates und Fehlerbehebung, kleine Änderungen wie neue Öffnungszeiten und Support per E-Mail. Sie zahlen die Betreuung einmal pro Betrieb, auch wenn Sie mehrere Pakete nutzen. Größere Änderungswünsche bespreche ich vorher mit Ihnen und nenne Ihnen einen Preis.',
+        'Der Betrieb Ihrer Lösungen auf einem Server in Deutschland, Domain und Hosting, Überwachung, Updates und Fehlerbehebung, kleine Änderungen wie neue Öffnungszeiten (bis 30 Minuten im Monat) und Support per E-Mail. Sie zahlen die Betreuung einmal pro Betrieb, auch wenn Sie mehrere Pakete nutzen. Größere Änderungswünsche bespreche ich vorher mit Ihnen und nenne Ihnen einen Preis.',
       ],
     },
     {
