@@ -1,6 +1,6 @@
 ---
 import { istGesetzt, site, webhookUrl } from '../../config/site';
-import { demo, hero, preise } from '../../content/texte';
+import { demo, hero, pause, preise } from '../../content/texte';
 import DemoVideo from '../DemoVideo.astro';
 import Icon from '../Icon.astro';
 import RueckrufFormular from '../RueckrufFormular.astro';
@@ -12,7 +12,7 @@ const beispiel = [
   { icon: 'calendarCheck', text: 'Termin steht im Kalender' },
 ] as const;
 
-const telefon = istGesetzt(site.kontakt.telefon) ? `tel:${site.kontakt.telefon.replace(/[^\d+]/g, '')}` : '';
+const telefon = !site.pause && istGesetzt(site.kontakt.telefon) ? `tel:${site.kontakt.telefon.replace(/[^\d+]/g, '')}` : '';
 ---
 
 <section aria-labelledby="hero-titel" class="relative overflow-hidden">
@@ -25,7 +25,7 @@ const telefon = istGesetzt(site.kontakt.telefon) ? `tel:${site.kontakt.telefon.r
   <div class="container-page relative grid grid-cols-1 items-center gap-14 pt-14 pb-16 sm:pt-20 sm:pb-24 lg:grid-cols-[minmax(0,1.35fr)_minmax(0,1fr)]">
     <div>
       {
-        preise.anzeigen && preise.einfuehrung.freiePlaetze > 0 && (
+        !site.pause && preise.anzeigen && preise.einfuehrung.freiePlaetze > 0 && (
           <a
             href="#preise"
             class="border-accent bg-accent-soft text-fg hover:text-fg mb-7 inline-flex min-h-11 max-w-full items-center gap-2.5 rounded-full border py-1.5 pr-4 pl-4 text-[0.95rem] font-medium no-underline sm:pl-1.5"
@@ -57,9 +57,17 @@ const telefon = istGesetzt(site.kontakt.telefon) ? `tel:${site.kontakt.telefon.r
           </>
         ) : (
           <>
-            <div class="mt-9 flex flex-col gap-3 sm:flex-row sm:items-center">
+            {site.pause && (
+              <div class="border-accent bg-accent-soft mt-9 rounded-2xl border p-5 sm:p-6">
+                <p class="font-semibold">{pause.titel}</p>
+                <p class="mt-1.5">
+                  <Txt text={pause.text} />
+                </p>
+              </div>
+            )}
+            <div class:list={['flex flex-col gap-3 sm:flex-row sm:items-center', site.pause ? 'mt-6' : 'mt-9']}>
               <a href="#kontakt" class="btn btn-primary text-[1.05rem]">
-                {hero.cta}
+                {site.pause ? pause.cta : hero.cta}
                 <Icon name="arrowRight" size={20} />
               </a>
               {/* Handy: „Anrufen“ und „So läuft es ab“ nebeneinander; ab Tablet nur „So läuft es ab“ */}
@@ -75,9 +83,11 @@ const telefon = istGesetzt(site.kontakt.telefon) ? `tel:${site.kontakt.telefon.r
                 </a>
               </div>
             </div>
-            <p class="text-muted mt-4 text-[0.95rem]">
-              <Txt text={hero.ctaHinweis} />
-            </p>
+            {!site.pause && (
+              <p class="text-muted mt-4 text-[0.95rem]">
+                <Txt text={hero.ctaHinweis} />
+              </p>
+            )}
           </>
         )
       }

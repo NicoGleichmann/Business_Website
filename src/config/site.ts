@@ -38,6 +38,14 @@ export const site = {
    */
   indexierung: true,
 
+  /**
+   * Pause: true = Ich nehme gerade keine neuen Aufträge an.
+   * Dann erscheint oben und im Kontakt ein Hinweis (Text: `pause` in src/content/texte.ts),
+   * Gründerpreis-Hinweis, Kalender-Link und Telefon verschwinden, und das Formular öffnet nur das
+   * E-Mail-Programm. n8n wird dafür nicht gebraucht. Zum Weitermachen auf false setzen.
+   */
+  pause: true,
+
   /** Inhaber (für Impressum, "Über mich" und strukturierte Daten). */
   inhaber: {
     name: 'Nico Gleichmann',
@@ -88,8 +96,8 @@ export const site = {
   },
 } as const;
 
-/** URL des n8n-Webhooks. Kommt aus der Umgebungsvariable, NICHT aus dieser Datei. */
-export const webhookUrl: string = (import.meta.env?.PUBLIC_FORM_WEBHOOK_URL ?? '').trim();
+/** URL des n8n-Webhooks. Kommt aus der Umgebungsvariable, NICHT aus dieser Datei. In der Pause immer leer. */
+export const webhookUrl: string = site.pause ? '' : (import.meta.env?.PUBLIC_FORM_WEBHOOK_URL ?? '').trim();
 
 /** true, wenn ein Wert noch ein Platzhalter ist. */
 export const istTodo = (wert: string | undefined | null): boolean =>

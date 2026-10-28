@@ -257,6 +257,8 @@ wird beim Build erzeugt und von beiden Anbietern gelesen.
 
 Solange `indexierung: false` ist, tragen alle Seiten `noindex` – Google nimmt sie nicht auf. (Lighthouse zeigt deshalb vor dem Go-live bei SEO 66 statt 100 – das ist Absicht.)
 
+**Pause:** Mit `pause: true` in `src/config/site.ts` nimmt die Seite keine neuen Aufträge mehr an: Hinweis oben und im Kontakt (Text bei `pause` in `src/content/texte.ts`), kein Gründerpreis-Hinweis, kein Kalender-Link, keine Telefonnummer im Kontaktbereich, und das Formular öffnet nur das E-Mail-Programm. n8n wird dann nicht gebraucht, auch wenn `PUBLIC_FORM_WEBHOOK_URL` noch gesetzt ist. Zum Weitermachen `pause: false` setzen und neu deployen.
+
 ---
 
 ## 8. Projektstruktur
