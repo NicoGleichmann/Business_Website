@@ -427,6 +427,15 @@ export const faq = {
   ],
 };
 
+/** Hinweis während einer Pause. Erscheint nur, wenn in site.ts `pause: true` steht. */
+export const pause = {
+  titel: 'Derzeit nehme ich keine neuen Aufträge an',
+  text: 'Ich konzentriere mich gerade auf mein Abitur. Schreiben Sie mir trotzdem gern: Ich antworte, sobald ich kann, und melde mich, wenn ich wieder Aufträge annehme.',
+  cta: 'Nachricht schreiben',
+  /** Knopf oben rechts in der Kopfzeile. */
+  header: 'Kontakt',
+};
+
 export const kontakt = {
   eyebrow: 'Kontakt',
   titel: 'Kostenloses Erstgespräch vereinbaren',

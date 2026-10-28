@@ -4,6 +4,7 @@
  * hervorgehobener Kasten „Ihre eigene Lösung“, eine Betreuung für alle Pakete, Kleingedrucktes.
  * Texte und Preise: src/content/texte.ts bei `preise`.
  */
+import { site } from '../../config/site';
 import { preise } from '../../content/texte';
 import Icon from '../Icon.astro';
 import Txt from '../Txt.astro';
@@ -23,7 +24,7 @@ const titelBereich = (bereich: (typeof preise.bereiche)[number]) =>
     <p class="lead"><Txt text={preise.text} /></p>
 
     {
-      e.freiePlaetze > 0 && (
+      !site.pause && e.freiePlaetze > 0 && (
         <div class="border-accent bg-accent-soft mt-10 flex flex-col gap-4 rounded-2xl border p-5 sm:flex-row sm:items-center sm:justify-between sm:p-6">
           <div>
             <p class="flex flex-wrap items-center gap-x-3 gap-y-1 font-semibold">

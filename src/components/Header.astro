@@ -2,7 +2,7 @@
 import { site } from '../config/site';
 import Logo from './Logo.astro';
 import ThemeToggle from './ThemeToggle.astro';
-import { preise } from '../content/texte';
+import { pause, preise } from '../content/texte';
 
 /** Auf dem Handy steht der Name zweizeilig, damit Kopfzeile und Button nebeneinander passen. */
 const [vorname, ...rest] = site.name.split(' ');
@@ -46,8 +46,16 @@ const navigation = [
     <div class="flex items-center gap-1.5 sm:gap-3">
       <ThemeToggle />
       <a href="/#kontakt" class="btn btn-primary min-h-11 px-4 text-[0.95rem] sm:px-5">
-        <span class="sm:hidden">Erstgespräch</span>
-        <span class="hidden sm:inline">Kostenloses Erstgespräch</span>
+        {
+          site.pause ? (
+            pause.header
+          ) : (
+            <>
+              <span class="sm:hidden">Erstgespräch</span>
+              <span class="hidden sm:inline">Kostenloses Erstgespräch</span>
+            </>
+          )
+        }
       </a>
     </div>
   </div>
